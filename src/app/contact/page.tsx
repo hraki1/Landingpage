@@ -142,7 +142,7 @@ export default function ContactPage() {
                   </div>
                   <div className="mr-4">
                     <h3 className="text-lg font-medium text-gray-900">الهاتف</h3>
-                    <p className="text-gray-600">+966 12 345 6789</p>
+                    <p className="text-gray-600">+962791986721</p>
                   </div>
                 </div>
 
@@ -152,7 +152,7 @@ export default function ContactPage() {
                   </div>
                   <div className="mr-4">
                     <h3 className="text-lg font-medium text-gray-900">العنوان</h3>
-                    <p className="text-gray-600">الرياض، المملكة العربية السعودية</p>
+                    <p className="text-gray-600">عمان. المملكة الاردنية الهاشمية</p>
                   </div>
                 </div>
               </div>
