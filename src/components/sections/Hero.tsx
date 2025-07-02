@@ -1,5 +1,6 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
 import { BiCheck } from "react-icons/bi";
 
@@ -103,35 +104,38 @@ export default function Hero() {
             بساطة. أتمتة. تفوّق
           </motion.p>
 
-          <motion.div
+          <motion.button
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-wrap gap-3 sm:gap-4"
           >
-            <motion.button
-              className="px-4 sm:px-5 py-3 sm:py-3 bg-[#2EB6EE] text-white font-medium rounded-xl hover:bg-[#2596c4] transition-all duration-300 text-base sm:text-lg flex items-center"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 10px 25px -5px rgba(46, 182, 238, 0.4)",
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              إبدأ الآن
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 mr-2"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+            <Link href="/contact">
+              <motion.div
+                className="inline-flex items-center px-4 sm:px-5 py-3 sm:py-3 bg-[#2EB6EE] text-white font-medium rounded-xl hover:bg-[#2596c4] transition-all duration-300 text-base sm:text-lg cursor-pointer"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 10px 25px -5px rgba(46, 182, 238, 0.4)",
+                }}
+                whileTap={{ scale: 0.95 }}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </motion.button>
-          </motion.div>
+                إبدأ الآن
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 mr-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </motion.div>
+            </Link>
+
+          </motion.button>
           <ul className="mt-4 space-y-3 text-white md:text-black text-base sm:text-lg font-medium">
             {[
               "دعم فني متميز",

@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function CTA() {
   return (
-    <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <section className=" relative py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -17,16 +18,19 @@ export default function CTA() {
             التحق بركب الشركات الرائدة التي طورت أساليب عملها بفضل منصتنا.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-            <motion.button
-              className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-medium rounded-xl hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
+            <motion.div
               whileHover={{
                 scale: 1.05,
-                boxShadow: "0 10px 25px -5px rgba(124, 58, 237, 0.4)",
               }}
               whileTap={{ scale: 0.95 }}
             >
-              تواصل معنا الآن
-            </motion.button>
+              <Link
+                href="/contact"
+                className="cursor-pointer px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-medium rounded-xl hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
+              >
+                تواصل معنا الآن
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
       </div>
