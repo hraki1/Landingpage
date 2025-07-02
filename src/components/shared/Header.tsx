@@ -115,22 +115,23 @@ export default function Header() {
           {/* Logo + Links */}
           <div className="flex items-center gap-6">
             {/* Logo */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-3"
-            >
-              <Image
-                src="/logo.png"
-                alt="صرح النمو"
-                className="w-10 md:w-14 h-auto"
-                width={56}
-                height={56}
-              />
-              <span className=" md:hidden text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent">
-                صرح النمو
-              </span>
-            </motion.div>
-
+            <Link href={'/contact'}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center gap-3"
+              >
+                <Image
+                  src="/logo.png"
+                  alt="صرح النمو"
+                  className="w-10 md:w-14 h-auto"
+                  width={56}
+                  height={56}
+                />
+                <span className=" md:hidden text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent">
+                  صرح النمو
+                </span>
+              </motion.div>
+            </Link>
             {/* Navigation Links */}
             <div className="hidden lg:flex ml-6 gap-4">
               {navLinks.map(({ label, href, type }) =>
