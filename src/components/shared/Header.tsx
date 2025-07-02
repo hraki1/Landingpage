@@ -42,15 +42,17 @@ export const navLinks = [
   },
   {
     label: "من نحن",
-    href: "#about",
+    href: "/about",
     ariaLabel: "معلومات عن الشركة",
     icon: "👥",
+    type: "page",
   },
   {
     label: "الأسئلة الشائعة",
     href: "#faq",
     ariaLabel: "الأسئلة المتكررة",
     icon: "❓",
+    type: "hash",
   },
   {
     label: "اتصل بنا",
@@ -58,6 +60,7 @@ export const navLinks = [
     ariaLabel: "صفحة التواصل",
     icon: "📞",
     cta: true,
+    type: "page",
   },
 ];
 
@@ -212,7 +215,7 @@ export default function Header() {
             transition={{ duration: 0.3 }}
             className="fixed top-16 left-0 right-0 z-40 bg-white shadow-lg overflow-hidden lg:hidden"
           >
-            <div className="px-4 py-4 space-y-3">
+            <div className="px-4 py-4 space-y-3 text-center">
               {navLinks.map(({ label, href, type }, i) => (
                 <motion.div
                   key={href}
@@ -223,7 +226,7 @@ export default function Header() {
                   {type === "hash" ? (
                     <button
                       onClick={() => handleHashLinkClick(href)}
-                      className="w-full text-left py-2 px-3 text-gray-700 hover:text-[#2EB6EE] font-medium rounded-lg hover:bg-[#2eb6ee1a] transition-colors"
+                      className="w-full  py-2 px-3 text-gray-700 hover:text-[#2EB6EE] font-medium rounded-lg hover:bg-[#2eb6ee1a] transition-colors"
                     >
                       {label}
                     </button>
@@ -231,7 +234,7 @@ export default function Header() {
                     <Link
                       href={href}
                       onClick={() => setMenuOpen(false)}
-                      className="block py-2 px-3 text-gray-700 hover:text-[#2EB6EE] font-medium rounded-lg hover:bg-[#2eb6ee1a] transition-colors"
+                      className="block  py-2 px-3 text-gray-700 hover:text-[#2EB6EE] font-medium rounded-lg hover:bg-[#2eb6ee1a] transition-colors"
                     >
                       {label}
                     </Link>

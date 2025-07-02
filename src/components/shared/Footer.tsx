@@ -2,10 +2,43 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { FaFacebook, FaSquareXTwitter } from "react-icons/fa6";
+import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io";
 
 export default function Footer() {
+
+  type socialLinksType = {
+    name: string;
+    href: string;
+    icon: React.ElementType;
+  };
+
+  const socialLinks: socialLinksType[] = [
+    {
+      name: "Twitter",
+      href: "https://twitter.com/yourprofile",
+      icon: FaSquareXTwitter
+    },
+    {
+      name: "Facebook",
+      href: "https://facebook.com/yourprofile",
+      icon: FaFacebook
+    },
+    {
+      name: "LinkedIn",
+      href: "https://linkedin.com/in/yourprofile",
+      icon: IoLogoLinkedin
+    },
+    {
+      name: "GitHub",
+      href: "https://github.com/yourprofile",
+      icon: IoLogoGithub
+    },
+  ];
   return (
-    <footer className="py-12 sm:py-16 px-4 sm:px-6 bg-gray-900 text-gray-400 text-center md:text-start">
+    <footer className=" relative py-12 sm:py-16 px-4 sm:px-6 bg-gray-900 text-gray-400 text-center md:text-start">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-8 sm:gap-12">
           {/* Logo and About */}
@@ -30,21 +63,21 @@ export default function Footer() {
               التوسع بسرعة، وتحقيق النجاح التقني.
             </p>
             <div className="flex gap-3 sm:gap-4">
-              {["twitter", "facebook", "linkedin", "github"].map((social) => (
-                <motion.a
-                  key={social}
-                  href="#"
-                  className="cursor-pointer w-8 h-8 sm:w-10 flex items-center justify-center hover:bg-gray-700 transition-colors duration-300 rounded-full"
-                  whileHover={{ y: -3 }}
+              {socialLinks.map((social) => (
+                <Link
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
                 >
-                  <Image
-                    src={`/social/${social}.png`}
-                    alt={social}
-                    width={20}
-                    height={20}
-                    className="h-4 w-4 sm:h-5 sm:w-5"
-                  />
-                </motion.a>
+                  <motion.div
+                    whileHover={{ y: -4, scale: 1.05 }}
+                    className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-300 shadow-sm"
+                  >
+                    <social.icon size={16} />
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </div>
