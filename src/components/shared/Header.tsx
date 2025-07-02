@@ -114,22 +114,25 @@ export default function Header() {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           {/* Logo + Links */}
           <div className="flex items-center gap-6">
+            {/* Logo */}
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center w-10 md:w-14"
+              className="flex items-center gap-3"
             >
-              <Link href="/" passHref>
-                <Image
-                  src="/logo.png"
-                  alt="صرح النمو"
-                  width={50}
-                  height={50}
-                  className="w-full h-auto"
-                />
-              </Link>
+              <Image
+                src="/logo.png"
+                alt="صرح النمو"
+                className="w-10 md:w-14 h-auto"
+                width={56}
+                height={56}
+              />
+              <span className=" md:hidden text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent">
+                صرح النمو
+              </span>
             </motion.div>
 
-            <div className="hidden lg:flex ml-6 space-x-6 gap-3">
+            {/* Navigation Links */}
+            <div className="hidden lg:flex ml-6 gap-4">
               {navLinks.map(({ label, href, type }) =>
                 type === "hash" ? (
                   <button
@@ -137,12 +140,9 @@ export default function Header() {
                     onClick={() => handleHashLinkClick(href)}
                     className="text-gray-700 hover:text-[#2EB6EE] font-medium transition-colors duration-300 text-sm xl:text-base relative group"
                   >
-                    <motion.span
-                      whileHover={{ scale: 1.05 }}
-                      className="relative"
-                    >
+                    <motion.span whileHover={{ scale: 1.05 }} className="relative">
                       {label}
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2EB6EE] transition-all duration-300 group-hover:w-full"></span>
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2EB6EE] transition-all duration-300 group-hover:w-full" />
                     </motion.span>
                   </button>
                 ) : (
@@ -150,14 +150,10 @@ export default function Header() {
                     key={href}
                     href={href}
                     className="text-gray-700 hover:text-[#2EB6EE] font-medium transition-colors duration-300 text-sm xl:text-base relative group"
-                    passHref
                   >
-                    <motion.span
-                      whileHover={{ scale: 1.05 }}
-                      className="relative"
-                    >
+                    <motion.span whileHover={{ scale: 1.05 }} className="relative">
                       {label}
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2EB6EE] transition-all duration-300 group-hover:w-full"></span>
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2EB6EE] transition-all duration-300 group-hover:w-full" />
                     </motion.span>
                   </Link>
                 )
@@ -196,13 +192,12 @@ export default function Header() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d={
-                  menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"
-                }
+                d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
               />
             </svg>
           </button>
         </div>
+
       </motion.nav>
 
       {/* Mobile Menu */}
