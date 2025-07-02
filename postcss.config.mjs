@@ -1,5 +1,7 @@
+import tailwindcssRtl from "tailwindcss-rtl";
+
 const config = {
-  plugins: ["@tailwindcss/postcss"],
+  plugins: ["@tailwindcss/postcss", tailwindcssRtl],
 };
 
 export default config;
