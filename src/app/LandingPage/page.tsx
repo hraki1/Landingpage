@@ -11,7 +11,7 @@ import Footer from "@/components/shared/Footer";
 import CTA from "@/components/sections/CTA";
 import Newsletter from "@/components/sections/Newsletter";
 import FAQ from "@/components/sections/FAQ";
-import Loading from "@/components/ui/loading";
+import Loading from "@/components/ui/Loading";
 
 // Load the component with SSR disabled
 const Floating = dynamic(() => import("@/components/ui/Floating"), {
