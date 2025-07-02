@@ -22,8 +22,6 @@ const Floating = dynamic(() => import("@/components/ui/Floating"), {
 const UltraPremiumLanding = () => {
   const ref = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -41,15 +39,10 @@ const UltraPremiumLanding = () => {
       }
     };
 
-    // Set initial window width
-    setWindowWidth(window.innerWidth);
-    setIsLoading(false);
-
     // Handle initial hash navigation
     handleHashNavigation();
 
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
       if (window.innerWidth > 1024 && menuOpen) {
         setMenuOpen(false);
       }
