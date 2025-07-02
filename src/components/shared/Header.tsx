@@ -127,7 +127,7 @@ export default function Header() {
                   width={56}
                   height={56}
                 />
-                <span className=" md:hidden text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent">
+                <span className=" lg:hidden text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent">
                   صرح النمو
                 </span>
               </motion.div>
