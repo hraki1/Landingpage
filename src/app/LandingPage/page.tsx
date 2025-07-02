@@ -3,18 +3,14 @@ import Features from "@/components/sections/Features";
 import Hero from "@/components/sections/Hero";
 import Stats from "@/components/sections/Stats";
 import UseCases from "@/components/sections/UseCases";
-import dynamic from "next/dynamic";
 import { useRef, useState, useEffect } from "react";
 import AboutSection from "@/components/sections/About";
 import CTA from "@/components/sections/CTA";
 import Newsletter from "@/components/sections/Newsletter";
 import FAQ from "@/components/sections/FAQ";
 import Loading from "@/components/ui/Loading";
+import Floating from "@/components/ui/Floating";
 
-const Floating = dynamic(() => import("@/components/ui/Floating"), {
-  ssr: false,
-  loading: () => <div className="fixed inset-0 z-0" />,
-});
 
 export default function LandingPage() {
   const ref = useRef<HTMLDivElement>(null);
