@@ -1,29 +1,26 @@
 "use client";
 import Features from "@/components/sections/Features";
-import Header from "@/components/shared/Header";
 import Hero from "@/components/sections/Hero";
 import Stats from "@/components/sections/Stats";
 import UseCases from "@/components/sections/UseCases";
 import dynamic from "next/dynamic";
 import { useRef, useState, useEffect } from "react";
 import AboutSection from "@/components/sections/About";
-import Footer from "@/components/shared/Footer";
 import CTA from "@/components/sections/CTA";
 import Newsletter from "@/components/sections/Newsletter";
 import FAQ from "@/components/sections/FAQ";
 import Loading from "@/components/ui/Loading";
 
-// Load the component with SSR disabled
 const Floating = dynamic(() => import("@/components/ui/Floating"), {
   ssr: false,
   loading: () => <div className="fixed inset-0 z-0" />,
 });
 
 export default function LandingPage() {
-  const ref = useRef(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -67,7 +64,6 @@ export default function LandingPage() {
       <Floating ref={ref} />
 
       {/* Navigation */}
-      <Header/>
 
       {/* Sections with scroll-margin for fixed header */}
       <section id="hero" className="scroll-mt-24">
@@ -101,8 +97,6 @@ export default function LandingPage() {
       <section id="newsletter" className="scroll-mt-24">
         <Newsletter />
       </section>
-
-      <Footer />
     </div>
   );
 }
