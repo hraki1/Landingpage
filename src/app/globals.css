@@ -1,20 +1,21 @@
 @import "tailwindcss";
+
+/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
+/* Root styles */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Great Vibes font (default) */
+  --font-great: "Great Vibes", cursive;
+  font-family: var(--font-great);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -22,8 +23,20 @@ html {
   }
 }
 
+/* Tailwind theme override (optional) */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+/* Body default styling */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-great);
+}
+
+/* Optional custom class for another font */
+.ping-bold {
+  font-family: var(--font-ping-bold);
 }

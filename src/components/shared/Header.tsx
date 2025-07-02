@@ -42,17 +42,15 @@ export const navLinks = [
   },
   {
     label: "من نحن",
-    href: "/about",
+    href: "#about",
     ariaLabel: "معلومات عن الشركة",
     icon: "👥",
-    type: "page",
   },
   {
     label: "الأسئلة الشائعة",
     href: "#faq",
     ariaLabel: "الأسئلة المتكررة",
     icon: "❓",
-    type: "hash",
   },
   {
     label: "اتصل بنا",
@@ -60,7 +58,6 @@ export const navLinks = [
     ariaLabel: "صفحة التواصل",
     icon: "📞",
     cta: true,
-    type: "page",
   },
 ];
 

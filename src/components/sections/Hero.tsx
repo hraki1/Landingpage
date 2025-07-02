@@ -8,7 +8,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen pt-24 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6 flex items-center"
+      className="relative h-screen pt-24 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6 flex items-center"
       style={{
         backgroundImage: "url('/dashboard-screenshot.jpeg')",
         backgroundRepeat: "no-repeat",
@@ -85,7 +85,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight mb-4 md:mb-6 flex flex-col items-center md:block"
           >
-            <span className="bg-gradient-to-r block from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-[#2EB6EE] md:text-black">
+            <span className="bg-gradient-to-r block from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-[#2EB6EE] md:text-[#2EB6EE]">
               صرح النمو
             </span>{" "}
             <p className="  text-[#fff] md:text-black">
