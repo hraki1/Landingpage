@@ -237,14 +237,18 @@ export default function Header() {
                 </motion.div>
               ))}
               <div className="pt-4 border-t border-gray-200 space-y-3">
-                <motion.button
-                  className="w-full py-2.5 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-medium rounded-lg"
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.3 }}
-                >
-                  ابدأ الآن
-                </motion.button>
+                <Link href="/contact">
+                  <motion.button
+                    className="block w-full text-center py-2.5 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-base"
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ duration: 0.3, delay: 0.3 }}
+                  >
+                    ابدأ الآن
+                  </motion.button>
+                </Link>
               </div>
             </div>
           </motion.div>
