@@ -5,44 +5,39 @@ import Hero from "@/components/sections/Hero";
 import Stats from "@/components/sections/Stats";
 import UseCases from "@/components/sections/UseCases";
 import dynamic from "next/dynamic";
+
+// Load the component with SSR disabled
+const Floating = dynamic(() => import("@/components/ui/Floating"), {
+  ssr: false,
+});
 import { useRef, useState, useEffect } from "react";
 import AboutSection from "@/components/sections/About";
 import Footer from "@/components/shared/Footer";
 import CTA from "@/components/sections/CTA";
 import Newsletter from "@/components/sections/Newsletter";
 import FAQ from "@/components/sections/FAQ";
-import { usePathname, useSearchParams } from "next/navigation";
-
-// Lazy load components with SSR disabled
-const Floating = dynamic(() => import("@/components/ui/Floating"), {
-  ssr: false,
-  loading: () => <div className="fixed inset-0 z-0" />,
-});
 
 const UltraPremiumLanding = () => {
   const ref = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const [windowWidth, setWindowWidth] = useState(0);
 
-  // Handle hash navigation on component mount
   useEffect(() => {
-    const handleHashNavigation = () => {
-      const hash = window.location.hash;
-      if (hash) {
-        setTimeout(() => {
-          const element = document.querySelector(hash);
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-          }
-        }, 300);
-      }
-    };
+    function updateWidth() {
+      setWindowWidth(window.innerWidth);
+    }
 
-    // Handle initial hash navigation
-    handleHashNavigation();
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  useEffect(() => {
+    // Set initial window width
+    setWindowWidth(window.innerWidth);
 
     const handleResize = () => {
+      setWindowWidth(window.innerWidth);
       if (window.innerWidth > 1024 && menuOpen) {
         setMenuOpen(false);
       }
@@ -52,16 +47,7 @@ const UltraPremiumLanding = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [menuOpen]);
 
-  // Handle route changes for hash navigation
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      const element = document.querySelector(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  }, [pathname, searchParams]);
+  if (windowWidth === 0) return null; // عدم العرض حتى نعرف عرض الشاشة
 
   return (
     <div
@@ -69,47 +55,45 @@ const UltraPremiumLanding = () => {
       className="relative w-full overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100"
     >
       <Floating ref={ref} />
-
       {/* Navigation */}
       <Header />
-
       {/* Hero section */}
-      <section id="hero" className="scroll-mt-20">
+      <section id="hero">
         <Hero />
       </section>
 
       {/* Features section */}
-      <section id="features" className="scroll-mt-20">
+      <section id="features">
         <Features />
       </section>
 
       {/* Stats section */}
-      <section id="stats" className="scroll-mt-20">
+      <section id="stats">
         <Stats />
       </section>
 
       {/* Use Cases section */}
-      <section id="use-cases" className="scroll-mt-20">
+      <section id="use-cases">
         <UseCases />
       </section>
 
       {/* About section */}
-      <section id="about" className="scroll-mt-20">
+      <section id="about">
         <AboutSection />
       </section>
 
       {/* FAQ section */}
-      <section id="faq" className="scroll-mt-20">
+      <section id="faq">
         <FAQ />
       </section>
 
       {/* CTA section */}
-      <section id="cta" className="scroll-mt-20">
+      <section id="cta">
         <CTA />
       </section>
 
       {/* Newsletter section */}
-      <section id="newsletter" className="scroll-mt-20">
+      <section id="newsletter">
         <Newsletter />
       </section>
 
