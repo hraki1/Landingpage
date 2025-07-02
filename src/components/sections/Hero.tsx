@@ -1,46 +1,55 @@
 "use client";
-
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { BiCheck } from "react-icons/bi";
 
 export default function Hero() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 md:pt-32 pb-16 md:pb-20 text-white"
+      className="relative min-h-screen pt-24 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6 flex items-center"
       style={{
         backgroundImage: "url('/dashboard-screenshot.jpeg')",
-        backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
+        backgroundSize: "cover",
       }}
     >
-      {/* ✅ Ultra Overlay with Gradient */}
-      <div className="absolute w-full h-[calc(100vh-72.8px)] bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
-
-      {/* ✅ Video Modal */}
+      {/* Video Modal */}
       <AnimatePresence>
         {videoModalOpen && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4"
             onClick={() => setVideoModalOpen(false)}
           >
             <motion.div
-              className="relative w-full max-w-4xl bg-black rounded-xl overflow-hidden"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full max-w-4xl bg-black rounded-lg overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
+                className="absolute top-4 right-4 z-10 text-white hover:text-gray-300 transition-colors"
                 onClick={() => setVideoModalOpen(false)}
               >
-                ✕
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-8 w-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
               </button>
               <div className="aspect-w-16 aspect-h-9 w-full">
                 <iframe
@@ -55,44 +64,89 @@ export default function Hero() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* hero section */}
 
-      {/* ✅ Hero Content */}
-      <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center text-center lg:text-right">
-        <div className="space-y-6">
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight"
-            initial={{ opacity: 0, y: 30 }}
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
+        <div className=" md:hidden absolute w-full h-[calc(100vh-72.8px)] right-0 bottom-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+
+        <div className="relative z-10 flex flex-col justify-center items-center md:block">
+          {/* <motion.div
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="inline-block px-3 py-1 rounded-full bg-purple-100 text-purple-700 font-medium mb-4 md:mb-6 text-sm md:text-base"
           >
-            <span className="bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent block">
+            <span className="mr-2">✨</span> Now with AI capabilities
+          </motion.div> */}
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight mb-4 md:mb-6 flex flex-col items-center md:block"
+          >
+            <span className="bg-gradient-to-r block from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-[#2EB6EE] md:text-black">
               صرح النمو
-            </span>
-            <span className="block mt-2 text-white">
+            </span>{" "}
+            <p className="  text-[#fff] md:text-black">
+              {" "}
               حلول مترابطة لنمو أعمالك!
-            </span>
+            </p>
           </motion.h1>
 
           <motion.p
-            className="text-lg sm:text-xl text-gray-200 font-medium max-w-2xl mx-auto lg:mx-0"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-lg sm:text-xl  text-white md:text-black mb-8 md:mb-10 max-w-2xl font-bold"
           >
-            بساطة. أتمتة. تفوّق. نحن نبني الأنظمة التي تدفع أعمالك للأمام.
+            بساطة. أتمتة. تفوّق
           </motion.p>
 
           <motion.div
-            className="flex flex-wrap justify-center lg:justify-end gap-4 mt-6"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-wrap gap-3 sm:gap-4"
           >
-            <button className="px-6 py-3 bg-[#2EB6EE] text-white rounded-xl text-sm sm:text-base font-semibold hover:shadow-xl transition-all duration-300">
+            <motion.button
+              className="px-4 sm:px-5 py-3 sm:py-3 bg-[#2EB6EE] text-white font-medium rounded-xl hover:bg-[#2596c4] transition-all duration-300 text-base sm:text-lg flex items-center"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 10px 25px -5px rgba(46, 182, 238, 0.4)",
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
               إبدأ الآن
-            </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </motion.button>
           </motion.div>
-        </div>       
+          <ul className="mt-4 space-y-3 text-white md:text-black text-base sm:text-lg font-medium">
+            {[
+              "دعم فني متميز",
+              "تحديثات مستمرة ودورية",
+              "تدريب مجاني وشامل",
+            ].map((item, index) => (
+              <li key={index} className="flex items-center gap-2">
+                <span className="text-[#8FBE53] text-xl">
+                  <BiCheck />
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

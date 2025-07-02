@@ -1,0 +1,126 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+
+export default function Footer() {
+  return (
+    <footer className="py-12 sm:py-16 px-4 sm:px-6 bg-gray-900 text-gray-400 text-center md:text-start">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-8 sm:gap-12">
+          {/* Logo and About */}
+          <div className="lg:col-span-2">
+            <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent mb-4 sm:mb-6 flex items-center gap-3">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center w-10 md:w-14"
+              >
+                <Image
+                  src="/logo.png"
+                  alt="صرح النمو"
+                  className="w-full h-auto"
+                  width={50}
+                  height={50}
+                />
+              </motion.div>
+              صرح النمو
+            </div>
+            <p className="text-sm sm:text-base mb-4 sm:mb-6">
+              منصة رقمية متكاملة لتطوير البرمجيات تساعدك على إدارة أعمالك،
+              التوسع بسرعة، وتحقيق النجاح التقني.
+            </p>
+            <div className="flex gap-3 sm:gap-4">
+              {["twitter", "facebook", "linkedin", "github"].map((social) => (
+                <motion.a
+                  key={social}
+                  href="#"
+                  className="cursor-pointer w-8 h-8 sm:w-10 flex items-center justify-center hover:bg-gray-700 transition-colors duration-300 rounded-full"
+                  whileHover={{ y: -3 }}
+                >
+                  <Image
+                    src={`/social/${social}.png`}
+                    alt={social}
+                    width={20}
+                    height={20}
+                    className="h-4 w-4 sm:h-5 sm:w-5"
+                  />
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          {/* Footer Links */}
+          {[
+            {
+              title: "الخدمات",
+              links: [
+                "تطوير المواقع",
+                "تطبيقات الهاتف",
+                "أنظمة الشركات",
+                "التحول الرقمي",
+                "ذكاء الأعمال",
+              ],
+            },
+            {
+              title: "الشركة",
+              links: ["من نحن", "المدونة", "الوظائف", "تواصل معنا"],
+            },
+            {
+              title: "الدعم",
+              links: ["الأسئلة الشائعة", "الدعم الفني", "المجتمع", "الدليل"],
+            },
+          ].map((column, i) => (
+            <div key={i}>
+              <h3 className="text-white font-medium mb-3 sm:mb-4 text-sm sm:text-base">
+                {column.title}
+              </h3>
+              <ul className="space-y-2 sm:space-y-3">
+                {column.links.map((link, j) => (
+                  <motion.li
+                    key={j}
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <a
+                      href="#"
+                      className="hover:text-white transition-colors duration-300 text-xs sm:text-sm"
+                    >
+                      {link}
+                    </a>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 mt-12 sm:mt-16 pt-8 flex flex-col sm:flex-row justify-between items-center text-center gap-4">
+          <p className="text-xs sm:text-sm">
+            © {new Date().getFullYear()} صرح النمو. جميع الحقوق محفوظة.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
+            <a
+              href="#"
+              className="hover:text-white transition-colors duration-300"
+            >
+              سياسة الخصوصية
+            </a>
+            <a
+              href="#"
+              className="hover:text-white transition-colors duration-300"
+            >
+              الشروط والأحكام
+            </a>
+            <a
+              href="#"
+              className="hover:text-white transition-colors duration-300"
+            >
+              ملفات تعريف الارتباط
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

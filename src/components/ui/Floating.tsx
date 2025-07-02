@@ -52,6 +52,7 @@ export default function Floating({ ref }: FloatingProps) {
   return (
     <>
       <motion.div
+        dir="ltr"
         className="fixed inset-0 z-0"
         style={{
           background: `
@@ -64,7 +65,10 @@ export default function Floating({ ref }: FloatingProps) {
           scale,
         }}
       />
-      <div className="fixed inset-0 z-50 overflow-hidden pointer-events-none">
+      <div
+        dir="ltr"
+        className="fixed inset-0 z-50 overflow-hidden pointer-events-none"
+      >
         {particles.map((p) => (
           <motion.div
             key={p.id}

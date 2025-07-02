@@ -1,6 +1,7 @@
 "use client";
 
-import UltraPremiumLanding from "./LandingPage/page";
+import UltraPremiumLanding from "./landingPage/page";
+// import LandingPage from "./LandingPageTwo/page";
 
 const HomePage = () => {
   return <UltraPremiumLanding />;
