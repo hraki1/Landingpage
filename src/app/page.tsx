@@ -1,10 +1,12 @@
 "use client";
 
-import UltraPremiumLanding from "./landingPage/page";
-// import LandingPage from "./LandingPageTwo/page";
+import LandingPage from "./landingPage/page";
+
 
 const HomePage = () => {
-  return <UltraPremiumLanding />;
+  return <>
+  <LandingPage />
+  </>
 };
 
 export default HomePage;
