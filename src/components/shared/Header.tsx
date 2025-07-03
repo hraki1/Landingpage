@@ -164,16 +164,19 @@ export default function Header() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center">
-            <motion.button
-              className="px-4 xl:px-5 py-2 xl:py-2.5 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300 text-sm xl:text-base"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 10px 25px -5px rgba(46, 182, 238, 0.4)",
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              طلب عرض توضيحي
-            </motion.button>
+            <Link href={'/contact'}>
+              <motion.button
+                className="px-4 xl:px-5 py-2 xl:py-2.5 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300 text-sm xl:text-base"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 10px 25px -5px rgba(46, 182, 238, 0.4)",
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                طلب عرض توضيحي
+              </motion.button>
+            </Link>
+
           </div>
 
           {/* Hamburger */}

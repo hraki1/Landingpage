@@ -1,9 +1,21 @@
 "use client";
+
 import { motion } from "framer-motion";
-import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { useState } from "react";
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -15,202 +27,338 @@ export default function ContactPage() {
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.6,
+        ease: "easeOut" as const
       },
     },
   };
 
+  interface ContactFormData {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+  }
+
+  interface ChangeEventTarget {
+    id: keyof ContactFormData;
+    value: string;
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target as ChangeEventTarget;
+    setFormData((prev: ContactFormData) => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitSuccess(true);
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+      });
+
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    }, 1500);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
         className="max-w-7xl mx-auto mt-16"
       >
-        <motion.div variants={itemVariants} className="text-center mb-12">
-          <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            تواصل معنا
-          </h1>
-          <p className="mt-4 text-xl text-gray-600">
-            نحن هنا للإجابة على جميع استفساراتك
-          </p>
+        {/* Header Section */}
+        <motion.div
+          variants={itemVariants}
+          className="text-center mb-16"
+        >
+          <motion.h1
+            className="text-4xl font-extrabold text-gray-900 sm:text-5xl"
+            whileHover={{ scale: 1.02 }}
+          >
+            تواصل <span className="text-[#2EB6EE]">معنا</span>
+          </motion.h1>
+          <motion.p
+            className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            whileHover={{ scale: 1.01 }}
+          >
+            فريقنا متاح دائماً لمساعدتك والإجابة على استفساراتك. لا تتردد في مراسلتنا بأي وقت.
+          </motion.p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <motion.div
             variants={itemVariants}
-            className="bg-white p-6 sm:p-8 rounded-xl shadow-lg"
+            className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
+            whileHover={{ y: -5 }}
           >
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+            <h2 className="text-2xl font-bold text-gray-800 mb-8 pb-4 border-b border-gray-200 flex items-center gap-2">
+              <FiSend className="text-[#2EB6EE]" />
               أرسل لنا رسالة
             </h2>
-            <form className="space-y-6">
+
+            {submitSuccess && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg text-right"
+              >
+                تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.
+              </motion.div>
+            )}
+
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                <div>
+                <motion.div whileHover={{ scale: 1.01 }}>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 text-right"
+                    className="block text-sm font-medium text-gray-700 text-right mb-2"
                   >
-                    الاسم
+                    الاسم الكامل
                   </label>
                   <input
                     type="text"
                     id="name"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE]"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="block w-full border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE] transition duration-200"
                   />
-                </div>
-                <div>
+                </motion.div>
+
+                <motion.div whileHover={{ scale: 1.01 }}>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 text-right"
+                    className="block text-sm font-medium text-gray-700 text-right mb-2"
                   >
                     البريد الإلكتروني
                   </label>
                   <input
                     type="email"
                     id="email"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE]"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="block w-full border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE] transition duration-200"
                   />
-                </div>
+                </motion.div>
               </div>
-              <div>
+
+              <motion.div whileHover={{ scale: 1.01 }}>
                 <label
                   htmlFor="subject"
-                  className="block text-sm font-medium text-gray-700 text-right"
+                  className="block text-sm font-medium text-gray-700 text-right mb-2"
                 >
-                  الموضوع
+                  موضوع الرسالة
                 </label>
                 <input
                   type="text"
                   id="subject"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE]"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                  className="block w-full border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE] transition duration-200"
                 />
-              </div>
-              <div>
+              </motion.div>
+
+              <motion.div whileHover={{ scale: 1.01 }}>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 text-right"
+                  className="block text-sm font-medium text-gray-700 text-right mb-2"
                 >
-                  الرسالة
+                  محتوى الرسالة
                 </label>
                 <textarea
                   id="message"
-                  rows={4}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE]"
+                  rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  className="block w-full border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE] transition duration-200"
                 ></textarea>
-              </div>
-              <div>
+              </motion.div>
+
+              <motion.div className="pt-2">
                 <motion.button
                   type="submit"
-                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#2EB6EE] hover:bg-[#2596c4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2EB6EE]"
-                  whileHover={{ scale: 1.02 }}
+                  className="w-full flex justify-center items-center gap-2 py-4 px-6 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-gradient-to-r from-[#2EB6EE] to-[#8FBE53] hover:from-[#2596c4] hover:to-[#7CAE4A] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2EB6EE] transition duration-300"
+                  whileHover={{ scale: 1.02, boxShadow: "0 5px 15px rgba(46, 182, 238, 0.3)" }}
                   whileTap={{ scale: 0.98 }}
+                  disabled={isSubmitting}
                 >
-                  إرسال الرسالة
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      جاري الإرسال...
+                    </>
+                  ) : (
+                    <>
+                      <FiSend />
+                      إرسال الرسالة
+                    </>
+                  )}
                 </motion.button>
-              </div>
+              </motion.div>
             </form>
           </motion.div>
 
           {/* Contact Info */}
           <motion.div variants={itemVariants} className="space-y-8">
-            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">
+            {/* Contact Information Card */}
+            <motion.div
+              className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
+              whileHover={{ y: -5 }}
+            >
+              <h2 className="text-2xl font-bold text-gray-800 mb-8 pb-4 border-b border-gray-200 flex items-center gap-2">
+                <FiMapPin className="text-[#2EB6EE]" />
                 معلومات التواصل
               </h2>
-              <div className="space-y-4">
-                <div className="flex items-start">
+
+              <div className="space-y-6">
+                <motion.div
+                  className="flex items-start gap-4 p-4 hover:bg-gray-50 rounded-lg transition duration-200"
+                  whileHover={{ x: 5 }}
+                >
                   <div className="flex-shrink-0 bg-[#2EB6EE]/10 p-3 rounded-full">
                     <FiMail className="h-6 w-6 text-[#2EB6EE]" />
                   </div>
-                  <div className="mr-4">
+                  <div className="text-right">
                     <h3 className="text-lg font-medium text-gray-900">البريد الإلكتروني</h3>
-                    <p className="text-gray-600">info@sarh-alnomu.com</p>
+                    <a
+                      href="mailto:info@sarh-alnomu.com"
+                      className="text-gray-600 hover:text-[#2EB6EE] transition duration-200"
+                    >
+                      info@sarh-alnomu.com
+                    </a>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-start">
+                <motion.div
+                  className="flex items-start gap-4 p-4 hover:bg-gray-50 rounded-lg transition duration-200"
+                  whileHover={{ x: 5 }}
+                >
                   <div className="flex-shrink-0 bg-[#2EB6EE]/10 p-3 rounded-full">
                     <FiPhone className="h-6 w-6 text-[#2EB6EE]" />
                   </div>
-                  <div className="mr-4">
+                  <div className="text-right">
                     <h3 className="text-lg font-medium text-gray-900">الهاتف</h3>
-                    <p className="text-gray-600">+962791986721</p>
+                    <a
+                      href="tel:+962791986721"
+                      className="text-gray-600 hover:text-[#2EB6EE] transition duration-200"
+                    >
+                      +962 7 9198 6721
+                    </a>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-start">
+                <motion.div
+                  className="flex items-start gap-4 p-4 hover:bg-gray-50 rounded-lg transition duration-200"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="flex-shrink-0 bg-[#2EB6EE]/10 p-3 rounded-full">
+                    <FaWhatsapp className="h-6 w-6 text-[#2EB6EE]" />
+                  </div>
+                  <div className="text-right">
+                    <h3 className="text-lg font-medium text-gray-900">واتساب</h3>
+                    <a
+                      href="https://wa.me/962791986721"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 hover:text-[#2EB6EE] transition duration-200"
+                    >
+                      +962 7 9198 6721
+                    </a>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="flex items-start gap-4 p-4 hover:bg-gray-50 rounded-lg transition duration-200"
+                  whileHover={{ x: 5 }}
+                >
                   <div className="flex-shrink-0 bg-[#2EB6EE]/10 p-3 rounded-full">
                     <FiMapPin className="h-6 w-6 text-[#2EB6EE]" />
                   </div>
-                  <div className="mr-4">
+                  <div className="text-right">
                     <h3 className="text-lg font-medium text-gray-900">العنوان</h3>
-                    <p className="text-gray-600">عمان. المملكة الاردنية الهاشمية</p>
+                    <p className="text-gray-600">عمان، المملكة الأردنية الهاشمية</p>
                   </div>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Social Media */}
-            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">
+            {/* Social Media Card */}
+            <motion.div
+              className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
+              whileHover={{ y: -5 }}
+            >
+              <h2 className="text-2xl font-bold text-gray-800 mb-8 pb-4 border-b border-gray-200">
                 وسائل التواصل الاجتماعي
               </h2>
-              <div className="flex justify-center space-x-6">
-                <motion.a
-                  href="#"
-                  className="text-gray-500 hover:text-[#2EB6EE]"
-                  whileHover={{ y: -3 }}
-                >
-                  <FaFacebook className="h-6 w-6" />
-                </motion.a>
-                <motion.a
-                  href="#"
-                  className="text-gray-500 hover:text-[#2EB6EE]"
-                  whileHover={{ y: -3 }}
-                >
-                  <FaTwitter className="h-6 w-6" />
-                </motion.a>
-                <motion.a
-                  href="#"
-                  className="text-gray-500 hover:text-[#2EB6EE]"
-                  whileHover={{ y: -3 }}
-                >
-                  <FaLinkedin className="h-6 w-6" />
-                </motion.a>
-                <motion.a
-                  href="#"
-                  className="text-gray-500 hover:text-[#2EB6EE]"
-                  whileHover={{ y: -3 }}
-                >
-                  <FaInstagram className="h-6 w-6" />
-                </motion.a>
+              <div className="flex justify-center gap-6">
+                {[
+                  { icon: <FaFacebook className="h-7 w-7" />, color: "bg-blue-600", url: "#" },
+                  { icon: <FaTwitter className="h-7 w-7" />, color: "bg-blue-400", url: "#" },
+                  { icon: <FaLinkedin className="h-7 w-7" />, color: "bg-blue-700", url: "#" },
+                  { icon: <FaInstagram className="h-7 w-7" />, color: "bg-pink-600", url: "#" },
+                ].map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${social.color} text-white p-3 rounded-full hover:shadow-lg transition duration-300`}
+                    whileHover={{ y: -5, scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Map */}
-            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">موقعنا</h2>
-              <div className="aspect-w-16 aspect-h-9">
+            {/* Map Card */}
+            <motion.div
+              className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
+              whileHover={{ y: -5 }}
+            >
+              <h2 className="text-2xl font-bold text-gray-800 mb-8 pb-4 border-b border-gray-200">
+                موقعنا على الخريطة
+              </h2>
+              <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden border border-gray-200">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d211.50073439967173!2d35.84878615628636!3d31.98769692763757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2sjo!4v1751491658992!5m2!1sar!2sjo"
                   width="100%"
-                  height="450"
+                  height="400"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="rounded-lg"
                 ></iframe>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </motion.div>

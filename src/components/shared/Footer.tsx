@@ -3,11 +3,15 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { FaFacebook, FaSquareXTwitter } from "react-icons/fa6";
 import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io";
 
 export default function Footer() {
+
+  const pathname = usePathname();
+  const router = useRouter();
 
   type socialLinksType = {
     name: string;
@@ -37,6 +41,59 @@ export default function Footer() {
       icon: IoLogoGithub
     },
   ];
+
+  const footerColumns = [
+    {
+      title: "الخدمات",
+      links: [
+        { label: "تطوير المواقع", href: "/servicesPage/webDevelopment", type: "page" },
+        { label: "تطبيقات الهاتف", href: "/servicesPage/mobileDevelopment", type: "page" },
+        { label: "أنظمة الشركات", href: "/servicesPage/systemsDevelopment", type: "page" },
+        { label: "التحول الرقمي", href: "#use-cases", type: "hash" },
+      ],
+    },
+    {
+      title: "الشركة",
+      links: [
+        { label: "من نحن", href: "#about", type: "hash" },
+        { label: "الوظائف", href: "/servicesPage/jobsPage", type: "page" },
+        { label: "تواصل معنا", href: "/contact", type: "page" },
+      ],
+    },
+    {
+      title: "الدعم",
+      links: [
+        { label: "الأسئلة الشائعة", href: "#faq", type: "hash" },
+        { label: "الدعم الفني", href: "/contact", type: "page" },
+      ],
+    },
+  ];
+
+  interface HashLinkHandler {
+    (hash: string): void;
+  }
+
+
+  const handleHashLinkClick: HashLinkHandler = (hash: string): void => {
+    if (pathname !== "/") {
+      // If not on homepage, navigate to homepage with hash
+      router.push(`/${hash}`);
+      // Scroll after navigation completes
+      setTimeout(() => {
+        const element: Element | null = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      // If already on homepage, just scroll
+      const element: Element | null = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <footer className=" relative py-12 sm:py-16 px-4 sm:px-6 bg-gray-900 text-gray-400 text-center md:text-start">
       <div className="max-w-7xl mx-auto">
@@ -83,48 +140,41 @@ export default function Footer() {
           </div>
 
           {/* Footer Links */}
-          {[
-            {
-              title: "الخدمات",
-              links: [
-                "تطوير المواقع",
-                "تطبيقات الهاتف",
-                "أنظمة الشركات",
-                "التحول الرقمي",
-                "ذكاء الأعمال",
-              ],
-            },
-            {
-              title: "الشركة",
-              links: ["من نحن", "المدونة", "الوظائف", "تواصل معنا"],
-            },
-            {
-              title: "الدعم",
-              links: ["الأسئلة الشائعة", "الدعم الفني", "المجتمع", "الدليل"],
-            },
-          ].map((column, i) => (
+          {footerColumns.map((column, i) => (
             <div key={i}>
               <h3 className="text-white font-medium mb-3 sm:mb-4 text-sm sm:text-base">
                 {column.title}
               </h3>
-              <ul className="space-y-2 sm:space-y-3">
+              <ul className="space-y-2 sm:space-y-3 ">
                 {column.links.map((link, j) => (
                   <motion.li
                     key={j}
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <a
-                      href="#"
-                      className="hover:text-white transition-colors duration-300 text-xs sm:text-sm"
-                    >
-                      {link}
-                    </a>
+                    {link.type === "hash" ? (
+                      <button
+                        onClick={() => {
+                          handleHashLinkClick(link.href)
+                        }}
+                        className="text-xs sm:text-sm hover:text-white transition-colors duration-300"
+                      >
+                        {link.label}
+                      </button>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className=" text-xs sm:text-sm hover:text-white transition-colors duration-300"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </motion.li>
                 ))}
               </ul>
             </div>
           ))}
+
         </div>
 
         {/* Bottom Bar */}
@@ -144,12 +194,6 @@ export default function Footer() {
               className="hover:text-white transition-colors duration-300"
             >
               الشروط والأحكام
-            </a>
-            <a
-              href="#"
-              className="hover:text-white transition-colors duration-300"
-            >
-              ملفات تعريف الارتباط
             </a>
           </div>
         </div>
