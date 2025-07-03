@@ -456,14 +456,14 @@
   },
   "CyberSecurity": {
     "hero": {
-      "title": "Integrated Cybersecurity Solutions",
+      "title": "Integrated <highlight>Cybersecurity</highlight> Solutions",
       "subtitle": "Comprehensive protection for your digital systems against evolving electronic threats",
       "ctaPrimary": "Request a Free Consultation",
       "ctaSecondary": "Learn More",
       "imageAlt": "Cybersecurity"
     },
     "featuresSection": {
-      "title": "Comprehensive Security Solutions to Protect Your Business",
+      "title": "Comprehensive <security>Security</security> Solutions to <protection>Protect</protection> Your Business",
       "subtitle": "We provide a complete set of cybersecurity services to protect your digital infrastructure from threats"
     },
     "features": {
@@ -493,7 +493,7 @@
       }
     },
     "technologiesSection": {
-      "title": "Protection Technologies We Use",
+      "title": "Protection <protection>Technologies</protection> We Use",
       "subtitle": "We rely on the latest cybersecurity systems and tools to provide comprehensive protection for your business"
     },
     "technologies": {
@@ -517,7 +517,7 @@
       "applications": "Application Protection"
     },
     "processSection": {
-      "title": "Our Securing Process",
+      "title": "Our <securing>Securing</securing> Process",
       "subtitle": "We follow a clear methodology to ensure the highest levels of protection for your data and systems"
     },
     "process": {

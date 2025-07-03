@@ -419,14 +419,14 @@
   },
   "CyberSecurity": {
     "hero": {
-      "title": "حلول <span class=\"text-[#FFD700]\">الأمن السيبراني</span> المتكاملة",
+      "title": "حلول <highlight>الأمن السيبراني</highlight> المتكاملة",
       "subtitle": "حماية شاملة لبياناتك وأنظمتك الرقمية من التهديدات الإلكترونية المتطورة",
       "ctaPrimary": "اطلب استشارة مجانية",
       "ctaSecondary": "اكتشف المزيد",
       "imageAlt": "الأمن السيبراني"
     },
     "featuresSection": {
-      "title": "حلول <span class=\"text-[#2EB6EE]\">أمنية</span> شاملة <span class=\"text-[#8FBE53]\">لحماية</span> أعمالك",
+      "title": "حلول <security>أمنية</security> شاملة <protection>لحماية</protection> أعمالك",
       "subtitle": "نقدم مجموعة متكاملة من خدمات الأمن السيبراني لحماية بنيتك التحتية الرقمية من التهديدات"
     },
     "features": {
@@ -456,7 +456,7 @@
       }
     },
     "technologiesSection": {
-      "title": "تقنيات <span class=\"text-[#2EB6EE]\">الحماية</span> التي نستخدمها",
+      "title": "تقنيات <protection>الحماية</protection> التي نستخدمها",
       "subtitle": "نعتمد على أحدث أنظمة وأدوات الأمن السيبراني لتوفير حماية شاملة لأعمالك"
     },
     "technologies": {
@@ -480,7 +480,7 @@
       "applications": "حماية التطبيقات"
     },
     "processSection": {
-      "title": "عملية <span class=\"text-[#2EB6EE]\">التأمين</span> لدينا",
+      "title": "عملية <securingالتأمين</securing> لدينا",
       "subtitle": "نتبع منهجية واضحة لضمان أعلى مستويات الحماية لبياناتك وأنظمتك"
     },
     "process": {

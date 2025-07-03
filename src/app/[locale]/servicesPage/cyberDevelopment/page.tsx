@@ -17,8 +17,6 @@ export default function CyberSecurityServicePage() {
         visible: { opacity: 1, y: 0 }
     };
 
-    // Reusable component for titles with highlighted parts
-
     const features = [
         { icon: <FaShieldAlt className="text-3xl" />, title: t('features.completeProtection.title'), description: t('features.completeProtection.description') },
         { icon: <FaLock className="text-3xl" />, title: t('features.dataEncryption.title'), description: t('features.dataEncryption.description') },
@@ -65,7 +63,9 @@ export default function CyberSecurityServicePage() {
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
-                            {t('hero.title')}
+                            {t.rich('hero.title', {
+                                highlight: (chunks) => <span className="text-[#FFD700]">{chunks}</span>
+                            })}
                         </h1>
                         <p className="text-xl sm:text-2xl max-w-3xl mx-auto mb-8 leading-relaxed">
                             {t('hero.subtitle')}
@@ -107,7 +107,10 @@ export default function CyberSecurityServicePage() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                            {t('featuresSection.title')}
+                            {t.rich('featuresSection.title', {
+                                security: (chunks) => <span className="text-[#2EB6EE]">{chunks}</span>,
+                                protection: (chunks) => <span className="text-[#8FBE53]">{chunks}</span>
+                            })}
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                             {t('featuresSection.subtitle')}
@@ -134,7 +137,7 @@ export default function CyberSecurityServicePage() {
                 </div>
             </section>
 
-            {/* Technologies Section */}
+            {/* tech  section*/}
             <section className="py-20 px-6 bg-gray-50">
                 <div className="max-w-6xl mx-auto">
                     <motion.div
@@ -146,7 +149,9 @@ export default function CyberSecurityServicePage() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                            {t('technologiesSection.title')}
+                            {t.rich('technologiesSection.title', {
+                                protection: (chunks) => <span className="text-[#2EB6EE]">{chunks}</span>
+                            })}
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                             {t('technologiesSection.subtitle')}
@@ -244,7 +249,9 @@ export default function CyberSecurityServicePage() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                            {t('processSection.title')}
+                            {t.rich('processSection.title', {
+                                securing: (chunks) => <span className="text-[#2EB6EE]">{chunks}</span>
+                            })}
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                             {t('processSection.subtitle')}
