@@ -60,8 +60,6 @@ export default function LandingPage() {
     >
       <Floating ref={ref} />
 
-      {/* Navigation */}
-
       {/* Sections with scroll-margin for fixed header */}
       <section id="hero" className="scroll-mt-24">
         <Hero />

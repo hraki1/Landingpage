@@ -3,41 +3,48 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaServer, FaDatabase, FaCloud, FaShieldAlt, FaTachometerAlt, FaSyncAlt, FaGlobe, FaHdd, } from "react-icons/fa";
-import { SiGooglecloud, SiDigitalocean, SiCpanel, SiDocker, SiKubernetes, SiLinux, SiMongodb, SiMysql } from "react-icons/si";
-import { DiAws } from "react-icons/di";
-import { VscAzure } from "react-icons/vsc";
-import { WiDaySnow } from "react-icons/wi";
+import { FaMobileAlt, FaShieldAlt, FaTachometerAlt, FaCogs, FaChartLine, FaSearch, FaReact, FaAngular, FaVuejs, FaSass, FaGitAlt, FaNodeJs } from "react-icons/fa";
+import { SiExpress, SiGraphql, SiJest, SiMongodb, SiNextdotjs, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { useTranslations } from 'next-intl';
 
-export default function HostingCloudServicePage() {
+export default function WebDevelopmentServicePage() {
+    const t = useTranslations('WebDevelopment');
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 }
     };
 
     const features = [
-        { icon: <FaServer className="text-3xl" />, title: "استضافة مشتركة", description: "حلول استضافة اقتصادية مع أداء موثوق لمواقع الويب الصغيرة والمتوسطة" },
-        { icon: <FaCloud className="text-3xl" />, title: "استضافة سحابية", description: "بنية تحتية سحابية قابلة للتوسع حسب احتياجاتك" },
-        { icon: <FaShieldAlt className="text-3xl" />, title: "استضافة آمنة", description: "حلول استضافة مع حماية متقدمة من الاختراقات والهجمات" },
-        { icon: <FaDatabase className="text-3xl" />, title: "قواعد بيانات مخصصة", description: "خوادم قواعد بيانات عالية الأداء لإدارة بياناتك بكفاءة" },
-        { icon: <FaSyncAlt className="text-3xl" />, title: "نسخ احتياطي تلقائي", description: "أنظمة نسخ احتياطي يومية لحماية بياناتك من الفقدان" },
-        { icon: <FaTachometerAlt className="text-3xl" />, title: "أداء فائق", description: "خوادم عالية السرعة مع SSD وذاكرة عشوائية كبيرة" }
+        { icon: <FaMobileAlt className="text-3xl" />, title: t('features.responsive.title'), description: t('features.responsive.description') },
+        { icon: <FaTachometerAlt className="text-3xl" />, title: t('features.performance.title'), description: t('features.performance.description') },
+        { icon: <FaShieldAlt className="text-3xl" />, title: t('features.security.title'), description: t('features.security.description') },
+        { icon: <FaCogs className="text-3xl" />, title: t('features.dashboard.title'), description: t('features.dashboard.description') },
+        { icon: <FaSearch className="text-3xl" />, title: t('features.seo.title'), description: t('features.seo.description') },
+        { icon: <FaChartLine className="text-3xl" />, title: t('features.analytics.title'), description: t('features.analytics.description') }
     ];
 
     const technologies = [
-        { name: "AWS", icon: <DiAws /> },
-        { name: "Azure", icon: <VscAzure /> },
-        { name: "Google Cloud", icon: <SiGooglecloud /> },
-        { name: "DigitalOcean", icon: <SiDigitalocean /> },
-        { name: "cPanel", icon: <SiCpanel /> },
-        { name: "Docker", icon: <SiDocker /> },
-        { name: "Kubernetes", icon: <SiKubernetes /> },
-        { name: "Linux", icon: <SiLinux /> },
-        { name: "Windows Server", icon: <WiDaySnow /> },
+        { name: "React", icon: <FaReact /> },
+        { name: "Next.js", icon: <SiNextdotjs /> },
+        { name: "Node.js", icon: <FaNodeJs /> },
+        { name: "TypeScript", icon: <SiTypescript /> },
+        { name: "Vue.js", icon: <FaVuejs /> },
+        { name: "Angular", icon: <FaAngular /> },
+        { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+        { name: "Sass/SCSS", icon: <FaSass /> },
+        { name: "GraphQL", icon: <SiGraphql /> },
         { name: "MongoDB", icon: <SiMongodb /> },
-        { name: "MySQL", icon: <SiMysql /> },
-        { name: "CDN", icon: <FaGlobe /> },
-        { name: "VPS", icon: <FaHdd /> }
+        { name: "Express.js", icon: <SiExpress /> },
+        { name: "Jest", icon: <SiJest /> },
+        { name: "Git", icon: <FaGitAlt /> }
+    ];
+
+    const processSteps = [
+        { title: t('process.planning.title'), description: t('process.planning.description') },
+        { title: t('process.design.title'), description: t('process.design.description') },
+        { title: t('process.development.title'), description: t('process.development.description') },
+        { title: t('process.testing.title'), description: t('process.testing.description') },
+        { title: t('process.launch.title'), description: t('process.launch.description') }
     ];
 
     return (
@@ -53,30 +60,32 @@ export default function HostingCloudServicePage() {
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
-                            حلول <span className="text-[#FFD700]">الاستضافة والسحابة</span> المتكاملة
+                            {t.rich('hero.title', {
+                                highlight: (chunks) => <span className="text-[#FFD700]">{chunks}</span>
+                            })}
                         </h1>
                         <p className="text-xl sm:text-2xl max-w-3xl mx-auto mb-8 leading-relaxed">
-                            بنية تحتية قوية وموثوقة لضمان أقصى أداء وتوفر لمواقعك وتطبيقاتك
+                            {t('hero.subtitle')}
                         </p>
                         <div className="flex justify-center gap-4">
                             <Link
                                 href="/contact"
                                 className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                             >
-                                اطلب استشارة مجانية
+                                {t('hero.ctaPrimary')}
                             </Link>
                             <Link
                                 href="#features"
                                 className="inline-block border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-[#2EB6EE] transition duration-300 transform hover:scale-105"
                             >
-                                اكتشف المزيد
+                                {t('hero.ctaSecondary')}
                             </Link>
                         </div>
                     </motion.div>
                 </div>
                 <Image
-                    src="/services/hosting-hero.jpg"
-                    alt="الاستضافة والسحابة"
+                    src="/services/web-dev-hero.jpg"
+                    alt={t('hero.imageAlt')}
                     fill
                     className="absolute inset-0 object-cover opacity-15"
                     priority
@@ -94,9 +103,14 @@ export default function HostingCloudServicePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">حلول <span className="text-[#2EB6EE]">استضافة</span> متنوعة <span className="text-[#8FBE53]">لجميع</span> احتياجاتك</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                            {t.rich('features.title', {
+                                blue: (chunks) => <span className="text-[#2EB6EE]">{chunks}</span>,
+                                green: (chunks) => <span className="text-[#8FBE53]">{chunks}</span>
+                            })}
+                        </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نقدم مجموعة شاملة من خدمات الاستضافة والسحابة لتلبية متطلبات مشاريعك بكل أحجامها
+                            {t('features.subtitle')}
                         </p>
                     </motion.div>
 
@@ -120,7 +134,7 @@ export default function HostingCloudServicePage() {
                 </div>
             </section>
 
-            {/* tech  section*/}
+            {/* tech section*/}
             <section className="py-20 px-6 bg-gray-50">
                 <div className="max-w-6xl mx-auto">
                     <motion.div
@@ -132,10 +146,12 @@ export default function HostingCloudServicePage() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                            منصات <span className="text-[#2EB6EE]">وتقنيات</span> الاستضافة
+                            {t.rich('technologies.title', {
+                                highlight: (chunks) => <span className="text-[#2EB6EE]">{chunks}</span>
+                            })}
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نعمل مع أفضل منصات الاستضافة والتقنيات السحابية لتقديم حلول موثوقة
+                            {t('technologies.subtitle')}
                         </p>
                     </motion.div>
 
@@ -169,9 +185,9 @@ export default function HostingCloudServicePage() {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#2EB6EE]">المنصات السحابية</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#2EB6EE]">{t('technologies.frontend')}</h3>
                             <div className="flex flex-wrap gap-3">
-                                {technologies.slice(0, 4).map((tech, i) => (
+                                {technologies.slice(0, 6).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
                                         {tech.name}
                                     </span>
@@ -187,9 +203,9 @@ export default function HostingCloudServicePage() {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#8FBE53]">أنظمة التشغيل</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#8FBE53]">{t('technologies.backend')}</h3>
                             <div className="flex flex-wrap gap-3">
-                                {technologies.slice(4, 8).map((tech, i) => (
+                                {technologies.slice(6, 10).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
                                         {tech.name}
                                     </span>
@@ -205,9 +221,9 @@ export default function HostingCloudServicePage() {
                             transition={{ duration: 0.6, delay: 0.6 }}
                             className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#FFD700]">قواعد البيانات</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#FFD700]">{t('technologies.other')}</h3>
                             <div className="flex flex-wrap gap-3">
-                                {technologies.slice(8).map((tech, i) => (
+                                {technologies.slice(10).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
                                         {tech.name}
                                     </span>
@@ -229,9 +245,13 @@ export default function HostingCloudServicePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">عملية <span className="text-[#2EB6EE]">النشر</span> لدينا</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                            {t.rich('process.title', {
+                                highlight: (chunks) => <span className="text-[#2EB6EE]">{chunks}</span>
+                            })}
+                        </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نضمن لك عملية نشر سلسة وآمنة لمواقعك وتطبيقاتك على خوادمنا
+                            {t('process.subtitle')}
                         </p>
                     </motion.div>
 
@@ -239,13 +259,7 @@ export default function HostingCloudServicePage() {
                         <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-[#8FBE53] to-[#2EB6EE]"></div>
 
                         <div className="space-y-12">
-                            {[
-                                { title: "تحليل الاحتياجات", description: "تقييم متطلبات مشروعك لاختيار أفضل حل استضافة" },
-                                { title: "تخصيص البيئة", description: "إعداد وتكوين خادم مخصص أو سحابة حسب احتياجاتك" },
-                                { title: "نشر التطبيق", description: "رفع ملفات موقعك أو تطبيقك على الخادم" },
-                                { title: "الاختبار والتحسين", description: "فحص الأداء وإجراء التحسينات اللازمة" },
-                                { title: "التشغيل والمراقبة", description: "تشغيل الخدمة مع مراقبة مستمرة للأداء" }
-                            ].map((step, index) => (
+                            {processSteps.map((step, index) => (
                                 <motion.div
                                     key={index}
                                     initial="hidden"
@@ -255,7 +269,7 @@ export default function HostingCloudServicePage() {
                                     transition={{ duration: 0.5, delay: index * 0.2 }}
                                     className={`relative flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8`}
                                 >
-                                    <div className={`hidden md:flex absolute ${index % 2 === 0 ? 'left-1/2' : 'right-1/2'} transform ${index % 2 === 0 ? '-translate-x-8' : 'translate-x-8'} w-16 h-16 rounded-full bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white items-center justify-center text-xl font-bold z-10 shadow-lg`}>
+                                    <div className={`hidden md:flex absolute ${index % 2 === 0 ? 'left-1/2' : 'right-1/2'} -translate-y-16 transform ${index % 2 === 0 ? '-translate-x-8' : 'translate-x-8'} w-16 h-16 rounded-full bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white items-center justify-center text-xl font-bold z-10 shadow-lg`}>
                                         {index + 1}
                                     </div>
                                     <div className={`flex-1 ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'} bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300`}>
@@ -280,22 +294,22 @@ export default function HostingCloudServicePage() {
                     transition={{ duration: 0.8 }}
                     className="max-w-4xl mx-auto relative z-10"
                 >
-                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">هل تبحث عن حل استضافة موثوق؟</h3>
+                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">{t('cta.title')}</h3>
                     <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-                        تواصل معنا اليوم لاختيار أفضل حل استضافة أو سحابة يناسب احتياجات مشروعك.
+                        {t('cta.subtitle')}
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
                             href="/contact"
                             className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                         >
-                            اطلب استشارة مجانية
+                            {t('cta.primary')}
                         </Link>
                         <Link
                             href="tel:+966123456789"
                             className="inline-block border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-[#2EB6EE] transition duration-300 transform hover:scale-105"
                         >
-                            اتصل بنا مباشرة
+                            {t('cta.secondary')}
                         </Link>
                     </div>
                 </motion.div>

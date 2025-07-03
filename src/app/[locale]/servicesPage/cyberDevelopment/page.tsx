@@ -8,36 +8,48 @@ import { SiCisco, SiFortinet, SiKaspersky, SiLinux, SiCloudflare } from "react-i
 import { BsMicrosoft } from "react-icons/bs";
 import { DiAws } from "react-icons/di";
 import { VscAzure } from "react-icons/vsc";
+import { useTranslations } from 'next-intl';
 
 export default function CyberSecurityServicePage() {
+    const t = useTranslations('CyberSecurity');
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 }
     };
 
+    // Reusable component for titles with highlighted parts
+
     const features = [
-        { icon: <FaShieldAlt className="text-3xl" />, title: "حماية متكاملة", description: "نظم حماية شاملة لجميع جوانب بنيتك التحتية الرقمية" },
-        { icon: <FaLock className="text-3xl" />, title: "تشفير البيانات", description: "حلول تشفير متقدمة لحماية بياناتك الحساسة" },
-        { icon: <FaUserShield className="text-3xl" />, title: "إدارة الهوية", description: "نظم متكاملة للتحكم في الوصول والهوية الرقمية" },
-        { icon: <FaNetworkWired className="text-3xl" />, title: "أمان الشبكات", description: "حلول لحماية شبكاتك من الاختراقات والهجمات" },
-        { icon: <FaDatabase className="text-3xl" />, title: "أمان قواعد البيانات", description: "حماية شاملة لقواعد بياناتك من التسريب أو التلف" },
-        { icon: <FaCode className="text-3xl" />, title: "فحص التطبيقات", description: "تحليل وفحص التطبيقات لاكتشاف الثغرات الأمنية" }
+        { icon: <FaShieldAlt className="text-3xl" />, title: t('features.completeProtection.title'), description: t('features.completeProtection.description') },
+        { icon: <FaLock className="text-3xl" />, title: t('features.dataEncryption.title'), description: t('features.dataEncryption.description') },
+        { icon: <FaUserShield className="text-3xl" />, title: t('features.identityManagement.title'), description: t('features.identityManagement.description') },
+        { icon: <FaNetworkWired className="text-3xl" />, title: t('features.networkSecurity.title'), description: t('features.networkSecurity.description') },
+        { icon: <FaDatabase className="text-3xl" />, title: t('features.databaseSecurity.title'), description: t('features.databaseSecurity.description') },
+        { icon: <FaCode className="text-3xl" />, title: t('features.appTesting.title'), description: t('features.appTesting.description') }
     ];
 
     const technologies = [
-        { name: "جدار الحماية", icon: <SiCisco /> },
-        { name: "أنظمة كشف التسلل", icon: <FaEye /> },
-        { name: "حماية من الفيروسات", icon: <SiKaspersky /> },
-        { name: "أمان السحابة", icon: <SiCloudflare /> },
-        { name: "Microsoft Defender", icon: <BsMicrosoft /> },
-        { name: "Fortinet", icon: <SiFortinet /> },
-        { name: "أمان Linux", icon: <SiLinux /> },
-        { name: "AWS Security", icon: <DiAws /> },
-        { name: "Azure Security", icon: <VscAzure /> },
-        { name: "فحص الثغرات", icon: <FaBug /> },
-        { name: "أمان الخوادم", icon: <FaServer /> },
-        { name: "أمان الويب", icon: <FaGlobe /> },
-        { name: "أمان الأجهزة المحمولة", icon: <FaMobileAlt /> }
+        { name: t('technologies.firewall'), icon: <SiCisco /> },
+        { name: t('technologies.intrusionDetection'), icon: <FaEye /> },
+        { name: t('technologies.antivirus'), icon: <SiKaspersky /> },
+        { name: t('technologies.cloudSecurity'), icon: <SiCloudflare /> },
+        { name: t('technologies.microsoftDefender'), icon: <BsMicrosoft /> },
+        { name: t('technologies.fortinet'), icon: <SiFortinet /> },
+        { name: t('technologies.linuxSecurity'), icon: <SiLinux /> },
+        { name: t('technologies.awsSecurity'), icon: <DiAws /> },
+        { name: t('technologies.azureSecurity'), icon: <VscAzure /> },
+        { name: t('technologies.vulnerabilityScanning'), icon: <FaBug /> },
+        { name: t('technologies.serverSecurity'), icon: <FaServer /> },
+        { name: t('technologies.webSecurity'), icon: <FaGlobe /> },
+        { name: t('technologies.mobileSecurity'), icon: <FaMobileAlt /> }
+    ];
+
+    const processSteps = [
+        { title: t('process.riskAssessment.title'), description: t('process.riskAssessment.description') },
+        { title: t('process.solutionDesign.title'), description: t('process.solutionDesign.description') },
+        { title: t('process.protectionImplementation.title'), description: t('process.protectionImplementation.description') },
+        { title: t('process.penetrationTesting.title'), description: t('process.penetrationTesting.description') },
+        { title: t('process.monitoringSupport.title'), description: t('process.monitoringSupport.description') }
     ];
 
     return (
@@ -53,30 +65,30 @@ export default function CyberSecurityServicePage() {
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
-                            حلول <span className="text-[#FFD700]">الأمن السيبراني</span> المتكاملة
+                            {t('hero.title')}
                         </h1>
                         <p className="text-xl sm:text-2xl max-w-3xl mx-auto mb-8 leading-relaxed">
-                            حماية شاملة لبياناتك وأنظمتك الرقمية من التهديدات الإلكترونية المتطورة
+                            {t('hero.subtitle')}
                         </p>
                         <div className="flex justify-center gap-4">
                             <Link
                                 href="/contact"
                                 className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                             >
-                                اطلب استشارة مجانية
+                                {t('hero.ctaPrimary')}
                             </Link>
                             <Link
                                 href="#features"
                                 className="inline-block border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-[#2EB6EE] transition duration-300 transform hover:scale-105"
                             >
-                                اكتشف المزيد
+                                {t('hero.ctaSecondary')}
                             </Link>
                         </div>
                     </motion.div>
                 </div>
                 <Image
                     src="/services/cyber-security-hero.jpg"
-                    alt="الأمن السيبراني"
+                    alt={t('hero.imageAlt')}
                     fill
                     className="absolute inset-0 object-cover opacity-15"
                     priority
@@ -94,9 +106,11 @@ export default function CyberSecurityServicePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">حلول <span className="text-[#2EB6EE]">أمنية</span> شاملة <span className="text-[#8FBE53]">لحماية</span> أعمالك</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                            {t('featuresSection.title')}
+                        </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نقدم مجموعة متكاملة من خدمات الأمن السيبراني لحماية بنيتك التحتية الرقمية من التهديدات
+                            {t('featuresSection.subtitle')}
                         </p>
                     </motion.div>
 
@@ -120,7 +134,7 @@ export default function CyberSecurityServicePage() {
                 </div>
             </section>
 
-            {/* tech  section*/}
+            {/* Technologies Section */}
             <section className="py-20 px-6 bg-gray-50">
                 <div className="max-w-6xl mx-auto">
                     <motion.div
@@ -132,10 +146,10 @@ export default function CyberSecurityServicePage() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                            تقنيات <span className="text-[#2EB6EE]">الحماية</span> التي نستخدمها
+                            {t('technologiesSection.title')}
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نعتمد على أحدث أنظمة وأدوات الأمن السيبراني لتوفير حماية شاملة لأعمالك
+                            {t('technologiesSection.subtitle')}
                         </p>
                     </motion.div>
 
@@ -169,7 +183,7 @@ export default function CyberSecurityServicePage() {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#2EB6EE]">حماية الشبكات</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#2EB6EE]">{t('technologiesCategories.network')}</h3>
                             <div className="flex flex-wrap gap-3">
                                 {technologies.slice(0, 4).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
@@ -187,7 +201,7 @@ export default function CyberSecurityServicePage() {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#8FBE53]">حماية الأنظمة</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#8FBE53]">{t('technologiesCategories.systems')}</h3>
                             <div className="flex flex-wrap gap-3">
                                 {technologies.slice(4, 8).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
@@ -205,7 +219,7 @@ export default function CyberSecurityServicePage() {
                             transition={{ duration: 0.6, delay: 0.6 }}
                             className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#FFD700]">حماية التطبيقات</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#FFD700]">{t('technologiesCategories.applications')}</h3>
                             <div className="flex flex-wrap gap-3">
                                 {technologies.slice(8).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
@@ -229,9 +243,11 @@ export default function CyberSecurityServicePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">عملية <span className="text-[#2EB6EE]">التأمين</span> لدينا</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                            {t('processSection.title')}
+                        </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نتبع منهجية واضحة لضمان أعلى مستويات الحماية لبياناتك وأنظمتك
+                            {t('processSection.subtitle')}
                         </p>
                     </motion.div>
 
@@ -239,13 +255,7 @@ export default function CyberSecurityServicePage() {
                         <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-[#8FBE53] to-[#2EB6EE]"></div>
 
                         <div className="space-y-12">
-                            {[
-                                { title: "تقييم المخاطر", description: "تحليل شامل للتهديدات المحتملة ونقاط الضعف" },
-                                { title: "تصميم الحلول", description: "وضع استراتيجية أمنية متكاملة حسب احتياجاتك" },
-                                { title: "تنفيذ الحماية", description: "تركيب وتكوين أنظمة الحماية المطلوبة" },
-                                { title: "اختبار الاختراق", description: "محاكاة الهجمات لاكتشاف الثغرات الأمنية" },
-                                { title: "المراقبة والدعم", description: "مراقبة مستمرة وتحديثات أمنية دورية" }
-                            ].map((step, index) => (
+                            {processSteps.map((step, index) => (
                                 <motion.div
                                     key={index}
                                     initial="hidden"
@@ -280,22 +290,22 @@ export default function CyberSecurityServicePage() {
                     transition={{ duration: 0.8 }}
                     className="max-w-4xl mx-auto relative z-10"
                 >
-                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">هل أنت قلق بشأن أمان بياناتك؟</h3>
+                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">{t('cta.title')}</h3>
                     <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-                        تواصل مع خبرائنا اليوم لتقييم أمني مجاني وحماية أعمالك من التهديدات الإلكترونية.
+                        {t('cta.subtitle')}
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
                             href="/contact"
                             className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                         >
-                            اطلب استشارة مجانية
+                            {t('cta.primary')}
                         </Link>
                         <Link
                             href="tel:+966123456789"
                             className="inline-block border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-[#2EB6EE] transition duration-300 transform hover:scale-105"
                         >
-                            اتصل بنا مباشرة
+                            {t('cta.secondary')}
                         </Link>
                     </div>
                 </motion.div>

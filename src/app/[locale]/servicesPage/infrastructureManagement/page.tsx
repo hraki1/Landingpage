@@ -4,24 +4,29 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaServer, FaNetworkWired, FaShieldAlt, FaCogs, FaSyncAlt, FaCloud, FaDesktop } from "react-icons/fa";
-import {  SiGooglecloud, SiKubernetes, SiDocker, SiTerraform, SiAnsible, SiPrometheus, SiGrafana, SiLinux, SiCisco } from "react-icons/si";
+import { SiGooglecloud, SiKubernetes, SiDocker, SiTerraform, SiAnsible, SiPrometheus, SiGrafana, SiLinux, SiCisco } from "react-icons/si";
 import { DiAws } from "react-icons/di";
 import { VscAzure } from "react-icons/vsc";
 import { WiDaySnow } from "react-icons/wi";
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function InfrastructureManagementPage() {
+    const t = useTranslations('InfrastructureManagement');
+    const locale = useLocale();
+    const isRTL = locale === 'ar';
+
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 }
     };
 
     const features = [
-        { icon: <FaNetworkWired className="text-3xl" />, title: "إدارة الشبكات", description: "تصميم وتنفيذ وإدارة البنية التحتية للشبكات باحترافية" },
-        { icon: <FaServer className="text-3xl" />, title: "إدارة الخوادم", description: "تركيب وصيانة ومراقبة خوادمك المحلية أو السحابية" },
-        { icon: <FaCloud className="text-3xl" />, title: "إدارة السحابة", description: "حلول متكاملة لإدارة البنية التحتية السحابية الهجينة" },
-        { icon: <FaShieldAlt className="text-3xl" />, title: "أمان البنية التحتية", description: "حماية شاملة لبنيتك التحتية من التهديدات الأمنية" },
-        { icon: <FaSyncAlt className="text-3xl" />, title: "المراقبة والتحليل", description: "أنظمة مراقبة مستمرة لأداء البنية التحتية" },
-        { icon: <FaCogs className="text-3xl" />, title: "الأتمتة والتكامل", description: "أتمتة عمليات التشغيل والصيانة للبنية التحتية" }
+        { icon: <FaNetworkWired className="text-3xl" />, title: t('features.network.title'), description: t('features.network.description') },
+        { icon: <FaServer className="text-3xl" />, title: t('features.servers.title'), description: t('features.servers.description') },
+        { icon: <FaCloud className="text-3xl" />, title: t('features.cloud.title'), description: t('features.cloud.description') },
+        { icon: <FaShieldAlt className="text-3xl" />, title: t('features.security.title'), description: t('features.security.description') },
+        { icon: <FaSyncAlt className="text-3xl" />, title: t('features.monitoring.title'), description: t('features.monitoring.description') },
+        { icon: <FaCogs className="text-3xl" />, title: t('features.automation.title'), description: t('features.automation.description') }
     ];
 
     const technologies = [
@@ -37,13 +42,21 @@ export default function InfrastructureManagementPage() {
         { name: "Linux", icon: <SiLinux /> },
         { name: "Windows Server", icon: <WiDaySnow /> },
         { name: "Cisco", icon: <SiCisco /> },
-        { name: "Virtualization", icon: <FaDesktop /> }
+        { name: t('technologies.virtualization'), icon: <FaDesktop /> }
+    ];
+
+    const processSteps = [
+        { title: t('process.assessment.title'), description: t('process.assessment.description') },
+        { title: t('process.design.title'), description: t('process.design.description') },
+        { title: t('process.implementation.title'), description: t('process.implementation.description') },
+        { title: t('process.monitoring.title'), description: t('process.monitoring.description') },
+        { title: t('process.improvement.title'), description: t('process.improvement.description') }
     ];
 
     return (
-        <main className="bg-white text-gray-800 overflow-hidden">
+        <main className={`bg-white text-gray-800 overflow-hidden ${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
             {/* Hero Section */}
-            <section className="relative bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white py-32 px-6 text-center overflow-hidden">
+            <section className={`relative bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white py-32 px-6 text-center overflow-hidden ${isRTL ? 'text-right' : 'text-left'}`}>
                 <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
                 <div className="mt-24 max-w-5xl mx-auto z-10 relative">
                     <motion.div
@@ -52,31 +65,33 @@ export default function InfrastructureManagementPage() {
                         variants={fadeIn}
                         transition={{ duration: 0.6 }}
                     >
-                        <h1 className="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
-                            حلول <span className="text-[#FFD700]">إدارة البنية التحتية</span> المتكاملة
+                        <h1 className="text-4xl sm:text-6xl text-center font-bold mb-6 leading-tight">
+                            {t.rich('hero.title', {
+                                highlight: (chunks) => <span className="text-[#FFD700]">{chunks}</span>
+                            })}
                         </h1>
                         <p className="text-xl sm:text-2xl max-w-3xl mx-auto mb-8 leading-relaxed">
-                            إدارة احترافية لبنيتك التحتية التقنية لضمان أقصى أداء واستقرار وأمان
+                            {t('hero.subtitle')}
                         </p>
-                        <div className="flex justify-center gap-4">
+                        <div className={`flex ${isRTL ? 'flex-row-reverse' : 'flex-row'} justify-center gap-4`}>
                             <Link
                                 href="/contact"
                                 className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                             >
-                                اطلب استشارة مجانية
+                                {t('hero.cta.consultation')}
                             </Link>
                             <Link
                                 href="#features"
                                 className="inline-block border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-[#2EB6EE] transition duration-300 transform hover:scale-105"
                             >
-                                اكتشف المزيد
+                                {t('hero.cta.learnMore')}
                             </Link>
                         </div>
                     </motion.div>
                 </div>
                 <Image
                     src="/services/infrastructure-hero.jpg"
-                    alt="إدارة البنية التحتية"
+                    alt={t('hero.imageAlt')}
                     fill
                     className="absolute inset-0 object-cover opacity-15"
                     priority
@@ -92,11 +107,16 @@ export default function InfrastructureManagementPage() {
                         variants={fadeIn}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="text-center mb-16"
+                        className={`text-center mb-16`}
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">حلول <span className="text-[#2EB6EE]">إدارية</span> شاملة <span className="text-[#8FBE53]">للبنية</span> التحتية</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                            {t.rich('featuresSection.title', {
+                                blue: (chunks) => <span className="text-[#2EB6EE]">{chunks}</span>,
+                                green: (chunks) => <span className="text-[#8FBE53]">{chunks}</span>
+                            })}
+                        </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نقدم مجموعة متكاملة من الخدمات لإدارة وتشغيل بنيتك التحتية التقنية بكفاءة عالية
+                            {t('featuresSection.subtitle')}
                         </p>
                     </motion.div>
 
@@ -109,7 +129,7 @@ export default function InfrastructureManagementPage() {
                                 variants={fadeIn}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-l-4 border-[#2EB6EE]"
+                                className={`bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300 ${isRTL ? 'border-r-4' : 'border-l-4'} border-[#2EB6EE] ${isRTL ? 'text-right' : 'text-left'}`}
                             >
                                 <div className="text-[#2EB6EE] mb-4">{feature.icon}</div>
                                 <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
@@ -129,13 +149,15 @@ export default function InfrastructureManagementPage() {
                         variants={fadeIn}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="text-center mb-16"
+                        className={`text-center mb-16`}
                     >
                         <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                            تقنيات <span className="text-[#2EB6EE]">وأدوات</span> نستخدمها
+                            {t.rich('technologies.title', {
+                                highlight: (chunks) => <span className="text-[#2EB6EE]">{chunks}</span>
+                            })}
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نعتمد على أحدث التقنيات والأدوات لإدارة البنية التحتية باحترافية
+                            {t('technologies.subtitle')}
                         </p>
                     </motion.div>
 
@@ -148,7 +170,7 @@ export default function InfrastructureManagementPage() {
                                 variants={fadeIn}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                                className="flex items-center gap-3 bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition duration-300 min-w-[180px] group"
+                                className={`flex items-center gap-3 bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition duration-300 min-w-[180px] group ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}
                                 whileHover={{ y: -5 }}
                             >
                                 <span className="text-[#2EB6EE] text-2xl group-hover:scale-110 transition-transform">
@@ -167,9 +189,9 @@ export default function InfrastructureManagementPage() {
                             variants={fadeIn}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
+                            className={`bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300 ${isRTL ? 'text-right' : 'text-left'}`}
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#2EB6EE]">أدوات الأتمتة</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#2EB6EE]">{t('technologies.categories.automation')}</h3>
                             <div className="flex flex-wrap gap-3">
                                 {technologies.slice(0, 4).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
@@ -185,9 +207,9 @@ export default function InfrastructureManagementPage() {
                             variants={fadeIn}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
+                            className={`bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300 ${isRTL ? 'text-right' : 'text-left'}`}
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#8FBE53]">المراقبة والتحليل</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#8FBE53]">{t('technologies.categories.monitoring')}</h3>
                             <div className="flex flex-wrap gap-3">
                                 {technologies.slice(4, 8).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
@@ -203,9 +225,9 @@ export default function InfrastructureManagementPage() {
                             variants={fadeIn}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.6 }}
-                            className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
+                            className={`bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300 ${isRTL ? 'text-right' : 'text-left'}`}
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#FFD700]">البنية التحتية</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#FFD700]">{t('technologies.categories.infrastructure')}</h3>
                             <div className="flex flex-wrap gap-3">
                                 {technologies.slice(8).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
@@ -227,25 +249,23 @@ export default function InfrastructureManagementPage() {
                         variants={fadeIn}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="text-center mb-16"
+                        className={`text-center mb-16`}
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">عملية <span className="text-[#2EB6EE]">الإدارة</span> لدينا</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                            {t.rich('process.title', {
+                                highlight: (chunks) => <span className="text-[#2EB6EE]">{chunks}</span>
+                            })}
+                        </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            منهجية واضحة لإدارة بنيتك التحتية بكفاءة وأمان
+                            {t('process.subtitle')}
                         </p>
                     </motion.div>
 
                     <div className="relative">
-                        <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-[#8FBE53] to-[#2EB6EE]"></div>
+                        <div className={`hidden md:block absolute ${isRTL ? 'right-1/2' : 'left-1/2'} transform ${isRTL ? 'translate-x-1/2' : '-translate-x-1/2'} h-full w-0.5 bg-gradient-to-b from-[#8FBE53] to-[#2EB6EE]`}></div>
 
                         <div className="space-y-12">
-                            {[
-                                { title: "التقييم والتحليل", description: "دراسة البنية التحتية الحالية وتحديد الاحتياجات" },
-                                { title: "التصميم والتخطيط", description: "وضع خطة إدارية متكاملة للبنية التحتية" },
-                                { title: "التنفيذ والتكامل", description: "تنفيذ الحلول وتكاملها مع الأنظمة الحالية" },
-                                { title: "المراقبة والصيانة", description: "مراقبة مستمرة وأداء الصيانة الدورية" },
-                                { title: "التطوير المستمر", description: "تحسين وتطوير البنية التحتية باستمرار" }
-                            ].map((step, index) => (
+                            {processSteps.map((step, index) => (
                                 <motion.div
                                     key={index}
                                     initial="hidden"
@@ -253,12 +273,12 @@ export default function InfrastructureManagementPage() {
                                     variants={fadeIn}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: index * 0.2 }}
-                                    className={`relative flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8`}
+                                    className={`relative flex ${isRTL ? (index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row') : (index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse')} items-center gap-8`}
                                 >
-                                    <div className={`hidden md:flex absolute ${index % 2 === 0 ? 'left-1/2' : 'right-1/2'} transform ${index % 2 === 0 ? '-translate-x-8' : 'translate-x-8'} w-16 h-16 rounded-full bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white items-center justify-center text-xl font-bold z-10 shadow-lg`}>
+                                    <div className={`hidden md:flex absolute ${isRTL ? (index % 2 === 0 ? 'right-1/2' : 'left-1/2') : (index % 2 === 0 ? 'left-1/2' : 'right-1/2')} transform -translate-y-12 ${isRTL ? (index % 2 === 0 ? 'translate-x-8' : '-translate-x-8') : (index % 2 === 0 ? '-translate-x-8' : 'translate-x-8')} w-16 h-16 rounded-full bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white items-center justify-center text-xl font-bold z-10 shadow-lg`}>
                                         {index + 1}
                                     </div>
-                                    <div className={`flex-1 ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'} bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300`}>
+                                    <div className={`flex-1 ${isRTL ? (index % 2 === 0 ? 'md:pl-16' : 'md:pr-16') : (index % 2 === 0 ? 'md:pr-16' : 'md:pl-16')} bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300 ${isRTL ? 'text-right' : 'text-left'}`}>
                                         <h3 className="text-2xl font-bold mb-4 text-[#2EB6EE]">{step.title}</h3>
                                         <p className="text-gray-600">{step.description}</p>
                                     </div>
@@ -270,7 +290,7 @@ export default function InfrastructureManagementPage() {
             </section>
 
             {/* Call To Action */}
-            <section className="relative bg-gradient-to-r from-[#2EB6EE] to-[#8FBE53] text-white py-20 text-center overflow-hidden">
+            <section className={`relative bg-gradient-to-r from-[#2EB6EE] to-[#8FBE53] text-white py-20 text-center overflow-hidden`}>
                 <div className="absolute inset-0 bg-dot-pattern opacity-10"></div>
                 <motion.div
                     initial="hidden"
@@ -280,22 +300,22 @@ export default function InfrastructureManagementPage() {
                     transition={{ duration: 0.8 }}
                     className="max-w-4xl mx-auto relative z-10"
                 >
-                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">هل تحتاج إلى إدارة احترافية لبنيتك التحتية؟</h3>
+                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">{t('cta.title')}</h3>
                     <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-                        تواصل مع خبرائنا اليوم لتحصل على حلول إدارة بنية تحتية موثوقة وفعالة.
+                        {t('cta.subtitle')}
                     </p>
-                    <div className="flex flex-col sm:flex-row justify-center gap-4">
+                    <div className={`flex flex-col sm:flex-row justify-center gap-4 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                         <Link
                             href="/contact"
                             className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                         >
-                            اطلب استشارة مجانية
+                            {t('cta.consultation')}
                         </Link>
                         <Link
                             href="tel:+966123456789"
                             className="inline-block border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-[#2EB6EE] transition duration-300 transform hover:scale-105"
                         >
-                            اتصل بنا مباشرة
+                            {t('cta.call')}
                         </Link>
                     </div>
                 </motion.div>

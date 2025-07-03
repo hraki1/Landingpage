@@ -1,15 +1,17 @@
 "use client";
-
 import { motion } from "framer-motion";
-
-const stats = [
-  { number: "10K+", label: "المستخدمين النشطين", icon: "👥" },
-  { number: "99.9%", label: "جاهزية النظام", icon: "⏱️" },
-  { number: "4.9/5", label: "تقييم المستخدمين", icon: "⭐" },
-  { number: "500+", label: "تكاملات متوفرة", icon: "🔌" },
-];
+import { useTranslations } from "next-intl";
 
 export default function Stats() {
+  const t = useTranslations('Stats');
+
+  const stats = [
+    { number: t('stats.0.number'), label: t('stats.0.label'), icon: "👥" },
+    { number: t('stats.1.number'), label: t('stats.1.label'), icon: "⏱️" },
+    { number: t('stats.2.number'), label: t('stats.2.label'), icon: "⭐" },
+    { number: t('stats.3.number'), label: t('stats.3.label'), icon: "🔌" },
+  ];
+
   return (
     <section className="py-16 px-4 sm:px-6 bg-gradient-to-br from-[#2EB6EE] via-[#62d0c5] to-[#a6e8b0] text-white">
       <div className="max-w-7xl mx-auto">

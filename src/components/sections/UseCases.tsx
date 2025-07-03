@@ -1,54 +1,34 @@
+"use client";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export default function UseCases() {
+  const t = useTranslations('UseCases');
+
   const useCases = [
     {
-      title: "الشركات الناشئة",
-      description:
-        "نساعد الشركات الناشئة على تحويل أفكارهم إلى منتجات رقمية متكاملة بسرعة وكفاءة.",
+      title: t('cases.0.title'),
+      description: t('cases.0.description'),
       icon: "🚀",
-      features: [
-        "تطوير MVP",
-        "تصميم واجهات المستخدم",
-        "تكامل مع الخدمات السحابية",
-        "نشر سريع للمنتج",
-      ],
+      features: t.raw('cases.0.features'),
     },
     {
-      title: "الشركات الكبيرة والمؤسسات",
-      description:
-        "نقدّم حلول برمجية مخصصة لرقمنة العمليات وتحسين الكفاءة التشغيلية.",
+      title: t('cases.1.title'),
+      description: t('cases.1.description'),
       icon: "🏢",
-      features: [
-        "أنظمة ERP وCRM",
-        "التكامل مع الأنظمة الحالية",
-        "أتمتة العمليات",
-        "تحليل البيانات",
-      ],
+      features: t.raw('cases.1.features'),
     },
     {
-      title: "القطاع التعليمي",
-      description:
-        "منصات تعليمية متكاملة لإدارة المحتوى والتفاعل مع الطلاب بسهولة.",
+      title: t('cases.2.title'),
+      description: t('cases.2.description'),
       icon: "🎓",
-      features: [
-        "أنظمة إدارة تعلم (LMS)",
-        "بوابات تعليم إلكتروني",
-        "تقييمات واختبارات ذكية",
-        "تحليلات أداء الطلاب",
-      ],
+      features: t.raw('cases.2.features'),
     },
     {
-      title: "المتاجر الإلكترونية",
-      description:
-        "نطوّر متاجر إلكترونية احترافية لعرض وبيع المنتجات بأفضل تجربة مستخدم.",
+      title: t('cases.3.title'),
+      description: t('cases.3.description'),
       icon: "🛒",
-      features: [
-        "تصميم وتطوير متجر إلكتروني",
-        "ربط بوابات الدفع",
-        "إدارة المنتجات والمخزون",
-        "تحسين تجربة الشراء",
-      ],
+      features: t.raw('cases.3.features'),
     },
   ];
 
@@ -63,13 +43,13 @@ export default function UseCases() {
           className="text-center mb-12 sm:mb-16 md:mb-20"
         >
           <h2 className="text-3xl text-black sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
-            مصممة خصيصًا{" "}
+            {t('title.part1')}{" "}
             <span className="bg-gradient-to-r from-[#2EB6EE] to-[#2EB6EE] bg-clip-text text-transparent">
-              لاحتياجات عملك
+              {t('title.part2')}
             </span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-            تخدم صرح النمو الكثير من القطاعات
+            {t('description')}
           </p>
         </motion.div>
 
@@ -88,11 +68,11 @@ export default function UseCases() {
               <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-black">
                 {useCase.title}
               </h3>
-              <p className="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6 ">
+              <p className="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6">
                 {useCase.description}
               </p>
               <ul className="space-y-2">
-                {useCase.features.map((feature, j) => (
+                {useCase.features.map((feature: string, j: number) => (
                   <li key={j} className="flex items-center text-black">
                     <svg
                       className="w-4 h-4 mr-2 text-purple-500"

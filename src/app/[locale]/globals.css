@@ -13,13 +13,13 @@
 }
 /* الجزء القابل للسحب */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #2EB6EE, #2EB6EE);
+  background: linear-gradient(180deg, #2eb6ee, #2eb6ee);
   border-radius: 10px;
 }
 
 /* لما المستخدم يضغط على السكروول */
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #2EB6EE, #2EB6EE);
+  background: linear-gradient(180deg, #2eb6ee, #2eb6ee);
 }
 
 /* Smooth scroll */
@@ -32,9 +32,7 @@ html {
   --background: #ffffff;
   --foreground: #171717;
 
-  /* Great Vibes font (default) */
-  --font-great: "Great Vibes", cursive;
-  font-family: var(--font-great);
+  font-family: var(--font-cairo);
 }
 
 /* Dark mode */
@@ -55,7 +53,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-great);
+  font-family: var(--font-cairo), sans-serif;
 }
 
 /* Optional custom class for another font */

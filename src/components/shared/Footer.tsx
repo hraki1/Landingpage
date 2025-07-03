@@ -1,5 +1,4 @@
 "use client";
-
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,9 +6,10 @@ import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { FaFacebook, FaSquareXTwitter } from "react-icons/fa6";
 import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
-
+  const t = useTranslations('Footer');
   const pathname = usePathname();
   const router = useRouter();
 
@@ -44,31 +44,31 @@ export default function Footer() {
 
   const footerColumns = [
     {
-      title: "الخدمات",
+      title: t('columns.0.title'),
       links: [
-        { label: "تطوير المواقع", href: "/servicesPage/webDevelopment", type: "page" },
-        { label: "تطبيقات الهاتف", href: "/servicesPage/mobileDevelopment", type: "page" },
-        { label: "أنظمة الشركات", href: "/servicesPage/systemsDevelopment", type: "page" },
-        { label: "الأمن السيبراني", href: "/servicesPage/cyberDevelopment", type: "page" },
-        { label: "الاستضافة والسحابة", href: "/servicesPage/hostingCloud", type: "page" },
-        { label: "حلول الأعمال", href: "/servicesPage/systemsDevelopment", type: "page" },
-        { label: "إدارة البنية التحتية", href: "/servicesPage/infrastructureManagement", type: "page" },
-        { label: "التحول الرقمي", href: "#use-cases", type: "hash" },
+        { label: t('columns.0.links.0'), href: "/servicesPage/webDevelopment", type: "page" },
+        { label: t('columns.0.links.1'), href: "/servicesPage/mobileDevelopment", type: "page" },
+        { label: t('columns.0.links.2'), href: "/servicesPage/systemsDevelopment", type: "page" },
+        { label: t('columns.0.links.3'), href: "/servicesPage/cyberDevelopment", type: "page" },
+        { label: t('columns.0.links.4'), href: "/servicesPage/hostingCloud", type: "page" },
+        { label: t('columns.0.links.5'), href: "/servicesPage/systemsDevelopment", type: "page" },
+        { label: t('columns.0.links.6'), href: "/servicesPage/infrastructureManagement", type: "page" },
+        { label: t('columns.0.links.7'), href: "#use-cases", type: "hash" },
       ],
     },
     {
-      title: "الشركة",
+      title: t('columns.1.title'),
       links: [
-        { label: "من نحن", href: "#about", type: "hash" },
-        { label: "الوظائف", href: "/servicesPage/jobsPage", type: "page" },
-        { label: "تواصل معنا", href: "/contact", type: "page" },
+        { label: t('columns.1.links.0'), href: "#about", type: "hash" },
+        { label: t('columns.1.links.1'), href: "/servicesPage/jobsPage", type: "page" },
+        { label: t('columns.1.links.2'), href: "/contact", type: "page" },
       ],
     },
     {
-      title: "الدعم",
+      title: t('columns.2.title'),
       links: [
-        { label: "الأسئلة الشائعة", href: "#faq", type: "hash" },
-        { label: "الدعم الفني", href: "/contact", type: "page" },
+        { label: t('columns.2.links.0'), href: "#faq", type: "hash" },
+        { label: t('columns.2.links.1'), href: "/contact", type: "page" },
       ],
     },
   ];
@@ -77,12 +77,9 @@ export default function Footer() {
     (hash: string): void;
   }
 
-
   const handleHashLinkClick: HashLinkHandler = (hash: string): void => {
     if (pathname !== "/") {
-      // If not on homepage, navigate to homepage with hash
       router.push(`/${hash}`);
-      // Scroll after navigation completes
       setTimeout(() => {
         const element: Element | null = document.querySelector(hash);
         if (element) {
@@ -90,7 +87,6 @@ export default function Footer() {
         }
       }, 100);
     } else {
-      // If already on homepage, just scroll
       const element: Element | null = document.querySelector(hash);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
@@ -99,29 +95,32 @@ export default function Footer() {
   };
 
   return (
-    <footer className=" relative py-12 sm:py-16 px-4 sm:px-6 bg-gray-900 text-gray-400 text-center md:text-start">
+    <footer className="relative py-12 sm:py-16 px-4 sm:px-6 bg-gray-900 text-gray-400 text-center md:text-start">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-8 sm:gap-12">
           {/* Logo and About */}
           <div className="lg:col-span-2">
-            <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent mb-4 sm:mb-6 flex items-center gap-3">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center w-10 md:w-14"
-              >
-                <Image
-                  src="/logo.png"
-                  alt="صرح النمو"
-                  className="w-full h-auto"
-                  width={50}
-                  height={50}
-                />
-              </motion.div>
-              صرح النمو
+            <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent mb-4 sm:mb-6 flex items-center justify-center gap-3">
+              <div className="flex flex-col md:flex-row justify-center items-center gap-1 md:gap-3">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="flex flex-col items-center w-10 md:w-14"
+                >
+                  <Image
+                    src="/logo.png"
+                    alt={t('companyName')}
+                    className="w-full h-auto"
+                    width={50}
+                    height={50}
+                  />
+                </motion.div>
+                <p>
+                  {t('companyName')}
+                </p>
+              </div>
             </div>
             <p className="text-sm sm:text-base mb-4 sm:mb-6">
-              منصة رقمية متكاملة لتطوير البرمجيات تساعدك على إدارة أعمالك،
-              التوسع بسرعة، وتحقيق النجاح التقني.
+              {t('description')}
             </p>
             <div className="flex gap-3 sm:gap-4">
               {socialLinks.map((social) => (
@@ -149,7 +148,7 @@ export default function Footer() {
               <h3 className="text-white font-medium mb-3 sm:mb-4 text-sm sm:text-base">
                 {column.title}
               </h3>
-              <ul className="space-y-2 sm:space-y-3 ">
+              <ul className="space-y-2 sm:space-y-3">
                 {column.links.map((link, j) => (
                   <motion.li
                     key={j}
@@ -158,9 +157,7 @@ export default function Footer() {
                   >
                     {link.type === "hash" ? (
                       <button
-                        onClick={() => {
-                          handleHashLinkClick(link.href)
-                        }}
+                        onClick={() => handleHashLinkClick(link.href)}
                         className="text-xs sm:text-sm hover:text-white transition-colors duration-300"
                       >
                         {link.label}
@@ -168,7 +165,7 @@ export default function Footer() {
                     ) : (
                       <Link
                         href={link.href}
-                        className=" text-xs sm:text-sm hover:text-white transition-colors duration-300"
+                        className="text-xs sm:text-sm hover:text-white transition-colors duration-300"
                       >
                         {link.label}
                       </Link>
@@ -178,27 +175,26 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 mt-12 sm:mt-16 pt-8 flex flex-col sm:flex-row justify-between items-center text-center gap-4">
           <p className="text-xs sm:text-sm">
-            © {new Date().getFullYear()} صرح النمو. جميع الحقوق محفوظة.
+            {t('copyright', { year: new Date().getFullYear() })}
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
-            <a
-              href="#"
+            <Link
+              href="/privacy"
               className="hover:text-white transition-colors duration-300"
             >
-              سياسة الخصوصية
-            </a>
-            <a
-              href="#"
+              {t('privacyPolicy')}
+            </Link>
+            <Link
+              href="/terms"
               className="hover:text-white transition-colors duration-300"
             >
-              الشروط والأحكام
-            </a>
+              {t('termsConditions')}
+            </Link>
           </div>
         </div>
       </div>

@@ -5,70 +5,72 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useTranslations } from "next-intl";
 
-export const navLinks = [
+export const navLinks = (t: (key: string) => string) => [
   {
-    label: "الرئيسية",
+    label: t('navLinks.home'),
     href: "/",
-    ariaLabel: "الانتقال إلى الصفحة الرئيسية",
+    ariaLabel: t('navLinks.ariaLabels.home'),
     icon: "🏠",
     type: "page",
   },
   {
-    label: "الميزات",
+    label: t('navLinks.features'),
     href: "#features",
-    ariaLabel: "عرض ميزات المنتج",
+    ariaLabel: t('navLinks.ariaLabels.features'),
     icon: "✨",
-    badge: "جديد",
+    badge: t('navLinks.new'),
     type: "hash",
   },
   {
-    label: "الإحصائيات",
+    label: t('navLinks.stats'),
     href: "#stats",
-    ariaLabel: "عرض إحصائيات الأداء",
+    ariaLabel: t('navLinks.ariaLabels.stats'),
     icon: "📊",
     type: "hash",
   },
   {
-    label: "الحلول",
+    label: t('navLinks.solutions'),
     href: "#use-cases",
-    ariaLabel: "اكتشاف حالات الاستخدام",
+    ariaLabel: t('navLinks.ariaLabels.solutions'),
     icon: "🛠️",
     type: "hash",
     subItems: [
-      { label: "للشركات", href: "/solutions/business" },
-      { label: "للأفراد", href: "/solutions/individuals" },
+      { label: t('navLinks.subItems.business'), href: "/solutions/business" },
+      { label: t('navLinks.subItems.individuals'), href: "/solutions/individuals" },
     ],
   },
   {
-    label: "الخدمات",
+    label: t('navLinks.services'),
     href: "#services",
-    ariaLabel: "اكتشاف حالات الاستخدام",
+    ariaLabel: t('navLinks.ariaLabels.services'),
     icon: "🛠️",
     type: "hash",
     subItems: [
-      { label: "للشركات", href: "/solutions/business" },
-      { label: "للأفراد", href: "/solutions/individuals" },
+      { label: t('navLinks.subItems.business'), href: "/solutions/business" },
+      { label: t('navLinks.subItems.individuals'), href: "/solutions/individuals" },
     ],
   },
   {
-    label: "من نحن",
+    label: t('navLinks.about'),
     href: "#about",
-    ariaLabel: "معلومات عن الشركة",
+    ariaLabel: t('navLinks.ariaLabels.about'),
     icon: "👥",
     type: "hash",
   },
   {
-    label: "الأسئلة الشائعة",
+    label: t('navLinks.faq'),
     href: "#faq",
-    ariaLabel: "الأسئلة المتكررة",
+    ariaLabel: t('navLinks.ariaLabels.faq'),
     icon: "❓",
     type: "hash",
   },
   {
-    label: "اتصل بنا",
+    label: t('navLinks.contact'),
     href: "/contact",
-    ariaLabel: "صفحة التواصل",
+    ariaLabel: t('navLinks.ariaLabels.contact'),
     icon: "📞",
     cta: true,
     type: "page",
@@ -76,6 +78,7 @@ export const navLinks = [
 ];
 
 export default function Header() {
+  const t = useTranslations('Header');
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -97,9 +100,7 @@ export default function Header() {
 
   const handleHashLinkClick: HashLinkHandler = (hash: string): void => {
     if (pathname !== "/") {
-      // If not on homepage, navigate to homepage with hash
       router.push(`/${hash}`);
-      // Scroll after navigation completes
       setTimeout(() => {
         const element: Element | null = document.querySelector(hash);
         if (element) {
@@ -107,7 +108,6 @@ export default function Header() {
         }
       }, 100);
     } else {
-      // If already on homepage, just scroll
       const element: Element | null = document.querySelector(hash);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
@@ -133,19 +133,19 @@ export default function Header() {
               >
                 <Image
                   src="/logo.png"
-                  alt="صرح النمو"
+                  alt={t('companyName')}
                   className="w-10 md:w-14 h-auto"
                   width={56}
                   height={56}
                 />
-                <span className=" lg:hidden text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent">
-                  صرح النمو
+                <span className="lg:hidden text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent">
+                  {t('companyName')}
                 </span>
               </motion.div>
             </Link>
             {/* Navigation Links */}
             <div className="hidden lg:flex ml-6 gap-4">
-              {navLinks.map(({ label, href, type }) =>
+              {navLinks(t).map(({ label, href, type }) =>
                 type === "hash" ? (
                   <button
                     key={href}
@@ -173,6 +173,10 @@ export default function Header() {
             </div>
           </div>
 
+          <div>
+            <LanguageSwitcher />
+          </div>
+
           {/* CTA */}
           <div className="hidden lg:flex items-center">
             <Link href={'/contact'}>
@@ -184,17 +188,16 @@ export default function Header() {
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                طلب عرض توضيحي
+                {t('demoButton')}
               </motion.button>
             </Link>
-
           </div>
 
           {/* Hamburger */}
           <button
             className="lg:hidden p-2"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
+            aria-label={t('menuToggle')}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -212,7 +215,6 @@ export default function Header() {
             </svg>
           </button>
         </div>
-
       </motion.nav>
 
       {/* Mobile Menu */}
@@ -226,7 +228,7 @@ export default function Header() {
             className="fixed top-16 left-0 right-0 z-40 bg-white shadow-lg overflow-hidden lg:hidden"
           >
             <div className="px-4 py-4 space-y-3 text-center">
-              {navLinks.map(({ label, href, type }, i) => (
+              {navLinks(t).map(({ label, href, type }, i) => (
                 <motion.div
                   key={href}
                   initial={{ x: -20 }}
@@ -236,7 +238,7 @@ export default function Header() {
                   {type === "hash" ? (
                     <button
                       onClick={() => handleHashLinkClick(href)}
-                      className="w-full  py-2 px-3 text-gray-700 hover:text-[#2EB6EE] font-medium rounded-lg hover:bg-[#2eb6ee1a] transition-colors"
+                      className="w-full py-2 px-3 text-gray-700 hover:text-[#2EB6EE] font-medium rounded-lg hover:bg-[#2eb6ee1a] transition-colors"
                     >
                       {label}
                     </button>
@@ -244,7 +246,7 @@ export default function Header() {
                     <Link
                       href={href}
                       onClick={() => setMenuOpen(false)}
-                      className="block  py-2 px-3 text-gray-700 hover:text-[#2EB6EE] font-medium rounded-lg hover:bg-[#2eb6ee1a] transition-colors"
+                      className="block py-2 px-3 text-gray-700 hover:text-[#2EB6EE] font-medium rounded-lg hover:bg-[#2eb6ee1a] transition-colors"
                     >
                       {label}
                     </Link>
@@ -252,9 +254,7 @@ export default function Header() {
                 </motion.div>
               ))}
               <div className="pt-4 border-t border-gray-200 space-y-3">
-                <Link href="/contact"
-                  onClick={() => setMenuOpen(false)}
-                >
+                <Link href="/contact" onClick={() => setMenuOpen(false)}>
                   <motion.button
                     className="block w-full text-center py-2.5 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-base"
                     initial={{ scale: 0.9, opacity: 0 }}
@@ -263,7 +263,7 @@ export default function Header() {
                     whileTap={{ scale: 0.97 }}
                     transition={{ duration: 0.3, delay: 0.3 }}
                   >
-                    ابدأ الآن
+                    {t('getStartedButton')}
                   </motion.button>
                 </Link>
               </div>

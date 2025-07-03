@@ -1,37 +1,36 @@
+"use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function FAQ() {
-  // FAQ items
+  const t = useTranslations('FAQ');
+
   const faqs = [
     {
-      question: "ما مدى أمان بياناتي؟",
-      answer:
-        "نستخدم تقنيات أمان على مستوى المؤسسات، بما في ذلك التشفير من الطرف إلى الطرف، والمراجعات الأمنية الدورية، والامتثال لمعايير عالمية مثل SOC 2 وGDPR. بياناتك في أمان دائم.",
+      question: t('questions.0.question'),
+      answer: t('questions.0.answer'),
     },
     {
-      question: "هل يمكنني الإلغاء في أي وقت؟",
-      answer:
-        "نعم، يمكنك إلغاء اشتراكك في أي وقت دون أي رسوم خفية أو عقوبات. وسنساعدك أيضًا على تصدير بياناتك إذا لزم الأمر.",
+      question: t('questions.1.question'),
+      answer: t('questions.1.answer'),
     },
     {
-      question: "كيف تعمل الفترة التجريبية المجانية؟",
-      answer:
-        "تمنحك الفترة التجريبية المجانية لمدة 14 يومًا وصولًا كاملًا إلى ميزات خطة المحترفين. لا حاجة لبطاقة ائتمان، ويمكنك الترقية في أي وقت أثناء الفترة.",
+      question: t('questions.2.question'),
+      answer: t('questions.2.answer'),
     },
     {
-      question: "ما هي التكاملات المتوفرة؟",
-      answer:
-        "ندعم أكثر من 500 تكامل مع أدوات شهيرة مثل Salesforce وSlack وZoom وغيرها. كما يتيح لك API الخاص بنا تنفيذ تكاملات مخصصة مع أي نظام.",
+      question: t('questions.3.question'),
+      answer: t('questions.3.answer'),
     },
     {
-      question: "هل تتوفر نسخة داخلية (On-premise)؟",
-      answer:
-        "نعم، نقدم حلولًا داخلية مخصصة للمؤسسات التي لديها متطلبات خاصة بالامتثال أو استضافة البيانات محليًا. تواصل مع فريق المبيعات لدينا لمعرفة المزيد.",
+      question: t('questions.4.question'),
+      answer: t('questions.4.answer'),
     },
   ];
+
   return (
-    <section className=" relative py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-gray-100">
+    <section className="relative py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,16 +40,16 @@ export default function FAQ() {
           className="text-center mb-12 sm:mb-16 md:mb-20"
         >
           <div className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-blue-100 text-blue-700 font-medium mb-4 sm:mb-6 text-sm sm:text-base">
-            لديك استفسار؟
+            {t('subtitle')}
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-black">
-            الأسئلة الشائعة عن{" "}
+            {t('title')}{" "}
             <span className="bg-gradient-to-r from-[#2EB6EE] to-[#2EB6EE] bg-clip-text text-transparent">
-              صرح النمو
+              {t('companyName')}
             </span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-            كل ما تحتاج معرفته عن خدماتنا في تطوير البرمجيات.
+            {t('description')}
           </p>
         </motion.div>
 
@@ -73,13 +72,13 @@ export default function FAQ() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-gray-600 mb-4">هل لديك المزيد من الأسئلة</p>
+          <p className="text-gray-600 mb-4">{t('moreQuestions')}</p>
           <Link href="/contact" passHref>
             <motion.p
               className="inline-flex gap-3 items-center text-[#2EB6EE] font-medium"
               whileHover={{ x: 5 }}
             >
-              تواصل معنا
+              {t('contactUs')}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"

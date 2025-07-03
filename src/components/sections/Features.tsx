@@ -1,15 +1,16 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function Features() {
+  const t = useTranslations('featuresSection');
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
 
   const features = [
     {
-      title: "حلول برمجية",
-      description:
-        "برامـــج وحلـــول جاهـــزة ومصممـــة خصيصـــاً لتلبية احتياجات العملاءs",
+      title: t('features.0.title'),
+      description: t('features.0.description'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -27,18 +28,16 @@ export default function Features() {
         </svg>
       ),
       color: "from-[#8FBE53] to-[#2EB6EE]",
-      extendedDesc:
-        "Our AI analyzes your data in real-time, providing actionable insights and predictive analytics to help you stay ahead of the competition. Machine learning models adapt to your specific business needs.",
+      extendedDesc: t('features.0.extendedDesc'),
       stats: [
-        { value: "95%", label: "Accuracy" },
-        { value: "24/7", label: "Monitoring" },
-        { value: "10x", label: "Faster insights" },
+        { value: t('features.0.stats.0.value'), label: t('features.0.stats.0.label') },
+        { value: t('features.0.stats.1.value'), label: t('features.0.stats.1.label') },
+        { value: t('features.0.stats.2.value'), label: t('features.0.stats.2.label') },
       ],
     },
     {
-      title: "حلول تكنولوجيا المعلومات",
-      description:
-        "مصـمـــــمــــة لـــمــسـاعــــدة الشركات على إدارة البنية الـــتــحــتـيــــــــــة التكنولوجيـــة والــعــمــلـيـــــات والأنظمـــة بشكل فعال",
+      title: t('features.1.title'),
+      description: t('features.1.description'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -56,18 +55,16 @@ export default function Features() {
         </svg>
       ),
       color: "from-amber-500 to-red-600",
-      extendedDesc:
-        "End-to-end encryption with zero-knowledge architecture. SOC 2 Type II, ISO 27001, and GDPR compliant. Regular security audits and penetration testing ensure your data is always protected.",
+      extendedDesc: t('features.1.extendedDesc'),
       stats: [
-        { value: "256-bit", label: "Encryption" },
-        { value: "99.99%", label: "Uptime" },
-        { value: "0", label: "Breaches" },
+        { value: t('features.1.stats.0.value'), label: t('features.1.stats.0.label') },
+        { value: t('features.1.stats.1.value'), label: t('features.1.stats.1.label') },
+        { value: t('features.1.stats.2.value'), label: t('features.1.stats.2.label') },
       ],
     },
     {
-      title: "خدمات الأعمال",
-      description:
-        "مصـمـــــمــــة لـــمــسـاعــــدة الشركات على إدارة البنية الـــتــحــتـيــــــــــة التكنولوجيـــة والــعــمــلـيـــــات والأنظمـــة بشكل فعال",
+      title: t('features.2.title'),
+      description: t('features.2.description'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -85,15 +82,15 @@ export default function Features() {
         </svg>
       ),
       color: "from-emerald-500 to-teal-600",
-      extendedDesc:
-        "Native integrations with all major platforms plus a powerful API for custom connections. Pre-built connectors for Salesforce, Slack, Zoom, and hundreds more with no coding required.",
+      extendedDesc: t('features.2.extendedDesc'),
       stats: [
-        { value: "500+", label: "Integrations" },
-        { value: "5-min", label: "Setup" },
-        { value: "24/7", label: "Support" },
+        { value: t('features.2.stats.0.value'), label: t('features.2.stats.0.label') },
+        { value: t('features.2.stats.1.value'), label: t('features.2.stats.1.label') },
+        { value: t('features.2.stats.2.value'), label: t('features.2.stats.2.label') },
       ],
     },
   ];
+
   return (
     <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="max-w-7xl mx-auto">
@@ -105,16 +102,16 @@ export default function Features() {
           className="text-center mb-12 sm:mb-16 md:mb-20"
         >
           <div className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-purple-100 text-[#2EB6EE] font-medium mb-4 sm:mb-6 text-sm sm:text-base">
-            ميزات قوية{" "}
+            {t('subtitle')}
           </div>
           <h2 className="text-3xl text-black sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
-            كل ما تحتاجه لتحقيق{" "}
+            {t('title.part1')}{" "}
             <span className="bg-gradient-to-r from-[#2EB6EE] to-[#2EB6EE] bg-clip-text text-transparent">
-              النجاح
+              {t('title.part2')}
             </span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-            منصتنا تزخر بأدوات مبتكرة تساعد عملك في التفوق على المنافسين.
+            {t('description')}
           </p>
         </motion.div>
 
@@ -147,55 +144,6 @@ export default function Features() {
               <p className="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6">
                 {feature.description}
               </p>
-
-              {/* <div className="mb-4 sm:mb-6">
-                <h4 className="font-medium text-sm text-gray-500 mb-2">
-                  Key benefits:
-                </h4>
-                <ul className="space-y-2">
-                  {feature.stats.map((stat, j) => (
-                    <li key={j} className="flex items-center">
-                      <svg
-                        className="w-4 h-4 mr-2 text-green-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M5 13l4 4L19 7"
-                        ></path>
-                      </svg>
-                      <span className="text-sm sm:text-base">
-                        <span className="font-bold">{stat.value}</span>{" "}
-                        {stat.label}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div> */}
-
-              {/* <motion.a
-                href="#"
-                className="text-purple-600 font-medium flex items-center gap-1 sm:gap-2 text-sm sm:text-base group"
-                whileHover={{ x: 5 }}
-              >
-                Learn more
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </motion.a> */}
             </motion.div>
           ))}
         </div>

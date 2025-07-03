@@ -4,8 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaServer, FaCloud, FaShieldAlt, FaCogs, FaChartLine, FaNetworkWired, FaSync, FaUsersCog, FaRobot } from "react-icons/fa";
+import { useTranslations } from 'next-intl';
 
 export default function SystemsDevelopmentPage() {
+    const t = useTranslations('SystemsDevelopment');
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 }
@@ -13,45 +15,77 @@ export default function SystemsDevelopmentPage() {
 
     const solutions = [
         {
-            title: "أنظمة إدارة المؤسسات",
+            title: t('solutions.enterprise.title'),
             icon: <FaUsersCog className="text-4xl" />,
             items: [
-                "أنظمة ERP متكاملة",
-                "أنظمة إدارة الموارد البشرية",
-                "أنظمة المحاسبة والمالية",
-                "أنظمة إدارة سلسلة التوريد"
+                t('solutions.enterprise.items.0'),
+                t('solutions.enterprise.items.1'),
+                t('solutions.enterprise.items.2'),
+                t('solutions.enterprise.items.3')
             ]
         },
         {
-            title: "أنظمة الذكاء الاصطناعي",
+            title: t('solutions.ai.title'),
             icon: <FaRobot className="text-4xl" />,
             items: [
-                "تحليل البيانات التنبؤية",
-                "أنظمة التوصيل الذكية",
-                "معالجة اللغة الطبيعية",
-                "أنظمة الرؤية الحاسوبية"
+                t('solutions.ai.items.0'),
+                t('solutions.ai.items.1'),
+                t('solutions.ai.items.2'),
+                t('solutions.ai.items.3')
             ]
         },
         {
-            title: "أنظمة البنية التحتية",
+            title: t('solutions.infrastructure.title'),
             icon: <FaNetworkWired className="text-4xl" />,
             items: [
-                "أنظمة إدارة الشبكات",
-                "حلول الأتمتة والتحكم",
-                "أنظمة إدارة قواعد البيانات",
-                "حلول التخزين السحابي"
+                t('solutions.infrastructure.items.0'),
+                t('solutions.infrastructure.items.1'),
+                t('solutions.infrastructure.items.2'),
+                t('solutions.infrastructure.items.3')
             ]
         }
     ];
 
-
     const features = [
-        { icon: <FaServer className="text-3xl" />, title: "بنية تحتية قوية", description: "تصميم أنظمة قابلة للتطوير وفق أفضل الممارسات" },
-        { icon: <FaSync className="text-3xl" />, title: "تكامل الأنظمة", description: "ربط أنظمتك الحالية مع الحلول الجديدة بسلاسة" },
-        { icon: <FaShieldAlt className="text-3xl" />, title: "أمان متقدم", description: "طبقات حماية متعددة وفق معايير الأمان العالمية" },
-        { icon: <FaCloud className="text-3xl" />, title: "حلول سحابية", description: "نظم سحابية هجينة أو كاملة حسب احتياجاتك" },
-        { icon: <FaChartLine className="text-3xl" />, title: "تحليلات الأعمال", description: "لوحات تحكم وذكاء أعمال لاتخاذ القرارات" },
-        { icon: <FaCogs className="text-3xl" />, title: "صيانة مستمرة", description: "دعم فني وتحديثات دورية لضمان الاستقرار" }
+        {
+            icon: <FaServer className="text-3xl" />,
+            title: t('features.0.title'),
+            description: t('features.0.description')
+        },
+        {
+            icon: <FaSync className="text-3xl" />,
+            title: t('features.1.title'),
+            description: t('features.1.description')
+        },
+        {
+            icon: <FaShieldAlt className="text-3xl" />,
+            title: t('features.2.title'),
+            description: t('features.2.description')
+        },
+        {
+            icon: <FaCloud className="text-3xl" />,
+            title: t('features.3.title'),
+            description: t('features.3.description')
+        },
+        {
+            icon: <FaChartLine className="text-3xl" />,
+            title: t('features.4.title'),
+            description: t('features.4.description')
+        },
+        {
+            icon: <FaCogs className="text-3xl" />,
+            title: t('features.5.title'),
+            description: t('features.5.description')
+        }
+    ];
+
+    const processSteps = [
+        { title: t('process.0.title'), description: t('process.0.description') },
+        { title: t('process.1.title'), description: t('process.1.description') },
+        { title: t('process.2.title'), description: t('process.2.description') },
+        { title: t('process.3.title'), description: t('process.3.description') },
+        { title: t('process.4.title'), description: t('process.4.description') },
+        { title: t('process.5.title'), description: t('process.5.description') }
     ];
 
     return (
@@ -67,30 +101,32 @@ export default function SystemsDevelopmentPage() {
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
-                            حلول <span className="text-[#FFD700]">أنظمة الشركات</span> المتكاملة
+                            {t.rich('hero.title', {
+                                highlight: (chunks) => <span className="text-[#FFD700]">{chunks}</span>
+                            })}
                         </h1>
                         <p className="text-xl sm:text-2xl max-w-3xl mx-auto mb-8 leading-relaxed">
-                            نطور أنظمة مخصصة لتحويل عملياتك التجارية وتعزيز كفاءة مؤسستك باستخدام أحدث التقنيات
+                            {t('hero.subtitle')}
                         </p>
                         <div className="flex justify-center gap-4">
                             <Link
                                 href="/contact"
                                 className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                             >
-                                اطلب استشارة متخصصة
+                                {t('hero.cta1')}
                             </Link>
                             <Link
                                 href="#solutions"
                                 className="inline-block border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-[#2EB6EE] transition duration-300 transform hover:scale-105"
                             >
-                                اكتشف حلولنا
+                                {t('hero.cta2')}
                             </Link>
                         </div>
                     </motion.div>
                 </div>
                 <Image
                     src="/services/systems-dev-hero.jpg"
-                    alt="أنظمة الشركات"
+                    alt={t('hero.imageAlt')}
                     fill
                     className="absolute inset-0 object-cover opacity-15"
                     priority
@@ -108,9 +144,14 @@ export default function SystemsDevelopmentPage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">حلول <span className="text-[#2EB6EE]">متكاملة</span> لجميع <span className="text-[#8FBE53]">احتياجاتك</span></h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                            {t.rich('solutionsSection.title', {
+                                blue: (chunks) => <span className="text-[#2EB6EE]">{chunks}</span>,
+                                green: (chunks) => <span className="text-[#8FBE53]">{chunks}</span>
+                            })}
+                        </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نقدم مجموعة شاملة من حلول الأنظمة المصممة خصيصاً لمتطلبات عملك
+                            {t('solutionsSection.subtitle')}
                         </p>
                     </motion.div>
 
@@ -152,9 +193,13 @@ export default function SystemsDevelopmentPage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">ميزات <span className="text-[#2EB6EE]">أنظمتنا</span> المطورة</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                            {t.rich('featuresSection.title', {
+                                blue: (chunks) => <span className="text-[#2EB6EE]">{chunks}</span>
+                            })}
+                        </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نضمن لك أنظمة عالية الجودة مصممة لتحقيق أقصى استفادة لمؤسستك
+                            {t('featuresSection.subtitle')}
                         </p>
                     </motion.div>
 
@@ -177,7 +222,7 @@ export default function SystemsDevelopmentPage() {
                     </div>
                 </div>
             </section>
-      
+
             {/* Process Section */}
             <section className="py-20 px-6 bg-white">
                 <div className="max-w-6xl mx-auto">
@@ -189,9 +234,13 @@ export default function SystemsDevelopmentPage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">منهجية <span className="text-[#8FBE53]">تطوير</span> الأنظمة</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                            {t.rich('processSection.title', {
+                                green: (chunks) => <span className="text-[#8FBE53]">{chunks}</span>
+                            })}
+                        </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نتبع عملية منهجية واضحة لضمان نجاح مشروع نظامك
+                            {t('processSection.subtitle')}
                         </p>
                     </motion.div>
 
@@ -199,14 +248,7 @@ export default function SystemsDevelopmentPage() {
                         <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-[#8FBE53] to-[#2EB6EE]"></div>
 
                         <div className="space-y-12">
-                            {[
-                                { title: "تحليل الاحتياجات", description: "فهم متطلبات العمل وتحليل العمليات الحالية" },
-                                { title: "التصميم المعماري", description: "وضع الهيكل التقني وتصميم قواعد البيانات" },
-                                { title: "التطوير والتكامل", description: "برمجة النظام وربطه مع الأنظمة الموجودة" },
-                                { title: "اختبار الجودة", description: "فحص شامل لجميع الوظائف واختبارات الأداء" },
-                                { title: "النشر والتدريب", description: "تنفيذ النظام وتدريب المستخدمين" },
-                                { title: "الدعم والصيانة", description: "توفير الدعم الفني والتحديثات الدورية" }
-                            ].map((step, index) => (
+                            {processSteps.map((step, index) => (
                                 <motion.div
                                     key={index}
                                     initial="hidden"
@@ -216,7 +258,7 @@ export default function SystemsDevelopmentPage() {
                                     transition={{ duration: 0.5, delay: index * 0.2 }}
                                     className={`relative flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8`}
                                 >
-                                    <div className={`hidden md:flex absolute ${index % 2 === 0 ? 'left-1/2' : 'right-1/2'} transform ${index % 2 === 0 ? '-translate-x-8' : 'translate-x-8'} w-16 h-16 rounded-full bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white items-center justify-center text-xl font-bold z-10 shadow-lg`}>
+                                    <div className={`hidden md:flex absolute ${index % 2 === 0 ? 'left-1/2' : 'right-1/2'} transform -translate-y-12 ${index % 2 === 0 ? '-translate-x-8' : 'translate-x-8'} w-16 h-16 rounded-full bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white items-center justify-center text-xl font-bold z-10 shadow-lg`}>
                                         {index + 1}
                                     </div>
                                     <div className={`flex-1 ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'} bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300`}>
@@ -241,18 +283,17 @@ export default function SystemsDevelopmentPage() {
                     transition={{ duration: 0.8 }}
                     className="max-w-4xl mx-auto relative z-10"
                 >
-                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">مستعدون لتحويل نظام عملك؟</h3>
+                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">{t('cta.title')}</h3>
                     <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-                        تواصل مع خبرائنا اليوم لتحصل على الحل الأمثل الذي يلبي احتياجات مؤسستك ويدعم نموها.
+                        {t('cta.subtitle')}
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
                             href="/contact"
                             className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                         >
-                            تواصل الأن
+                            {t('cta.button')}
                         </Link>
-                       
                     </div>
                 </motion.div>
             </section>

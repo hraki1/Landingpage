@@ -1,11 +1,14 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function ContactPage() {
+  const t = useTranslations('ContactPage');
+  const locale = useLocale();
+  const dir = locale === 'ar' ? 'rtl' : 'ltr';
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -62,7 +65,6 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitSuccess(true);
@@ -73,13 +75,15 @@ export default function ContactPage() {
         message: ""
       });
 
-      // Reset success message after 5 seconds
       setTimeout(() => setSubmitSuccess(false), 5000);
     }, 1500);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div
+      className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8"
+      dir={dir}
+    >
       <motion.div
         initial="hidden"
         animate="visible"
@@ -95,13 +99,13 @@ export default function ContactPage() {
             className="text-4xl font-extrabold text-gray-900 sm:text-5xl"
             whileHover={{ scale: 1.02 }}
           >
-            تواصل <span className="text-[#2EB6EE]">معنا</span>
+            {t('title.part1')} <span className="text-[#2EB6EE]">{t('title.part2')}</span>
           </motion.h1>
           <motion.p
             className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
             whileHover={{ scale: 1.01 }}
           >
-            فريقنا متاح دائماً لمساعدتك والإجابة على استفساراتك. لا تتردد في مراسلتنا بأي وقت.
+            {t('description')}
           </motion.p>
         </motion.div>
 
@@ -114,16 +118,16 @@ export default function ContactPage() {
           >
             <h2 className="text-2xl font-bold text-gray-800 mb-8 pb-4 border-b border-gray-200 flex items-center gap-2">
               <FiSend className="text-[#2EB6EE]" />
-              أرسل لنا رسالة
+              {t('formTitle')}
             </h2>
 
             {submitSuccess && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg text-right"
+                className={`mb-6 p-4 bg-green-100 text-green-700 rounded-lg ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
               >
-                تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.
+                {t('successMessage')}
               </motion.div>
             )}
 
@@ -132,9 +136,9 @@ export default function ContactPage() {
                 <motion.div whileHover={{ scale: 1.01 }}>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 text-right mb-2"
+                    className={`block text-sm font-medium text-gray-700 mb-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
                   >
-                    الاسم الكامل
+                    {t('formFields.name')}
                   </label>
                   <input
                     type="text"
@@ -149,9 +153,9 @@ export default function ContactPage() {
                 <motion.div whileHover={{ scale: 1.01 }}>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 text-right mb-2"
+                    className={`block text-sm font-medium text-gray-700 mb-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
                   >
-                    البريد الإلكتروني
+                    {t('formFields.email')}
                   </label>
                   <input
                     type="email"
@@ -167,9 +171,9 @@ export default function ContactPage() {
               <motion.div whileHover={{ scale: 1.01 }}>
                 <label
                   htmlFor="subject"
-                  className="block text-sm font-medium text-gray-700 text-right mb-2"
+                  className={`block text-sm font-medium text-gray-700 mb-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
                 >
-                  موضوع الرسالة
+                  {t('formFields.subject')}
                 </label>
                 <input
                   type="text"
@@ -184,9 +188,9 @@ export default function ContactPage() {
               <motion.div whileHover={{ scale: 1.01 }}>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 text-right mb-2"
+                  className={`block text-sm font-medium text-gray-700 mb-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
                 >
-                  محتوى الرسالة
+                  {t('formFields.message')}
                 </label>
                 <textarea
                   id="message"
@@ -212,12 +216,12 @@ export default function ContactPage() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      جاري الإرسال...
+                      {t('submittingText')}
                     </>
                   ) : (
                     <>
                       <FiSend />
-                      إرسال الرسالة
+                      {t('submitButton')}
                     </>
                   )}
                 </motion.button>
@@ -234,19 +238,19 @@ export default function ContactPage() {
             >
               <h2 className="text-2xl font-bold text-gray-800 mb-8 pb-4 border-b border-gray-200 flex items-center gap-2">
                 <FiMapPin className="text-[#2EB6EE]" />
-                معلومات التواصل
+                {t('contactInfoTitle')}
               </h2>
 
               <div className="space-y-6">
                 <motion.div
                   className="flex items-start gap-4 p-4 hover:bg-gray-50 rounded-lg transition duration-200"
-                  whileHover={{ x: 5 }}
+                  whileHover={{ x: dir === 'rtl' ? -5 : 5 }}
                 >
                   <div className="flex-shrink-0 bg-[#2EB6EE]/10 p-3 rounded-full">
                     <FiMail className="h-6 w-6 text-[#2EB6EE]" />
                   </div>
-                  <div className="text-right">
-                    <h3 className="text-lg font-medium text-gray-900">البريد الإلكتروني</h3>
+                  <div className={dir === 'rtl' ? 'text-right' : 'text-left'}>
+                    <h3 className="text-lg font-medium text-gray-900">{t('contactMethods.email')}</h3>
                     <a
                       href="mailto:info@sarh-alnomu.com"
                       className="text-gray-600 hover:text-[#2EB6EE] transition duration-200"
@@ -258,13 +262,13 @@ export default function ContactPage() {
 
                 <motion.div
                   className="flex items-start gap-4 p-4 hover:bg-gray-50 rounded-lg transition duration-200"
-                  whileHover={{ x: 5 }}
+                  whileHover={{ x: dir === 'rtl' ? -5 : 5 }}
                 >
                   <div className="flex-shrink-0 bg-[#2EB6EE]/10 p-3 rounded-full">
                     <FiPhone className="h-6 w-6 text-[#2EB6EE]" />
                   </div>
-                  <div className="text-right">
-                    <h3 className="text-lg font-medium text-gray-900">الهاتف</h3>
+                  <div className={dir === 'rtl' ? 'text-right' : 'text-left'}>
+                    <h3 className="text-lg font-medium text-gray-900">{t('contactMethods.phone')}</h3>
                     <a
                       href="tel:+962791986721"
                       className="text-gray-600 hover:text-[#2EB6EE] transition duration-200"
@@ -276,13 +280,13 @@ export default function ContactPage() {
 
                 <motion.div
                   className="flex items-start gap-4 p-4 hover:bg-gray-50 rounded-lg transition duration-200"
-                  whileHover={{ x: 5 }}
+                  whileHover={{ x: dir === 'rtl' ? -5 : 5 }}
                 >
                   <div className="flex-shrink-0 bg-[#2EB6EE]/10 p-3 rounded-full">
                     <FaWhatsapp className="h-6 w-6 text-[#2EB6EE]" />
                   </div>
-                  <div className="text-right">
-                    <h3 className="text-lg font-medium text-gray-900">واتساب</h3>
+                  <div className={dir === 'rtl' ? 'text-right' : 'text-left'}>
+                    <h3 className="text-lg font-medium text-gray-900">{t('contactMethods.whatsapp')}</h3>
                     <a
                       href="https://wa.me/962791986721"
                       target="_blank"
@@ -296,14 +300,14 @@ export default function ContactPage() {
 
                 <motion.div
                   className="flex items-start gap-4 p-4 hover:bg-gray-50 rounded-lg transition duration-200"
-                  whileHover={{ x: 5 }}
+                  whileHover={{ x: dir === 'rtl' ? -5 : 5 }}
                 >
                   <div className="flex-shrink-0 bg-[#2EB6EE]/10 p-3 rounded-full">
                     <FiMapPin className="h-6 w-6 text-[#2EB6EE]" />
                   </div>
-                  <div className="text-right">
-                    <h3 className="text-lg font-medium text-gray-900">العنوان</h3>
-                    <p className="text-gray-600">عمان، المملكة الأردنية الهاشمية</p>
+                  <div className={dir === 'rtl' ? 'text-right' : 'text-left'}>
+                    <h3 className="text-lg font-medium text-gray-900">{t('contactMethods.address')}</h3>
+                    <p className="text-gray-600">{t('contactMethods.addressValue')}</p>
                   </div>
                 </motion.div>
               </div>
@@ -315,7 +319,7 @@ export default function ContactPage() {
               whileHover={{ y: -5 }}
             >
               <h2 className="text-2xl font-bold text-gray-800 mb-8 pb-4 border-b border-gray-200">
-                وسائل التواصل الاجتماعي
+                {t('socialMediaTitle')}
               </h2>
               <div className="flex justify-center gap-6">
                 {[
@@ -345,7 +349,7 @@ export default function ContactPage() {
               whileHover={{ y: -5 }}
             >
               <h2 className="text-2xl font-bold text-gray-800 mb-8 pb-4 border-b border-gray-200">
-                موقعنا على الخريطة
+                {t('mapTitle')}
               </h2>
               <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden border border-gray-200">
                 <iframe

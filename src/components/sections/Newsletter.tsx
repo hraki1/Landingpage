@@ -1,12 +1,12 @@
 "use client";
-
 import { motion, useAnimation } from "framer-motion";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function Newsletter() {
+  const t = useTranslations('Newsletter');
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
-
   const controls = useAnimation();
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -31,7 +31,7 @@ export default function Newsletter() {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-3"
           >
-            ابقَ على اطلاع دائم
+            {t('title')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -39,8 +39,7 @@ export default function Newsletter() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-gray-600 text-base sm:text-lg mb-8 max-w-xl mx-auto"
           >
-            اشترك في النشرة البريدية لدينا لتصلك التحديثات والنصائح الجديدة
-            مباشرة إلى بريدك الإلكتروني.
+            {t('description')}
           </motion.p>
 
           {subscribed ? (
@@ -50,19 +49,19 @@ export default function Newsletter() {
               transition={{ duration: 0.6 }}
               className="bg-green-50 border border-green-200 text-green-800 p-4 rounded-lg font-medium"
             >
-              ✅ شكراً لاشتراكك! سنبقيك على اطلاع دائم بكل جديد.
+              {t('successMessage')}
             </motion.div>
           ) : (
             <form
               onSubmit={handleSubscribe}
-              className=" relative z-10 flex flex-col sm:flex-row gap-4 text-black max-w-md mx-auto"
+              className="relative z-10 flex flex-col sm:flex-row gap-4 text-black max-w-md mx-auto"
             >
               <input
-                dir="ltr" // ✅ هذا هو المهم
+                dir="ltr"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="أدخل بريدك الإلكتروني"
+                placeholder={t('emailPlaceholder')}
                 className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-transparent shadow-sm transition"
                 required
               />
@@ -73,13 +72,13 @@ export default function Newsletter() {
                 whileTap={{ scale: 0.95 }}
                 animate={controls}
               >
-                اشترك الآن
+                {t('subscribeButton')}
               </motion.button>
             </form>
           )}
 
           <p className="text-xs text-gray-500 mt-6">
-            لا نرسل رسائل مزعجة. يمكنك إلغاء الاشتراك في أي وقت.
+            {t('privacyNote')}
           </p>
         </div>
       </div>
