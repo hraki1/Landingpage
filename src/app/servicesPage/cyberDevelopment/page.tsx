@@ -3,42 +3,42 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaMobileAlt, FaShieldAlt, FaTachometerAlt, FaCogs, FaChartLine, FaSearch, FaReact, FaAngular, FaVuejs, FaSass, FaGitAlt, FaNodeJs } from "react-icons/fa";
-import { SiExpress, SiGraphql, SiJest, SiMongodb, SiNextdotjs, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { FaShieldAlt, FaLock, FaUserShield, FaNetworkWired, FaDatabase, FaCode, FaEye, FaBug, FaServer, FaGlobe, FaMobileAlt } from "react-icons/fa";
+import { SiCisco, SiFortinet, SiKaspersky, SiLinux, SiCloudflare } from "react-icons/si";
+import { BsMicrosoft } from "react-icons/bs";
+import { DiAws } from "react-icons/di";
+import { VscAzure } from "react-icons/vsc";
 
-export default function WebDevelopmentServicePage() {
+export default function CyberSecurityServicePage() {
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 }
     };
 
     const features = [
-        { icon: <FaMobileAlt className="text-3xl" />, title: "تصميم متجاوب", description: "مواقع تتكيف مع جميع أحجام الشاشات من الجوال إلى سطح المكتب" },
-        { icon: <FaTachometerAlt className="text-3xl" />, title: "أداء عالي", description: "تحميل سريع باستخدام أحدث تقنيات تحسين الأداء" },
-        { icon: <FaShieldAlt className="text-3xl" />, title: "حماية متقدمة", description: "حلول أمنية متكاملة لحماية بياناتك وموقعك" },
-        { icon: <FaCogs className="text-3xl" />, title: "لوحة تحكم مخصصة", description: "إدارة محتوى سهلة ومصممة خصيصاً لاحتياجاتك" },
-        { icon: <FaSearch className="text-3xl" />, title: "تحسين SEO", description: "تحسين كامل لمحركات البحث لزيادة الظهور والزيارات" },
-        { icon: <FaChartLine className="text-3xl" />, title: "تحليلات متكاملة", description: "أنظمة تتبع وتحليل لقياس أداء موقعك" }
+        { icon: <FaShieldAlt className="text-3xl" />, title: "حماية متكاملة", description: "نظم حماية شاملة لجميع جوانب بنيتك التحتية الرقمية" },
+        { icon: <FaLock className="text-3xl" />, title: "تشفير البيانات", description: "حلول تشفير متقدمة لحماية بياناتك الحساسة" },
+        { icon: <FaUserShield className="text-3xl" />, title: "إدارة الهوية", description: "نظم متكاملة للتحكم في الوصول والهوية الرقمية" },
+        { icon: <FaNetworkWired className="text-3xl" />, title: "أمان الشبكات", description: "حلول لحماية شبكاتك من الاختراقات والهجمات" },
+        { icon: <FaDatabase className="text-3xl" />, title: "أمان قواعد البيانات", description: "حماية شاملة لقواعد بياناتك من التسريب أو التلف" },
+        { icon: <FaCode className="text-3xl" />, title: "فحص التطبيقات", description: "تحليل وفحص التطبيقات لاكتشاف الثغرات الأمنية" }
     ];
-
 
     const technologies = [
-        { name: "React", icon: <FaReact /> },
-        { name: "Next.js", icon: <SiNextdotjs /> },
-        { name: "Node.js", icon: <FaNodeJs /> },
-        { name: "TypeScript", icon: <SiTypescript /> },
-        { name: "Vue.js", icon: <FaVuejs /> },
-        { name: "Angular", icon: <FaAngular /> },
-        { name: "Tailwind CSS", icon: <SiTailwindcss /> },
-        { name: "Sass/SCSS", icon: <FaSass /> },
-        { name: "GraphQL", icon: <SiGraphql /> },
-        { name: "MongoDB", icon: <SiMongodb /> },
-        { name: "Express.js", icon: <SiExpress /> },
-        { name: "Jest", icon: <SiJest /> },
-        { name: "Git", icon: <FaGitAlt /> }
+        { name: "جدار الحماية", icon: <SiCisco /> },
+        { name: "أنظمة كشف التسلل", icon: <FaEye /> },
+        { name: "حماية من الفيروسات", icon: <SiKaspersky /> },
+        { name: "أمان السحابة", icon: <SiCloudflare /> },
+        { name: "Microsoft Defender", icon: <BsMicrosoft /> },
+        { name: "Fortinet", icon: <SiFortinet /> },
+        { name: "أمان Linux", icon: <SiLinux /> },
+        { name: "AWS Security", icon: <DiAws /> },
+        { name: "Azure Security", icon: <VscAzure /> },
+        { name: "فحص الثغرات", icon: <FaBug /> },
+        { name: "أمان الخوادم", icon: <FaServer /> },
+        { name: "أمان الويب", icon: <FaGlobe /> },
+        { name: "أمان الأجهزة المحمولة", icon: <FaMobileAlt /> }
     ];
-
-
 
     return (
         <main className="bg-white text-gray-800 overflow-hidden">
@@ -53,10 +53,10 @@ export default function WebDevelopmentServicePage() {
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
-                            تطوير <span className="text-[#FFD700]">مواقع الويب</span> باحترافية
+                            حلول <span className="text-[#FFD700]">الأمن السيبراني</span> المتكاملة
                         </h1>
                         <p className="text-xl sm:text-2xl max-w-3xl mx-auto mb-8 leading-relaxed">
-                            حلول رقمية مبتكرة مصممة خصيصاً لتحقيق أهداف عملك وتعزيز حضورك على الإنترنت
+                            حماية شاملة لبياناتك وأنظمتك الرقمية من التهديدات الإلكترونية المتطورة
                         </p>
                         <div className="flex justify-center gap-4">
                             <Link
@@ -75,8 +75,8 @@ export default function WebDevelopmentServicePage() {
                     </motion.div>
                 </div>
                 <Image
-                    src="/services/web-dev-hero.jpg"
-                    alt="تطوير المواقع"
+                    src="/services/cyber-security-hero.jpg"
+                    alt="الأمن السيبراني"
                     fill
                     className="absolute inset-0 object-cover opacity-15"
                     priority
@@ -94,9 +94,9 @@ export default function WebDevelopmentServicePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">حلول <span className="text-[#2EB6EE]">متكاملة</span> لنجاح <span className="text-[#8FBE53]">رقمي</span></h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">حلول <span className="text-[#2EB6EE]">أمنية</span> شاملة <span className="text-[#8FBE53]">لحماية</span> أعمالك</h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نقدم مجموعة شاملة من الخدمات المصممة لتحويل رؤيتك إلى واقع رقمي متميز
+                            نقدم مجموعة متكاملة من خدمات الأمن السيبراني لحماية بنيتك التحتية الرقمية من التهديدات
                         </p>
                     </motion.div>
 
@@ -132,10 +132,10 @@ export default function WebDevelopmentServicePage() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                            تقنيات <span className="text-[#2EB6EE]">ويب</span> نعمل بها
+                            تقنيات <span className="text-[#2EB6EE]">الحماية</span> التي نستخدمها
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نستخدم أحدث أدوات وتقنيات تطوير الويب لبناء حلول عالية الجودة وقابلة للتطوير
+                            نعتمد على أحدث أنظمة وأدوات الأمن السيبراني لتوفير حماية شاملة لأعمالك
                         </p>
                     </motion.div>
 
@@ -169,9 +169,9 @@ export default function WebDevelopmentServicePage() {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#2EB6EE]">أطر عمل الواجهة الأمامية</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#2EB6EE]">حماية الشبكات</h3>
                             <div className="flex flex-wrap gap-3">
-                                {technologies.slice(0, 6).map((tech, i) => (
+                                {technologies.slice(0, 4).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
                                         {tech.name}
                                     </span>
@@ -187,9 +187,9 @@ export default function WebDevelopmentServicePage() {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#8FBE53]">تقنيات الخلفية</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#8FBE53]">حماية الأنظمة</h3>
                             <div className="flex flex-wrap gap-3">
-                                {technologies.slice(6, 10).map((tech, i) => (
+                                {technologies.slice(4, 8).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
                                         {tech.name}
                                     </span>
@@ -205,9 +205,9 @@ export default function WebDevelopmentServicePage() {
                             transition={{ duration: 0.6, delay: 0.6 }}
                             className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#FFD700]">أدوات أخرى</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#FFD700]">حماية التطبيقات</h3>
                             <div className="flex flex-wrap gap-3">
-                                {technologies.slice(10).map((tech, i) => (
+                                {technologies.slice(8).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
                                         {tech.name}
                                     </span>
@@ -229,9 +229,9 @@ export default function WebDevelopmentServicePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">عملية <span className="text-[#2EB6EE]">التطوير</span> لدينا</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">عملية <span className="text-[#2EB6EE]">التأمين</span> لدينا</h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نتبع منهجية واضحة لضمان تحقيق أفضل النتائج لمشروعك
+                            نتبع منهجية واضحة لضمان أعلى مستويات الحماية لبياناتك وأنظمتك
                         </p>
                     </motion.div>
 
@@ -240,11 +240,11 @@ export default function WebDevelopmentServicePage() {
 
                         <div className="space-y-12">
                             {[
-                                { title: "التحليل والتخطيط", description: "فهم متطلباتك وأهدافك بدقة لوضع خطة عمل واضحة" },
-                                { title: "التصميم UI/UX", description: "إنشاء واجهات مستخدم جذابة وسهلة الاستخدام" },
-                                { title: "التطوير والبرمجة", description: "بناء الموقع باستخدام أكواد نظيفة وفعالة" },
-                                { title: "الاختبار والتحسين", description: "فحص دقيق لضمان الجودة والأداء المثالي" },
-                                { title: "الإطلاق والدعم", description: "نشر الموقع وتقديم الدعم الفني المستمر" }
+                                { title: "تقييم المخاطر", description: "تحليل شامل للتهديدات المحتملة ونقاط الضعف" },
+                                { title: "تصميم الحلول", description: "وضع استراتيجية أمنية متكاملة حسب احتياجاتك" },
+                                { title: "تنفيذ الحماية", description: "تركيب وتكوين أنظمة الحماية المطلوبة" },
+                                { title: "اختبار الاختراق", description: "محاكاة الهجمات لاكتشاف الثغرات الأمنية" },
+                                { title: "المراقبة والدعم", description: "مراقبة مستمرة وتحديثات أمنية دورية" }
                             ].map((step, index) => (
                                 <motion.div
                                     key={index}
@@ -280,9 +280,9 @@ export default function WebDevelopmentServicePage() {
                     transition={{ duration: 0.8 }}
                     className="max-w-4xl mx-auto relative z-10"
                 >
-                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">جاهزون لبدء مشروعك الرقمي؟</h3>
+                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">هل أنت قلق بشأن أمان بياناتك؟</h3>
                     <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-                        تواصل معنا اليوم لتناقش متطلباتك وسنقدم لك الحل الأمثل لتحقيق أهدافك على الإنترنت.
+                        تواصل مع خبرائنا اليوم لتقييم أمني مجاني وحماية أعمالك من التهديدات الإلكترونية.
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link

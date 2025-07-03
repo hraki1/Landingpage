@@ -10,6 +10,7 @@ import Newsletter from "@/components/sections/Newsletter";
 import FAQ from "@/components/sections/FAQ";
 import Loading from "@/components/ui/Loading";
 import Floating from "@/components/ui/Floating";
+import Services from "@/components/sections/Services";
 
 
 export default function LandingPage() {
@@ -76,6 +77,11 @@ export default function LandingPage() {
 
       <section id="use-cases" className="scroll-mt-24">
         <UseCases />
+      </section>
+
+
+      <section id="services" className="scroll-mt-24">
+        <Services />
       </section>
 
       <section id="about" className="scroll-mt-24">

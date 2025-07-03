@@ -3,46 +3,46 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaMobileAlt, FaShieldAlt, FaTachometerAlt, FaCogs, FaChartLine, FaSearch, FaReact, FaAngular, FaVuejs, FaSass, FaGitAlt, FaNodeJs } from "react-icons/fa";
-import { SiExpress, SiGraphql, SiJest, SiMongodb, SiNextdotjs, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { FaServer, FaNetworkWired, FaShieldAlt, FaCogs, FaSyncAlt, FaCloud, FaDesktop } from "react-icons/fa";
+import {  SiGooglecloud, SiKubernetes, SiDocker, SiTerraform, SiAnsible, SiPrometheus, SiGrafana, SiLinux, SiCisco } from "react-icons/si";
+import { DiAws } from "react-icons/di";
+import { VscAzure } from "react-icons/vsc";
+import { WiDaySnow } from "react-icons/wi";
 
-export default function WebDevelopmentServicePage() {
+export default function InfrastructureManagementPage() {
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 }
     };
 
     const features = [
-        { icon: <FaMobileAlt className="text-3xl" />, title: "تصميم متجاوب", description: "مواقع تتكيف مع جميع أحجام الشاشات من الجوال إلى سطح المكتب" },
-        { icon: <FaTachometerAlt className="text-3xl" />, title: "أداء عالي", description: "تحميل سريع باستخدام أحدث تقنيات تحسين الأداء" },
-        { icon: <FaShieldAlt className="text-3xl" />, title: "حماية متقدمة", description: "حلول أمنية متكاملة لحماية بياناتك وموقعك" },
-        { icon: <FaCogs className="text-3xl" />, title: "لوحة تحكم مخصصة", description: "إدارة محتوى سهلة ومصممة خصيصاً لاحتياجاتك" },
-        { icon: <FaSearch className="text-3xl" />, title: "تحسين SEO", description: "تحسين كامل لمحركات البحث لزيادة الظهور والزيارات" },
-        { icon: <FaChartLine className="text-3xl" />, title: "تحليلات متكاملة", description: "أنظمة تتبع وتحليل لقياس أداء موقعك" }
+        { icon: <FaNetworkWired className="text-3xl" />, title: "إدارة الشبكات", description: "تصميم وتنفيذ وإدارة البنية التحتية للشبكات باحترافية" },
+        { icon: <FaServer className="text-3xl" />, title: "إدارة الخوادم", description: "تركيب وصيانة ومراقبة خوادمك المحلية أو السحابية" },
+        { icon: <FaCloud className="text-3xl" />, title: "إدارة السحابة", description: "حلول متكاملة لإدارة البنية التحتية السحابية الهجينة" },
+        { icon: <FaShieldAlt className="text-3xl" />, title: "أمان البنية التحتية", description: "حماية شاملة لبنيتك التحتية من التهديدات الأمنية" },
+        { icon: <FaSyncAlt className="text-3xl" />, title: "المراقبة والتحليل", description: "أنظمة مراقبة مستمرة لأداء البنية التحتية" },
+        { icon: <FaCogs className="text-3xl" />, title: "الأتمتة والتكامل", description: "أتمتة عمليات التشغيل والصيانة للبنية التحتية" }
     ];
-
 
     const technologies = [
-        { name: "React", icon: <FaReact /> },
-        { name: "Next.js", icon: <SiNextdotjs /> },
-        { name: "Node.js", icon: <FaNodeJs /> },
-        { name: "TypeScript", icon: <SiTypescript /> },
-        { name: "Vue.js", icon: <FaVuejs /> },
-        { name: "Angular", icon: <FaAngular /> },
-        { name: "Tailwind CSS", icon: <SiTailwindcss /> },
-        { name: "Sass/SCSS", icon: <FaSass /> },
-        { name: "GraphQL", icon: <SiGraphql /> },
-        { name: "MongoDB", icon: <SiMongodb /> },
-        { name: "Express.js", icon: <SiExpress /> },
-        { name: "Jest", icon: <SiJest /> },
-        { name: "Git", icon: <FaGitAlt /> }
+        { name: "Kubernetes", icon: <SiKubernetes /> },
+        { name: "Docker", icon: <SiDocker /> },
+        { name: "Terraform", icon: <SiTerraform /> },
+        { name: "Ansible", icon: <SiAnsible /> },
+        { name: "Prometheus", icon: <SiPrometheus /> },
+        { name: "Grafana", icon: <SiGrafana /> },
+        { name: "AWS", icon: <DiAws /> },
+        { name: "Azure", icon: <VscAzure /> },
+        { name: "Google Cloud", icon: <SiGooglecloud /> },
+        { name: "Linux", icon: <SiLinux /> },
+        { name: "Windows Server", icon: <WiDaySnow /> },
+        { name: "Cisco", icon: <SiCisco /> },
+        { name: "Virtualization", icon: <FaDesktop /> }
     ];
-
-
 
     return (
         <main className="bg-white text-gray-800 overflow-hidden">
-            {/* Enhanced Hero Section */}
+            {/* Hero Section */}
             <section className="relative bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white py-32 px-6 text-center overflow-hidden">
                 <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
                 <div className="mt-24 max-w-5xl mx-auto z-10 relative">
@@ -53,10 +53,10 @@ export default function WebDevelopmentServicePage() {
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
-                            تطوير <span className="text-[#FFD700]">مواقع الويب</span> باحترافية
+                            حلول <span className="text-[#FFD700]">إدارة البنية التحتية</span> المتكاملة
                         </h1>
                         <p className="text-xl sm:text-2xl max-w-3xl mx-auto mb-8 leading-relaxed">
-                            حلول رقمية مبتكرة مصممة خصيصاً لتحقيق أهداف عملك وتعزيز حضورك على الإنترنت
+                            إدارة احترافية لبنيتك التحتية التقنية لضمان أقصى أداء واستقرار وأمان
                         </p>
                         <div className="flex justify-center gap-4">
                             <Link
@@ -75,8 +75,8 @@ export default function WebDevelopmentServicePage() {
                     </motion.div>
                 </div>
                 <Image
-                    src="/services/web-dev-hero.jpg"
-                    alt="تطوير المواقع"
+                    src="/services/infrastructure-hero.jpg"
+                    alt="إدارة البنية التحتية"
                     fill
                     className="absolute inset-0 object-cover opacity-15"
                     priority
@@ -94,9 +94,9 @@ export default function WebDevelopmentServicePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">حلول <span className="text-[#2EB6EE]">متكاملة</span> لنجاح <span className="text-[#8FBE53]">رقمي</span></h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">حلول <span className="text-[#2EB6EE]">إدارية</span> شاملة <span className="text-[#8FBE53]">للبنية</span> التحتية</h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نقدم مجموعة شاملة من الخدمات المصممة لتحويل رؤيتك إلى واقع رقمي متميز
+                            نقدم مجموعة متكاملة من الخدمات لإدارة وتشغيل بنيتك التحتية التقنية بكفاءة عالية
                         </p>
                     </motion.div>
 
@@ -120,7 +120,7 @@ export default function WebDevelopmentServicePage() {
                 </div>
             </section>
 
-            {/* tech  section*/}
+            {/* Technologies Section */}
             <section className="py-20 px-6 bg-gray-50">
                 <div className="max-w-6xl mx-auto">
                     <motion.div
@@ -132,10 +132,10 @@ export default function WebDevelopmentServicePage() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                            تقنيات <span className="text-[#2EB6EE]">ويب</span> نعمل بها
+                            تقنيات <span className="text-[#2EB6EE]">وأدوات</span> نستخدمها
                         </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نستخدم أحدث أدوات وتقنيات تطوير الويب لبناء حلول عالية الجودة وقابلة للتطوير
+                            نعتمد على أحدث التقنيات والأدوات لإدارة البنية التحتية باحترافية
                         </p>
                     </motion.div>
 
@@ -159,7 +159,7 @@ export default function WebDevelopmentServicePage() {
                         ))}
                     </div>
 
-                    {/* Additional Tech Categories */}
+                    {/* Tech Categories */}
                     <div className="mt-16 grid md:grid-cols-3 gap-8">
                         <motion.div
                             initial="hidden"
@@ -169,9 +169,9 @@ export default function WebDevelopmentServicePage() {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#2EB6EE]">أطر عمل الواجهة الأمامية</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#2EB6EE]">أدوات الأتمتة</h3>
                             <div className="flex flex-wrap gap-3">
-                                {technologies.slice(0, 6).map((tech, i) => (
+                                {technologies.slice(0, 4).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
                                         {tech.name}
                                     </span>
@@ -187,9 +187,9 @@ export default function WebDevelopmentServicePage() {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#8FBE53]">تقنيات الخلفية</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#8FBE53]">المراقبة والتحليل</h3>
                             <div className="flex flex-wrap gap-3">
-                                {technologies.slice(6, 10).map((tech, i) => (
+                                {technologies.slice(4, 8).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
                                         {tech.name}
                                     </span>
@@ -205,9 +205,9 @@ export default function WebDevelopmentServicePage() {
                             transition={{ duration: 0.6, delay: 0.6 }}
                             className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-[#FFD700]">أدوات أخرى</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#FFD700]">البنية التحتية</h3>
                             <div className="flex flex-wrap gap-3">
-                                {technologies.slice(10).map((tech, i) => (
+                                {technologies.slice(8).map((tech, i) => (
                                     <span key={i} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
                                         {tech.name}
                                     </span>
@@ -229,9 +229,9 @@ export default function WebDevelopmentServicePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">عملية <span className="text-[#2EB6EE]">التطوير</span> لدينا</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">عملية <span className="text-[#2EB6EE]">الإدارة</span> لدينا</h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نتبع منهجية واضحة لضمان تحقيق أفضل النتائج لمشروعك
+                            منهجية واضحة لإدارة بنيتك التحتية بكفاءة وأمان
                         </p>
                     </motion.div>
 
@@ -240,11 +240,11 @@ export default function WebDevelopmentServicePage() {
 
                         <div className="space-y-12">
                             {[
-                                { title: "التحليل والتخطيط", description: "فهم متطلباتك وأهدافك بدقة لوضع خطة عمل واضحة" },
-                                { title: "التصميم UI/UX", description: "إنشاء واجهات مستخدم جذابة وسهلة الاستخدام" },
-                                { title: "التطوير والبرمجة", description: "بناء الموقع باستخدام أكواد نظيفة وفعالة" },
-                                { title: "الاختبار والتحسين", description: "فحص دقيق لضمان الجودة والأداء المثالي" },
-                                { title: "الإطلاق والدعم", description: "نشر الموقع وتقديم الدعم الفني المستمر" }
+                                { title: "التقييم والتحليل", description: "دراسة البنية التحتية الحالية وتحديد الاحتياجات" },
+                                { title: "التصميم والتخطيط", description: "وضع خطة إدارية متكاملة للبنية التحتية" },
+                                { title: "التنفيذ والتكامل", description: "تنفيذ الحلول وتكاملها مع الأنظمة الحالية" },
+                                { title: "المراقبة والصيانة", description: "مراقبة مستمرة وأداء الصيانة الدورية" },
+                                { title: "التطوير المستمر", description: "تحسين وتطوير البنية التحتية باستمرار" }
                             ].map((step, index) => (
                                 <motion.div
                                     key={index}
@@ -269,7 +269,7 @@ export default function WebDevelopmentServicePage() {
                 </div>
             </section>
 
-            {/* Enhanced Call To Action */}
+            {/* Call To Action */}
             <section className="relative bg-gradient-to-r from-[#2EB6EE] to-[#8FBE53] text-white py-20 text-center overflow-hidden">
                 <div className="absolute inset-0 bg-dot-pattern opacity-10"></div>
                 <motion.div
@@ -280,9 +280,9 @@ export default function WebDevelopmentServicePage() {
                     transition={{ duration: 0.8 }}
                     className="max-w-4xl mx-auto relative z-10"
                 >
-                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">جاهزون لبدء مشروعك الرقمي؟</h3>
+                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">هل تحتاج إلى إدارة احترافية لبنيتك التحتية؟</h3>
                     <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-                        تواصل معنا اليوم لتناقش متطلباتك وسنقدم لك الحل الأمثل لتحقيق أهدافك على الإنترنت.
+                        تواصل مع خبرائنا اليوم لتحصل على حلول إدارة بنية تحتية موثوقة وفعالة.
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link

@@ -41,6 +41,17 @@ export const navLinks = [
     ],
   },
   {
+    label: "الخدمات",
+    href: "#services",
+    ariaLabel: "اكتشاف حالات الاستخدام",
+    icon: "🛠️",
+    type: "hash",
+    subItems: [
+      { label: "للشركات", href: "/solutions/business" },
+      { label: "للأفراد", href: "/solutions/individuals" },
+    ],
+  },
+  {
     label: "من نحن",
     href: "#about",
     ariaLabel: "معلومات عن الشركة",
