@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 
 
+
 export default function Hero() {
   const t = useTranslations('Hero');
   const [videoModalOpen, setVideoModalOpen] = useState(false);
@@ -112,7 +113,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-wrap gap-3 sm:gap-4"
           >
-            <Link href="/contact">
+            <Link href="/contact" locale={locale}>
               <motion.div
                 className="inline-flex items-center px-4 sm:px-5 py-3 sm:py-3 bg-[#2EB6EE] text-white font-medium rounded-xl hover:bg-[#2596c4] transition-all duration-300 text-base sm:text-lg cursor-pointer"
                 whileHover={{

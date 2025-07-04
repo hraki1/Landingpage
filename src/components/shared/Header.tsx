@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useRouter as getLocal } from "next/router";
 import { useEffect, useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslations } from "next-intl";
@@ -82,6 +83,8 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const { locale } = getLocal();
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -184,7 +187,7 @@ export default function Header() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center">
-            <Link href={'/contact'}>
+            <Link href={'/contact'} locale={locale}>
               <motion.button
                 className="px-4 xl:px-5 py-2 xl:py-2.5 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300 text-sm xl:text-base"
                 whileHover={{
@@ -250,6 +253,7 @@ export default function Header() {
                   ) : (
                     <Link
                       href={href}
+                      locale={locale}
                       onClick={() => setMenuOpen(false)}
                       className="block py-2 px-3 text-gray-700 hover:text-[#2EB6EE] font-medium rounded-lg hover:bg-[#2eb6ee1a] transition-colors"
                     >
@@ -259,7 +263,7 @@ export default function Header() {
                 </motion.div>
               ))}
               <div className="pt-4 border-t border-gray-200 space-y-3">
-                <Link href="/contact" onClick={() => setMenuOpen(false)}>
+                <Link href="/contact" locale={locale} onClick={() => setMenuOpen(false)}>
                   <motion.button
                     className="block w-full text-center py-2.5 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-base"
                     initial={{ scale: 0.9, opacity: 0 }}
