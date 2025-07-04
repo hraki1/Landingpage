@@ -39,7 +39,7 @@ export default function LanguageSwitcher() {
 
     const handleSelectLanguage = (langCode: string) => {
         setIsOpen(false);
-        localStorage.setItem('preferredLang', langCode);
+        localStorage.setItem('lang', langCode);
         router.push(`/${langCode}${pathWithoutLocale}`);
     };
 
