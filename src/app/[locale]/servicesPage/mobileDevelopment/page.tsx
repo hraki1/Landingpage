@@ -5,41 +5,62 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaMobileAlt, FaServer, FaReact, FaApple, FaAndroid } from "react-icons/fa";
 import { SiFlutter, SiKotlin, SiSwift } from "react-icons/si";
+import { useTranslations } from 'next-intl';
 
 export default function MobileDevelopmentServicePage() {
+    const t = useTranslations('MobileDevelopment');
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 }
     };
 
+    // Reusable highlight component
+    const Highlight = ({ children }: { children: React.ReactNode }) => (
+        <span className="text-[#FFD700]">{children}</span>
+    );
 
+    const BlueHighlight = ({ children }: { children: React.ReactNode }) => (
+        <span className="text-[#2EB6EE]">{children}</span>
+    );
+
+    const GreenHighlight = ({ children }: { children: React.ReactNode }) => (
+        <span className="text-[#8FBE53]">{children}</span>
+    );
 
     const technologies = [
-        { name: "React Native", icon: <FaReact /> },
-        { name: "Flutter", icon: <SiFlutter /> },
-        { name: "Swift (iOS)", icon: <SiSwift /> },
-        { name: "Kotlin (Android)", icon: <SiKotlin /> },
-        { name: "Firebase", icon: <FaServer /> },
-        { name: "Apple App Store", icon: <FaApple /> },
-        { name: "Google Play", icon: <FaAndroid /> }
+        { name: t('technologies.reactNative'), icon: <FaReact /> },
+        { name: t('technologies.flutter'), icon: <SiFlutter /> },
+        { name: t('technologies.swift'), icon: <SiSwift /> },
+        { name: t('technologies.kotlin'), icon: <SiKotlin /> },
+        { name: t('technologies.firebase'), icon: <FaServer /> },
+        { name: t('technologies.appStore'), icon: <FaApple /> },
+        { name: t('technologies.playStore'), icon: <FaAndroid /> }
     ];
 
     const platforms = [
         {
-            name: "iOS تطبيقات",
+            name: t('platforms.ios.title'),
             icon: <FaApple className="text-4xl" />,
-            description: "تطبيقات عالية الجودة متوافقة مع أجهزة iPhone و iPad"
+            description: t('platforms.ios.description')
         },
         {
-            name: "Android تطبيقات",
+            name: t('platforms.android.title'),
             icon: <FaAndroid className="text-4xl" />,
-            description: "حلول متكاملة لأجهزة أندرويد بمختلف مقاسات الشاشات"
+            description: t('platforms.android.description')
         },
         {
-            name: "تطبيقات هجينة",
+            name: t('platforms.hybrid.title'),
             icon: <FaMobileAlt className="text-4xl" />,
-            description: "حلول واحدة تعمل على جميع المنصات بتكلفة أقل"
+            description: t('platforms.hybrid.description')
         }
+    ];
+
+    const processSteps = [
+        { title: t('process.analysis.title'), description: t('process.analysis.description') },
+        { title: t('process.design.title'), description: t('process.design.description') },
+        { title: t('process.development.title'), description: t('process.development.description') },
+        { title: t('process.testing.title'), description: t('process.testing.description') },
+        { title: t('process.deployment.title'), description: t('process.deployment.description') }
     ];
 
     return (
@@ -55,30 +76,32 @@ export default function MobileDevelopmentServicePage() {
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
-                            تطوير <span className="text-[#FFD700]">التطبيقات الذكية</span> باحترافية
+                            {t.rich('hero.title', {
+                                highlight: (chunks) => <Highlight>{chunks}</Highlight>
+                            })}
                         </h1>
                         <p className="text-xl sm:text-2xl max-w-3xl mx-auto mb-8 leading-relaxed">
-                            نحول أفكارك إلى تطبيقات mobile مبتكرة تعزز حضورك الرقمي وتواكب تطورات العصر
+                            {t('hero.subtitle')}
                         </p>
                         <div className="flex justify-center gap-4">
                             <Link
                                 href="/contact"
                                 className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                             >
-                                اطلب استشارة مجانية
+                                {t('hero.ctaPrimary')}
                             </Link>
                             <Link
                                 href="#platforms"
                                 className="inline-block border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-[#2EB6EE] transition duration-300 transform hover:scale-105"
                             >
-                                اكتشف منصاتنا
+                                {t('hero.ctaSecondary')}
                             </Link>
                         </div>
                     </motion.div>
                 </div>
                 <Image
-                    src="/services/mobile-dev-hero.jpg"
-                    alt="تطوير التطبيقات"
+                    src="/servicesImages/mobile-hero.jpg"
+                    alt={'mobile'}
                     fill
                     className="absolute inset-0 object-cover opacity-15"
                     priority
@@ -96,9 +119,13 @@ export default function MobileDevelopmentServicePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">حلولنا <span className="text-[#2EB6EE]">لجميع</span> المنصات</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                            {t.rich('platformsSection.title', {
+                                highlight: (chunks) => <BlueHighlight>{chunks}</BlueHighlight>
+                            })}
+                        </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نطور تطبيقات مخصصة لكل المنصات الرئيسية باستخدام أحدث التقنيات
+                            {t('platformsSection.subtitle')}
                         </p>
                     </motion.div>
 
@@ -122,8 +149,6 @@ export default function MobileDevelopmentServicePage() {
                 </div>
             </section>
 
-
-
             {/* Technology Stack */}
             <section className="py-20 px-6 bg-gray-50">
                 <div className="max-w-6xl mx-auto">
@@ -135,9 +160,13 @@ export default function MobileDevelopmentServicePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">تقنيات <span className="text-[#2EB6EE]">متطورة</span> نعمل بها</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                            {t.rich('technologiesSection.title', {
+                                highlight: (chunks) => <BlueHighlight>{chunks}</BlueHighlight>
+                            })}
+                        </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نستخدم أحدث أدوات وتقنيات تطوير التطبيقات لضمان الجودة والأداء المتميز
+                            {t('technologiesSection.subtitle')}
                         </p>
                     </motion.div>
 
@@ -171,20 +200,18 @@ export default function MobileDevelopmentServicePage() {
                         transition={{ duration: 0.8 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">رحلة <span className="text-[#8FBE53]">تطوير</span> التطبيق</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                            {t.rich('processSection.title', {
+                                highlight: (chunks) => <GreenHighlight>{chunks}</GreenHighlight>
+                            })}
+                        </h2>
                         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                            نتبع منهجية واضحة لتحويل فكرتك إلى تطبيق ناجح
+                            {t('processSection.subtitle')}
                         </p>
                     </motion.div>
 
                     <div className="grid md:grid-cols-5 gap-8">
-                        {[
-                            { title: "التحليل", description: "دراسة المتطلبات وتحليل السوق" },
-                            { title: "التصميم", description: "واجهات مستخدم وتجربة مستخدم" },
-                            { title: "التطوير", description: "برمجة التطبيق ودمج الخصائص" },
-                            { title: "الاختبار", description: "فحص الجودة وضمان الأداء" },
-                            { title: "النشر", description: "إطلاق التطبيق والمتابعة" }
-                        ].map((step, index) => (
+                        {processSteps.map((step, index) => (
                             <motion.div
                                 key={index}
                                 initial="hidden"
@@ -216,22 +243,22 @@ export default function MobileDevelopmentServicePage() {
                     transition={{ duration: 0.8 }}
                     className="max-w-4xl mx-auto relative z-10"
                 >
-                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">جاهزون لبدء مشروعك في عالم التطبيقات؟</h3>
+                    <h3 className="text-3xl sm:text-4xl font-bold mb-6">{t('cta.title')}</h3>
                     <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-                        تواصل معنا اليوم لتناقش فكرة تطبيقك وسنقدم لك الحل الأمثل لتحقيق النجاح في متاجر التطبيقات.
+                        {t('cta.subtitle')}
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
                             href="/contact"
                             className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                         >
-                            اطلب عرض سعر
+                            {t('cta.primary')}
                         </Link>
                         <Link
                             href="/portfolio"
                             className="inline-block border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-[#2EB6EE] transition duration-300 transform hover:scale-105"
                         >
-                            تصفح أعمالنا
+                            {t('cta.secondary')}
                         </Link>
                     </div>
                 </motion.div>

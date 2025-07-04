@@ -951,74 +951,74 @@
   },
   "MobileDevelopment": {
     "hero": {
-      "title": "Professional {highlight}Mobile App} Development",
-      "subtitle": "We transform your ideas into innovative mobile applications that enhance your digital presence and keep pace with modern developments",
-      "cta1": "Request Free Consultation",
-      "cta2": "Discover Our Platforms",
-      "imageAlt": "Mobile App Development"
+      "title": "Professional <highlight>Mobile App</highlight> Development",
+      "subtitle": "We transform your ideas into innovative mobile applications that enhance your digital presence",
+      "ctaPrimary": "Request Free Consultation",
+      "ctaSecondary": "Explore Platforms",
+      "imageAlt": "App Development"
     },
     "platformsSection": {
-      "title": "Our Solutions for All {blue}Platforms}",
+      "title": "Our Solutions for <highlight>All</highlight> Platforms",
       "subtitle": "We develop custom applications for all major platforms using the latest technologies"
     },
-    "platforms": [
-      {
-        "name": "iOS Applications",
-        "description": "High-quality applications compatible with iPhone and iPad devices"
+    "platforms": {
+      "ios": {
+        "title": "iOS Applications",
+        "description": "High-quality apps compatible with iPhone and iPad devices"
       },
-      {
-        "name": "Android Applications",
-        "description": "Comprehensive solutions for Android devices with various screen sizes"
+      "android": {
+        "title": "Android Applications",
+        "description": "Integrated solutions for Android devices with various screen sizes"
       },
-      {
-        "name": "Hybrid Applications",
+      "hybrid": {
+        "title": "Hybrid Applications",
         "description": "Single solutions that work on all platforms at lower cost"
       }
-    ],
-    "technologiesSection": {
-      "title": "Advanced {blue}Technologies} We Use",
-      "subtitle": "We use the latest app development tools and technologies to ensure quality and outstanding performance"
     },
-    "technologies": [
-      "React Native",
-      "Flutter",
-      "Swift (iOS)",
-      "Kotlin (Android)",
-      "Firebase",
-      "Apple App Store",
-      "Google Play"
-    ],
+    "technologiesSection": {
+      "title": "Advanced <highlight>Technologies</highlight> We Use",
+      "subtitle": "We use the latest app development tools to ensure quality and outstanding performance"
+    },
+    "technologies": {
+      "reactNative": "React Native",
+      "flutter": "Flutter",
+      "swift": "Swift (iOS)",
+      "kotlin": "Kotlin (Android)",
+      "firebase": "Firebase",
+      "appStore": "Apple App Store",
+      "playStore": "Google Play"
+    },
     "processSection": {
-      "title": "App Development {green}Journey}",
+      "title": "App Development <highlight>Journey</highlight>",
       "subtitle": "We follow a clear methodology to turn your idea into a successful application"
     },
-    "process": [
-      {
+    "process": {
+      "analysis": {
         "title": "Analysis",
         "description": "Requirements study and market analysis"
       },
-      {
+      "design": {
         "title": "Design",
         "description": "User interfaces and user experience"
       },
-      {
+      "development": {
         "title": "Development",
         "description": "App programming and feature integration"
       },
-      {
+      "testing": {
         "title": "Testing",
         "description": "Quality check and performance assurance"
       },
-      {
-        "title": "Launch",
-        "description": "App release and follow-up"
+      "deployment": {
+        "title": "Deployment",
+        "description": "App launch and follow-up"
       }
-    ],
+    },
     "cta": {
       "title": "Ready to start your app project?",
       "subtitle": "Contact us today to discuss your app idea and we'll provide the optimal solution for success in app stores.",
-      "button1": "Request a Quote",
-      "button2": "Browse Our Work"
+      "primary": "Request Quote",
+      "secondary": "Browse Our Work"
     }
   }
 }

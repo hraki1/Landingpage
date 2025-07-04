@@ -80,8 +80,8 @@ export default function HostingCloudServicePage() {
                     </motion.div>
                 </div>
                 <Image
-                    src="/services/hosting-hero.jpg"
-                    alt={t('hero.imageAlt')}
+                    src="/servicesImages/hosting-hero.jpg"
+                    alt={'hosting'}
                     fill
                     className="absolute inset-0 object-cover opacity-15"
                     priority

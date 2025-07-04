@@ -90,8 +90,8 @@ export default function InfrastructureManagementPage() {
                     </motion.div>
                 </div>
                 <Image
-                    src="/services/infrastructure-hero.jpg"
-                    alt={t('hero.imageAlt')}
+                    src="/servicesImages/inf-hero.jpg"
+                    alt={'infrastrcuter'}
                     fill
                     className="absolute inset-0 object-cover opacity-15"
                     priority

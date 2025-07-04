@@ -84,8 +84,8 @@ export default function WebDevelopmentServicePage() {
                     </motion.div>
                 </div>
                 <Image
-                    src="/services/web-dev-hero.jpg"
-                    alt={t('hero.imageAlt')}
+                    src="/servicesImages/web-hero.jpg"
+                    alt={'web'}
                     fill
                     className="absolute inset-0 object-cover opacity-15"
                     priority

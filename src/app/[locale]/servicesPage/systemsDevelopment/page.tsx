@@ -125,8 +125,8 @@ export default function SystemsDevelopmentPage() {
                     </motion.div>
                 </div>
                 <Image
-                    src="/services/systems-dev-hero.jpg"
-                    alt={t('hero.imageAlt')}
+                  src="/servicesImages/system-hero.jpg"
+                    alt={'system hero'}
                     fill
                     className="absolute inset-0 object-cover opacity-15"
                     priority

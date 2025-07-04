@@ -913,74 +913,74 @@
   },
   "MobileDevelopment": {
     "hero": {
-      "title": "تطوير {highlight}التطبيقات الذكية} باحترافية",
+      "title": "تطوير <highlight>التطبيقات الذكية</highlight> باحترافية",
       "subtitle": "نحول أفكارك إلى تطبيقات mobile مبتكرة تعزز حضورك الرقمي وتواكب تطورات العصر",
-      "cta1": "اطلب استشارة مجانية",
-      "cta2": "اكتشف منصاتنا",
+      "ctaPrimary": "اطلب استشارة مجانية",
+      "ctaSecondary": "اكتشف منصاتنا",
       "imageAlt": "تطوير التطبيقات"
     },
     "platformsSection": {
-      "title": "حلولنا لجميع {blue}المنصات}",
+      "title": "حلولنا <highlight>لجميع</highlight> المنصات",
       "subtitle": "نطور تطبيقات مخصصة لكل المنصات الرئيسية باستخدام أحدث التقنيات"
     },
-    "platforms": [
-      {
-        "name": "iOS تطبيقات",
+    "platforms": {
+      "ios": {
+        "title": "iOS تطبيقات",
         "description": "تطبيقات عالية الجودة متوافقة مع أجهزة iPhone و iPad"
       },
-      {
-        "name": "Android تطبيقات",
+      "android": {
+        "title": "Android تطبيقات",
         "description": "حلول متكاملة لأجهزة أندرويد بمختلف مقاسات الشاشات"
       },
-      {
-        "name": "تطبيقات هجينة",
+      "hybrid": {
+        "title": "تطبيقات هجينة",
         "description": "حلول واحدة تعمل على جميع المنصات بتكلفة أقل"
       }
-    ],
+    },
     "technologiesSection": {
-      "title": "تقنيات {blue}متطورة} نعمل بها",
+      "title": "تقنيات <highlight>متطورة</highlight> نعمل بها",
       "subtitle": "نستخدم أحدث أدوات وتقنيات تطوير التطبيقات لضمان الجودة والأداء المتميز"
     },
-    "technologies": [
-      "React Native",
-      "Flutter",
-      "Swift (iOS)",
-      "Kotlin (Android)",
-      "Firebase",
-      "Apple App Store",
-      "Google Play"
-    ],
+    "technologies": {
+      "reactNative": "React Native",
+      "flutter": "Flutter",
+      "swift": "Swift (iOS)",
+      "kotlin": "Kotlin (Android)",
+      "firebase": "Firebase",
+      "appStore": "Apple App Store",
+      "playStore": "Google Play"
+    },
     "processSection": {
-      "title": "رحلة {green}تطوير} التطبيق",
+      "title": "رحلة <highlight>تطوير</highlight> التطبيق",
       "subtitle": "نتبع منهجية واضحة لتحويل فكرتك إلى تطبيق ناجح"
     },
-    "process": [
-      {
+    "process": {
+      "analysis": {
         "title": "التحليل",
         "description": "دراسة المتطلبات وتحليل السوق"
       },
-      {
+      "design": {
         "title": "التصميم",
         "description": "واجهات مستخدم وتجربة مستخدم"
       },
-      {
+      "development": {
         "title": "التطوير",
         "description": "برمجة التطبيق ودمج الخصائص"
       },
-      {
+      "testing": {
         "title": "الاختبار",
         "description": "فحص الجودة وضمان الأداء"
       },
-      {
+      "deployment": {
         "title": "النشر",
         "description": "إطلاق التطبيق والمتابعة"
       }
-    ],
+    },
     "cta": {
       "title": "جاهزون لبدء مشروعك في عالم التطبيقات؟",
       "subtitle": "تواصل معنا اليوم لتناقش فكرة تطبيقك وسنقدم لك الحل الأمثل لتحقيق النجاح في متاجر التطبيقات.",
-      "button1": "اطلب عرض سعر",
-      "button2": "تصفح أعمالنا"
+      "primary": "اطلب عرض سعر",
+      "secondary": "تصفح أعمالنا"
     }
   }
 }

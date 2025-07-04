@@ -99,16 +99,21 @@ export default function Header() {
   }
 
   const handleHashLinkClick: HashLinkHandler = (hash: string): void => {
-    if (pathname !== "/") {
-      router.push(`/${hash}`);
+    // Get current language from pathname (first segment after /)
+    const lang = pathname.split('/')[1] || 'en'; // default to 'en' if no language
+
+    if (pathname !== `/${lang}` && pathname !== `/${lang}/`) {
+      // If not on home page, navigate to home page with hash
+      router.push(`/${lang}${hash}`);
       setTimeout(() => {
-        const element: Element | null = document.querySelector(hash);
+        const element = document.querySelector(hash);
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
         }
       }, 100);
     } else {
-      const element: Element | null = document.querySelector(hash);
+      // If already on home page, just scroll to section
+      const element = document.querySelector(hash);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }

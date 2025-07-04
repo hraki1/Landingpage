@@ -87,8 +87,8 @@ export default function CyberSecurityServicePage() {
                     </motion.div>
                 </div>
                 <Image
-                    src="/services/cyber-security-hero.jpg"
-                    alt={t('hero.imageAlt')}
+                    src="/servicesImages/cyber-security-hero.jpg"
+                    alt={'cyber security'}
                     fill
                     className="absolute inset-0 object-cover opacity-15"
                     priority
@@ -272,7 +272,7 @@ export default function CyberSecurityServicePage() {
                                     transition={{ duration: 0.5, delay: index * 0.2 }}
                                     className={`relative flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8`}
                                 >
-                                    <div className={`hidden md:flex absolute ${index % 2 === 0 ? 'left-1/2' : 'right-1/2'} transform ${index % 2 === 0 ? '-translate-x-8' : 'translate-x-8'} w-16 h-16 rounded-full bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white items-center justify-center text-xl font-bold z-10 shadow-lg`}>
+                                    <div className={`hidden md:flex absolute ${index % 2 === 0 ? 'left-1/2' : 'right-1/2'} transform -translate-y-12 ${index % 2 === 0 ? '-translate-x-8' : 'translate-x-8'} w-16 h-16 rounded-full bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white items-center justify-center text-xl font-bold z-10 shadow-lg`}>
                                         {index + 1}
                                     </div>
                                     <div className={`flex-1 ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'} bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300`}>
