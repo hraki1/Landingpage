@@ -5,10 +5,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaMobileAlt, FaShieldAlt, FaTachometerAlt, FaCogs, FaChartLine, FaSearch, FaReact, FaAngular, FaVuejs, FaSass, FaGitAlt, FaNodeJs } from "react-icons/fa";
 import { SiExpress, SiGraphql, SiJest, SiMongodb, SiNextdotjs, SiTailwindcss, SiTypescript } from "react-icons/si";
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function WebDevelopmentServicePage() {
     const t = useTranslations('WebDevelopment');
+    const locale = useLocale();
+
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 }
@@ -69,7 +71,7 @@ export default function WebDevelopmentServicePage() {
                         </p>
                         <div className="flex justify-center gap-4">
                             <Link
-                                href="/contact"
+                                href={`${locale}/contact`}
                                 className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                             >
                                 {t('hero.ctaPrimary')}
@@ -300,7 +302,7 @@ export default function WebDevelopmentServicePage() {
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
-                            href="/contact"
+                            href={`${locale}/contact`}
                             className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                         >
                             {t('cta.primary')}

@@ -133,7 +133,7 @@ export default function Header() {
           {/* Logo + Links */}
           <div className="flex items-center gap-6">
             {/* Logo */}
-            <Link href={`${locale}/`}>
+            <Link href={`/${locale}`}>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="flex items-center gap-3"

@@ -8,10 +8,12 @@ import { SiGooglecloud, SiDigitalocean, SiCpanel, SiDocker, SiKubernetes, SiLinu
 import { DiAws } from "react-icons/di";
 import { VscAzure } from "react-icons/vsc";
 import { WiDaySnow } from "react-icons/wi";
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function HostingCloudServicePage() {
     const t = useTranslations('HostingCloudService');
+    const locale = useLocale();
+
 
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
@@ -65,7 +67,7 @@ export default function HostingCloudServicePage() {
                         </p>
                         <div className="flex justify-center gap-4">
                             <Link
-                                href="/contact"
+                                href={`${locale}/contact`}
                                 className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                             >
                                 {t('hero.ctaPrimary')}
@@ -302,7 +304,7 @@ export default function HostingCloudServicePage() {
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
-                            href="/contact"
+                            href={`${locale}/contact`}
                             className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                         >
                             {t('cta.primary')}

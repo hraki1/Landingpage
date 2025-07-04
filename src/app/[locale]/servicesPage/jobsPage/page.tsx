@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 
 export default function CareersPage() {
     const t = useTranslations('CareersPage');
+
     const [formVisibleFor, setFormVisibleFor] = useState<string | null>(null);
     const [formData, setFormData] = useState({
         name: "",

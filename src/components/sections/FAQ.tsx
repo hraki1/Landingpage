@@ -1,10 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function FAQ() {
   const t = useTranslations('FAQ');
+  const locale = useLocale();
+
 
   const faqs = [
     {
@@ -73,7 +75,7 @@ export default function FAQ() {
 
         <div className="mt-12 text-center">
           <p className="text-gray-600 mb-4">{t('moreQuestions')}</p>
-          <Link href="/contact" passHref>
+          <Link href={`${locale}/contact`} passHref>
             <motion.p
               className="inline-flex gap-3 items-center text-[#2EB6EE] font-medium"
               whileHover={{ x: 5 }}

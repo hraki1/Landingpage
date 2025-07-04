@@ -4,10 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaServer, FaCloud, FaShieldAlt, FaCogs, FaChartLine, FaNetworkWired, FaSync, FaUsersCog, FaRobot } from "react-icons/fa";
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function SystemsDevelopmentPage() {
     const t = useTranslations('SystemsDevelopment');
+    const locale = useLocale();
+
+
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 }
@@ -110,7 +113,7 @@ export default function SystemsDevelopmentPage() {
                         </p>
                         <div className="flex justify-center gap-4">
                             <Link
-                                href="/contact"
+                                href={`${locale}/contact`}
                                 className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                             >
                                 {t('hero.cta1')}
@@ -125,7 +128,7 @@ export default function SystemsDevelopmentPage() {
                     </motion.div>
                 </div>
                 <Image
-                  src="/servicesImages/system-hero.jpg"
+                    src="/servicesImages/system-hero.jpg"
                     alt={'system hero'}
                     fill
                     className="absolute inset-0 object-cover opacity-15"
@@ -289,7 +292,7 @@ export default function SystemsDevelopmentPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
-                            href="/contact"
+                            href={`${locale}/contact`}
                             className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                         >
                             {t('cta.button')}

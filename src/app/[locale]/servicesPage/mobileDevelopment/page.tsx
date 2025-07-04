@@ -5,10 +5,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaMobileAlt, FaServer, FaReact, FaApple, FaAndroid } from "react-icons/fa";
 import { SiFlutter, SiKotlin, SiSwift } from "react-icons/si";
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function MobileDevelopmentServicePage() {
     const t = useTranslations('MobileDevelopment');
+    const locale = useLocale();
+
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 }
@@ -85,7 +87,7 @@ export default function MobileDevelopmentServicePage() {
                         </p>
                         <div className="flex justify-center gap-4">
                             <Link
-                                href="/contact"
+                                href={`${locale}/contact`}
                                 className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                             >
                                 {t('hero.ctaPrimary')}
@@ -249,17 +251,17 @@ export default function MobileDevelopmentServicePage() {
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
-                            href="/contact"
+                            href={`${locale}/contact`}
                             className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                         >
                             {t('cta.primary')}
                         </Link>
-                        <Link
+                        {/* <Link
                             href="/portfolio"
                             className="inline-block border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-[#2EB6EE] transition duration-300 transform hover:scale-105"
                         >
                             {t('cta.secondary')}
-                        </Link>
+                        </Link> */}
                     </div>
                 </motion.div>
             </section>

@@ -6,12 +6,14 @@ import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { FaFacebook, FaSquareXTwitter } from "react-icons/fa6";
 import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Footer() {
   const t = useTranslations('Footer');
   const pathname = usePathname();
   const router = useRouter();
+  const locale = useLocale();
+
 
 
   type socialLinksType = {
@@ -123,6 +125,8 @@ export default function Footer() {
             <p className="text-sm sm:text-base mb-4 sm:mb-6">
               {t('description')}
             </p>
+
+            {/* social media links */}
             <div className="flex gap-3 sm:gap-4">
               {socialLinks.map((social) => (
                 <Link
@@ -165,7 +169,7 @@ export default function Footer() {
                       </button>
                     ) : (
                       <Link
-                        href={link.href}
+                        href={`${locale}/${link.href}`}
                         className="text-xs sm:text-sm hover:text-white transition-colors duration-300"
                       >
                         {link.label}

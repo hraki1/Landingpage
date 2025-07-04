@@ -1,10 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function CTA() {
   const t = useTranslations('CTA');
+  const locale = useLocale();
+
 
   return (
     <section className="relative py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
@@ -29,7 +31,7 @@ export default function CTA() {
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                href="/contact"
+                href={`${locale}/contact`}
                 className="cursor-pointer px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-medium rounded-xl hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
               >
                 {t('buttonText')}
