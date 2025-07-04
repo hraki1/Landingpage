@@ -4,10 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useRouter as getLocal } from "next/router";
 import { useEffect, useState } from "react";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export const navLinks = (t: (key: string) => string) => [
   {
@@ -83,7 +82,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-  const { locale } = getLocal();
+  const locale = useLocale();
 
 
   useEffect(() => {
