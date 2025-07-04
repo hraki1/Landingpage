@@ -1,52 +1,60 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 export default function LanguageSwitcher() {
     const pathname = usePathname();
-    const router = useRouter();
-    const [currentLang, setCurrentLang] = useState('en');
-
-    const restOfPath = pathname.split('/').slice(2).join('/') || '';
+    const currentLocale = useLocale();
+    const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
-        // Get language from localStorage if available
-        const savedLang = localStorage.getItem('lang');
-        const pathLang = pathname.split('/')[1];
+        setIsClient(true);
+    }, []);
 
-        if (savedLang && ['en', 'ar'].includes(savedLang) && pathLang !== savedLang) {
-            router.push(`/${savedLang}/${restOfPath}`);
-        }
+    // Remove current locale from pathname
+    const pathWithoutLocale = pathname.replace(`/${currentLocale}`, '') || '/';
 
-        if (['en', 'ar'].includes(pathLang)) {
-            setCurrentLang(pathLang);
-        }
-    }, [pathname, router, restOfPath]);
+    const locales = [
+        { code: 'en', name: 'English' },
+        { code: 'ar', name: 'العربية' },
+        { code: 'fr', name: 'Français' }
+    ];
 
-    const handleLanguageChange = (lang: string) => {
-        localStorage.setItem('lang', lang);
-        setCurrentLang(lang);
-    };
+    if (!isClient) {
+        return (
+            <div className="flex gap-3">
+                {locales.map((locale) => (
+                    <span
+                        key={locale.code}
+                        className="px-2 py-1 text-sm text-gray-400"
+                    >
+                        {locale.name}
+                    </span>
+                ))}
+            </div>
+        );
+    }
 
     return (
-        <div className="flex items-center gap-3 text-sm">
-            <Link
-                href={`/en/${restOfPath}`}
-                onClick={() => handleLanguageChange('en')}
-                className={`px-2 py-1 rounded transition-colors ${currentLang === 'en' ? 'bg-blue-100 text-blue-600 font-medium' : 'text-gray-600 hover:text-gray-900'}`}
-            >
-                English
-            </Link>
-            <span className="text-gray-300">|</span>
-            <Link
-                href={`/ar/${restOfPath}`}
-                onClick={() => handleLanguageChange('ar')}
-                className={`px-2 py-1 rounded transition-colors ${currentLang === 'ar' ? 'bg-blue-100 text-blue-600 font-medium' : 'text-gray-600 hover:text-gray-900'}`}
-            >
-                العربية
-            </Link>
+        <div className="flex items-center gap-2 text-sm">
+            {locales.map((locale) => (
+                <div key={locale.code} className="flex items-center">
+                    {locale.code !== 'en' && <span className="text-gray-300 mx-2">|</span>}
+                    <Link
+                        href={`/${locale.code}${pathWithoutLocale}`}
+                        className={`px-2 py-1 rounded transition-colors ${currentLocale === locale.code
+                                ? 'font-medium text-primary-600'
+                                : 'text-gray-600 hover:text-gray-900'
+                            }`}
+                        prefetch={false}
+                    >
+                        {locale.name}
+                    </Link>
+                </div>
+            ))}
         </div>
     );
 }
