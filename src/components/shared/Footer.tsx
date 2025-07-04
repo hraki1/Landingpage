@@ -13,6 +13,7 @@ export default function Footer() {
   const pathname = usePathname();
   const router = useRouter();
 
+
   type socialLinksType = {
     name: string;
     href: string;

@@ -133,7 +133,7 @@ export default function Header() {
           {/* Logo + Links */}
           <div className="flex items-center gap-6">
             {/* Logo */}
-            <Link href={'/'}>
+            <Link href={`${locale}/`}>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="flex items-center gap-3"
@@ -155,7 +155,7 @@ export default function Header() {
               {navLinks(t).map(({ label, href, type }) =>
                 type === "hash" ? (
                   <button
-                    key={href}
+                    key={`${locale}/${href}`}
                     onClick={() => handleHashLinkClick(href)}
                     className="text-gray-700 hover:text-[#2EB6EE] font-medium transition-colors duration-300 text-sm xl:text-base relative group"
                   >
@@ -166,7 +166,7 @@ export default function Header() {
                   </button>
                 ) : (
                   <Link
-                    key={href}
+                    key={`${locale}/${href}`}
                     href={href}
                     className="text-gray-700 hover:text-[#2EB6EE] font-medium transition-colors duration-300 text-sm xl:text-base relative group"
                   >
@@ -251,7 +251,7 @@ export default function Header() {
                     </button>
                   ) : (
                     <Link
-                      href={href}
+                      href={`${locale}/${href}`}
                       locale={locale}
                       onClick={() => setMenuOpen(false)}
                       className="block py-2 px-3 text-gray-700 hover:text-[#2EB6EE] font-medium rounded-lg hover:bg-[#2eb6ee1a] transition-colors"
@@ -262,7 +262,7 @@ export default function Header() {
                 </motion.div>
               ))}
               <div className="pt-4 border-t border-gray-200 space-y-3">
-                <Link href="/contact" locale={locale} onClick={() => setMenuOpen(false)}>
+                <Link href={`${locale}/contact`} onClick={() => setMenuOpen(false)}>
                   <motion.button
                     className="block w-full text-center py-2.5 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-base"
                     initial={{ scale: 0.9, opacity: 0 }}

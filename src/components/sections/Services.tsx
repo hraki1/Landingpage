@@ -2,10 +2,13 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaCode, FaServer, FaChartLine, FaShieldAlt, FaMobileAlt, FaCloud } from "react-icons/fa";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Services() {
+
+
     const t = useTranslations('servicesSection');
+    const locale = useLocale();
 
     const services = [
         {
@@ -119,7 +122,7 @@ export default function Services() {
                                 </ul>
                             </div>
 
-                            <Link href={service.link}>
+                            <Link href={`${locale}/${service.link}`}>
                                 <motion.button
                                     className={`w-full py-2 px-4 rounded-lg text-sm font-medium bg-gradient-to-r ${service.color} text-white hover:opacity-90 transition-opacity `}
                                     whileHover={{ scale: 1.02 }}
