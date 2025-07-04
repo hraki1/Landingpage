@@ -21,7 +21,8 @@ export default function Hero() {
       : "url('/sarh-hero2.jpg')";
   return (
     <section
-      className="relative h-screen pt-24 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6 flex items-center"
+      dir={dir}
+      className={`relative h-screen pt-24 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6 flex items-center  ${dir === "rtl" ? " bg-left" : " bg-right"}`}
       style={{
         backgroundImage,
         backgroundRepeat: "no-repeat",
@@ -86,7 +87,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-bold leading-tight mb-4 md:mb-6 flex flex-col items-center md:block"
+            className="text-5xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl 2xl:text-6xl font-bold leading-tight mb-4 md:mb-6 flex flex-col items-center md:block"
           >
             <span className="font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent">
               {t('companyName')}
