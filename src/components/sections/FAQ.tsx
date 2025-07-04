@@ -75,7 +75,7 @@ export default function FAQ() {
 
         <div className="mt-12 text-center">
           <p className="text-gray-600 mb-4">{t('moreQuestions')}</p>
-          <Link href={`${locale}/contact`} passHref>
+          <Link href={`/${locale}/contact`} passHref>
             <motion.p
               className="inline-flex gap-3 items-center text-[#2EB6EE] font-medium"
               whileHover={{ x: 5 }}

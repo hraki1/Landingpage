@@ -113,7 +113,7 @@ export default function SystemsDevelopmentPage() {
                         </p>
                         <div className="flex justify-center gap-4">
                             <Link
-                                href={`${locale}/contact`}
+                                href={`/${locale}/contact`}
                                 className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                             >
                                 {t('hero.cta1')}
@@ -292,7 +292,7 @@ export default function SystemsDevelopmentPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Link
-                            href={`${locale}/contact`}
+                            href={`/${locale}/contact`}
                             className="inline-block bg-white text-[#2EB6EE] font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg"
                         >
                             {t('cta.button')}

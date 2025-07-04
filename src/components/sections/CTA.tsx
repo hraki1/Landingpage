@@ -31,7 +31,7 @@ export default function CTA() {
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                href={`${locale}/contact`}
+                href={`/${locale}/contact`}
                 className="cursor-pointer px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-medium rounded-xl hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
               >
                 {t('buttonText')}

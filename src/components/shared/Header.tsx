@@ -262,7 +262,7 @@ export default function Header() {
                 </motion.div>
               ))}
               <div className="pt-4 border-t border-gray-200 space-y-3">
-                <Link href={`${locale}/contact`} onClick={() => setMenuOpen(false)}>
+                <Link href={`/${locale}/contact`} onClick={() => setMenuOpen(false)}>
                   <motion.button
                     className="block w-full text-center py-2.5 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-base"
                     initial={{ scale: 0.9, opacity: 0 }}
