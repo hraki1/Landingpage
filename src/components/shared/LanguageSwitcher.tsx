@@ -20,7 +20,6 @@ export default function LanguageSwitcher() {
     const locales = [
         { code: 'en', name: 'English' },
         { code: 'ar', name: 'العربية' },
-        { code: 'fr', name: 'Français' }
     ];
 
     if (!isClient) {
@@ -46,8 +45,8 @@ export default function LanguageSwitcher() {
                     <Link
                         href={`/${locale.code}${pathWithoutLocale}`}
                         className={`px-2 py-1 rounded transition-colors ${currentLocale === locale.code
-                                ? 'font-medium text-primary-600'
-                                : 'text-gray-600 hover:text-gray-900'
+                            ? 'bg-blue-100 text-blue-600 font-medium'
+                            : 'text-gray-600 hover:text-gray-900'
                             }`}
                         prefetch={false}
                     >

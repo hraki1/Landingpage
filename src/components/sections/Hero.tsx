@@ -22,7 +22,7 @@ export default function Hero() {
   return (
     <section
       dir={dir}
-      className={`relative h-screen pt-24 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6 flex items-center  ${dir === "rtl" ? " bg-left" : " bg-right"}`}
+      className={`relative min-h-screen pt-24 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6 flex items-center  ${dir === "rtl" ? " bg-left" : " bg-right"}`}
       style={{
         backgroundImage,
         backgroundRepeat: "no-repeat",
