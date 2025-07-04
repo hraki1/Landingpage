@@ -19,6 +19,10 @@ export default function LanguageSwitcher() {
         if (savedLang && ['en', 'ar'].includes(savedLang) && pathLang !== savedLang) {
             router.push(`/${savedLang}/${restOfPath}`);
         }
+
+        if (['en', 'ar'].includes(pathLang)) {
+            setCurrentLang(pathLang);
+        }
     }, [pathname, router, restOfPath]);
 
     const handleLanguageChange = (lang: string) => {
