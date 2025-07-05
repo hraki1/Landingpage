@@ -145,7 +145,7 @@ export default function Header() {
                   width={56}
                   height={56}
                 />
-                <span className="lg:hidden text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent">
+                <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent">
                   {t('companyName')}
                 </span>
               </motion.div>
@@ -155,7 +155,7 @@ export default function Header() {
               {navLinks(t).map(({ label, href, type }) =>
                 type === "hash" ? (
                   <button
-                    key={`${locale}/${href}`}
+                    key={`/${locale}/${href}`}
                     onClick={() => handleHashLinkClick(href)}
                     className="text-gray-700 hover:text-[#2EB6EE] font-medium transition-colors duration-300 text-sm xl:text-base relative group"
                   >
