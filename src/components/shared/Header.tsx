@@ -103,26 +103,38 @@ export default function Header() {
   const handleHashLinkClick: HashLinkHandler = (hash: string): void => {
     // Get current language from pathname (first segment after /)
     const lang = pathname.split('/')[1] || 'en'; // default to 'en' if no language
+    const isHomePage = pathname === `/${lang}` || pathname === `/${lang}/`;
 
-    if (pathname !== `/${lang}` && pathname !== `/${lang}/`) {
+    // Close mobile menu if open
+    setMenuOpen(false);
+
+    if (!isHomePage) {
       // If not on home page, navigate to home page with hash
       router.push(`/${lang}${hash}`);
-      setTimeout(() => {
-        const element = document.querySelector(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
+      scrollToHash(hash);
     } else {
       // If already on home page, just scroll to section
-      const element = document.querySelector(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      scrollToHash(hash);
     }
-    setMenuOpen(false);
   };
 
+  // Helper function to handle scrolling to hash element
+  const scrollToHash = (hash: string) => {
+    // Small delay to ensure DOM is updated (especially important for mobile)
+    setTimeout(() => {
+      const element = document.querySelector(hash);
+      if (element) {
+        // Calculate offset based on viewport height (better for mobile)
+        const offset = Math.min(window.innerHeight * 0.1, 96); // 10% of viewport or 96px max
+
+        // Smooth scroll with offset
+        window.scrollTo({
+          top: element.getBoundingClientRect().top + window.pageYOffset - offset,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  };
   return (
     <>
       <motion.nav
