@@ -1,23 +1,20 @@
 "use client";
-import { motion } from "framer-motion";
-import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiMail, FiPhone, FiMapPin, FiSend, FiCheckCircle } from "react-icons/fi";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
-import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useActionState } from 'react';
+import { submitContactForm, type ContactFormState } from '@/lib/actions/contact';
 
 export default function ContactPage() {
   const t = useTranslations('ContactPage');
   const locale = useLocale();
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [state, formAction, isPending] = useActionState<ContactFormState, FormData>(
+    submitContactForm,
+    {}
+  );
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -41,43 +38,7 @@ export default function ContactPage() {
     },
   };
 
-  interface ContactFormData {
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-  }
 
-  interface ChangeEventTarget {
-    id: keyof ContactFormData;
-    value: string;
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target as ChangeEventTarget;
-    setFormData((prev: ContactFormData) => ({
-      ...prev,
-      [id]: value
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
-      });
-
-      setTimeout(() => setSubmitSuccess(false), 5000);
-    }, 1500);
-  };
 
   return (
     <div
@@ -121,17 +82,20 @@ export default function ContactPage() {
               {t('formTitle')}
             </h2>
 
-            {submitSuccess && (
+
+
+            {/* Error Message */}
+            {state.message && !state.success && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className={`mb-6 p-4 bg-green-100 text-green-700 rounded-lg ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                className={`mb-6 p-4 bg-red-100 text-red-700 rounded-lg ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
               >
-                {t('successMessage')}
+                {t('errorMessage')}
               </motion.div>
             )}
 
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-6" action={formAction}>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <motion.div whileHover={{ scale: 1.01 }}>
                   <label
@@ -143,11 +107,18 @@ export default function ContactPage() {
                   <input
                     type="text"
                     id="name"
-                    value={formData.name}
-                    onChange={handleChange}
+                    name="name"
                     required
-                    className="block w-full border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE] transition duration-200"
+                    defaultValue={state.formData?.name || ''}
+                    className={`block w-full border rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE] transition duration-200 text-black ${
+                      state.errors?.name ? 'border-red-300' : 'border-gray-300'
+                    }`}
                   />
+                  {state.errors?.name && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {t('validationErrors.name')}
+                    </p>
+                  )}
                 </motion.div>
 
                 <motion.div whileHover={{ scale: 1.01 }}>
@@ -160,11 +131,18 @@ export default function ContactPage() {
                   <input
                     type="email"
                     id="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    name="email"
                     required
-                    className="block w-full border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE] transition duration-200"
+                    defaultValue={state.formData?.email || ''}
+                    className={`block w-full border rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE] transition duration-200 text-black ${
+                      state.errors?.email ? 'border-red-300' : 'border-gray-300'
+                    }`}
                   />
+                  {state.errors?.email && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {t('validationErrors.email')}
+                    </p>
+                  )}
                 </motion.div>
               </div>
 
@@ -178,11 +156,18 @@ export default function ContactPage() {
                 <input
                   type="text"
                   id="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
+                  name="subject"
                   required
-                  className="block w-full border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE] transition duration-200"
+                  defaultValue={state.formData?.subject || ''}
+                  className={`block w-full border rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE] transition duration-200 text-black ${
+                    state.errors?.subject ? 'border-red-300' : 'border-gray-300'
+                  }`}
                 />
+                {state.errors?.subject && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {t('validationErrors.subject')}
+                  </p>
+                )}
               </motion.div>
 
               <motion.div whileHover={{ scale: 1.01 }}>
@@ -194,23 +179,30 @@ export default function ContactPage() {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
                   required
-                  className="block w-full border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE] transition duration-200"
-                ></textarea>
+                  defaultValue={state.formData?.message || ''}
+                  className={`block w-full border rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[#2EB6EE] focus:border-[#2EB6EE] transition duration-200 text-black ${
+                    state.errors?.message ? 'border-red-300' : 'border-gray-300'
+                  }`}
+                />
+                {state.errors?.message && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {t('validationErrors.message')}
+                  </p>
+                )}
               </motion.div>
 
               <motion.div className="pt-2">
                 <motion.button
                   type="submit"
-                  className="w-full flex justify-center items-center gap-2 py-4 px-6 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-gradient-to-r from-[#2EB6EE] to-[#8FBE53] hover:from-[#2596c4] hover:to-[#7CAE4A] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2EB6EE] transition duration-300"
+                  className="w-full flex justify-center items-center gap-2 py-4 px-6 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-gradient-to-r from-[#2EB6EE] to-[#8FBE53] hover:from-[#2596c4] hover:to-[#7CAE4A] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2EB6EE] transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   whileHover={{ scale: 1.02, boxShadow: "0 5px 15px rgba(46, 182, 238, 0.3)" }}
                   whileTap={{ scale: 0.98 }}
-                  disabled={isSubmitting}
+                  disabled={isPending}
                 >
-                  {isSubmitting ? (
+                  {isPending ? (
                     <>
                       <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -366,6 +358,65 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {state.success && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl"
+              dir={dir}
+            >
+              <div className="text-center">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                  className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6"
+                >
+                  <FiCheckCircle className="h-8 w-8 text-green-600" />
+                </motion.div>
+                
+                <motion.h3
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-2xl font-bold text-gray-900 mb-4"
+                >
+                  {t('successModal.title')}
+                </motion.h3>
+                
+                <motion.p
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-gray-600 mb-6 leading-relaxed"
+                >
+                  {t('successModal.message')}
+                </motion.p>
+                
+                <motion.button
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  onClick={() => window.location.reload()}
+                  className="w-full bg-gradient-to-r from-[#2EB6EE] to-[#8FBE53] text-white font-medium py-3 px-6 rounded-lg hover:from-[#2596c4] hover:to-[#7CAE4A] transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2EB6EE]"
+                >
+                  {t('successModal.button')}
+                </motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
