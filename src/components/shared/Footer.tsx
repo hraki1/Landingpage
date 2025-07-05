@@ -101,6 +101,7 @@ export default function Footer() {
     <footer className="relative py-12 sm:py-16 px-4 sm:px-6 bg-gray-900 text-gray-400 text-center md:text-start">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-8 sm:gap-12">
+
           {/* Logo and About */}
           <div className="lg:col-span-2">
             <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] bg-clip-text text-transparent mb-4 sm:mb-6 flex items-center justify-center gap-3">

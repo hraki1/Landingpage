@@ -13,7 +13,7 @@ export default function Stats() {
   ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 bg-gradient-to-br from-[#2EB6EE] via-[#62d0c5] to-[#a6e8b0] text-white">
+    <section className="relative py-16 px-4 sm:px-6 bg-gradient-to-br from-[#2EB6EE] via-[#62d0c5] to-[#a6e8b0] text-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {stats.map((stat, i) => (

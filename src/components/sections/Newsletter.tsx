@@ -22,7 +22,7 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 bg-white">
+    <section className="relative py-16 sm:py-24 px-4 sm:px-6 bg-white">
       <div className="max-w-4xl mx-auto bg-gradient-to-r from-[#e0f0d6] via-[#fdf5f8] to-[#e0f4f8] rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100">
         <div className="text-center">
           <motion.h2

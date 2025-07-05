@@ -62,7 +62,7 @@ export default function Services() {
     ];
 
     return (
-        <section className="py-8 sm:py-12 md:py-10 px-4 sm:px-6 bg-white">
+        <section className="relative py-8 sm:py-12 md:py-10 px-4 sm:px-6 bg-white">
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

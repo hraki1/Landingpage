@@ -135,6 +135,7 @@ export default function Header() {
       }
     }, 100);
   };
+  
   return (
     <>
       <motion.nav
