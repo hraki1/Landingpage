@@ -88,7 +88,7 @@ export default function Footer() {
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
         }
-      }, 100);
+      }, 200);
     } else {
       const element: Element | null = document.querySelector(hash);
       if (element) {
@@ -169,7 +169,7 @@ export default function Footer() {
                       </button>
                     ) : (
                       <Link
-                        href={`${locale}/${link.href}`}
+                        href={`/${locale}/${link.href}`}
                         className="text-xs sm:text-sm hover:text-white transition-colors duration-300"
                       >
                         {link.label}
@@ -189,13 +189,13 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
             <Link
-              href="/privacy"
+              href={`/${locale}/privacy`}
               className="hover:text-white transition-colors duration-300"
             >
               {t('privacyPolicy')}
             </Link>
             <Link
-              href="/terms"
+              href={`/${locale}/terms`}
               className="hover:text-white transition-colors duration-300"
             >
               {t('termsConditions')}

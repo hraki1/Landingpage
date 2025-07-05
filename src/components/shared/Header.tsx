@@ -166,7 +166,7 @@ export default function Header() {
                   </button>
                 ) : (
                   <Link
-                    key={`${locale}/${href}`}
+                    key={`/${locale}/${href}`}
                     href={href}
                     className="text-gray-700 hover:text-[#2EB6EE] font-medium transition-colors duration-300 text-sm xl:text-base relative group"
                   >
@@ -186,7 +186,7 @@ export default function Header() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center">
-            <Link href={'/contact'} locale={locale}>
+            <Link href={`/${locale}/contact`}>
               <motion.button
                 className="px-4 xl:px-5 py-2 xl:py-2.5 bg-gradient-to-r from-[#8FBE53] to-[#2EB6EE] text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300 text-sm xl:text-base"
                 whileHover={{
@@ -251,7 +251,7 @@ export default function Header() {
                     </button>
                   ) : (
                     <Link
-                      href={`${locale}/${href}`}
+                      href={`/${locale}/${href}`}
                       locale={locale}
                       onClick={() => setMenuOpen(false)}
                       className="block py-2 px-3 text-gray-700 hover:text-[#2EB6EE] font-medium rounded-lg hover:bg-[#2eb6ee1a] transition-colors"
