@@ -222,20 +222,20 @@
   "Stats": {
     "stats": [
       {
-        "number": "10K+",
-        "label": "Active Users"
+        "number": "24/7",
+        "label": "Development Speed"
       },
       {
         "number": "99.9%",
-        "label": "System Uptime"
+        "label": "Code Quality"
       },
       {
-        "number": "4.9/5",
-        "label": "User Rating"
+        "number": "48hrs",
+        "label": "Response Time"
       },
       {
-        "number": "500+",
-        "label": "Available Integrations"
+        "number": "100%",
+        "label": "Success Rate"
       }
     ]
   },

@@ -6,10 +6,10 @@ export default function Stats() {
   const t = useTranslations('Stats');
 
   const stats = [
-    { number: t('stats.0.number'), label: t('stats.0.label'), icon: "👥" },
-    { number: t('stats.1.number'), label: t('stats.1.label'), icon: "⏱️" },
-    { number: t('stats.2.number'), label: t('stats.2.label'), icon: "⭐" },
-    { number: t('stats.3.number'), label: t('stats.3.label'), icon: "🔌" },
+    { number: t('stats.0.number'), label: t('stats.0.label'), icon: "⚡" },
+    { number: t('stats.1.number'), label: t('stats.1.label'), icon: "🔧" },
+    { number: t('stats.2.number'), label: t('stats.2.label'), icon: "⏱️" },
+    { number: t('stats.3.number'), label: t('stats.3.label'), icon: "🎯" },
   ];
 
   return (
