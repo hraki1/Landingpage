@@ -1,4 +1,5 @@
 import { ContactFormData } from "../validations/contact";
+import nodemailer from 'nodemailer';
 
 
 export interface ContactSubmissionResult {
@@ -95,47 +96,93 @@ export class ContactService {
   }
 }
 
-// Default email service implementation
-export class DefaultEmailService implements EmailService {
+// Nodemailer email service implementation with Mailtrap
+export class NodemailerEmailService implements EmailService {
+  private transporter: nodemailer.Transporter;
+
+  constructor() {
+    // Create transporter for Mailtrap
+    this.transporter = nodemailer.createTransport({
+      host: process.env.MAILTRAP_HOST || 'smtp.mailtrap.io',
+      port: parseInt(process.env.MAILTRAP_PORT || '2525'),
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: process.env.MAILTRAP_USER,
+        pass: process.env.MAILTRAP_PASS,
+      },
+    });
+  }
+
   async sendContactEmail(data: ContactFormData): Promise<ContactSubmissionResult> {
     try {
-      // Simulate email sending (in production, you would use a real email service)
-      console.log('Sending contact email:', {
-        to: 'info@sarh-alnomu.com',
-        from: data.email,
+      // Email content
+      const mailOptions = {
+        from: `"${data.name}" <${data.email}>`,
+        to: 'info@sarh-alnomu.com', // Your business email
+        replyTo: data.email,
         subject: `Contact Form: ${data.subject}`,
-        body: `Name: ${data.name}\nEmail: ${data.email}\nMessage: ${data.message}`,
+        text: `
+Name: ${data.name}
+Email: ${data.email}
+Subject: ${data.subject}
+
+Message:
+${data.message}
+
+---
+This email was sent from your website contact form.
+        `,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #333;">New Contact Form Submission</h2>
+            <div style="background-color: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0;">
+              <p><strong>Name:</strong> ${data.name}</p>
+              <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
+              <p><strong>Subject:</strong> ${data.subject}</p>
+            </div>
+            <div style="background-color: #fff; padding: 20px; border-left: 4px solid #007bff; margin: 20px 0;">
+              <h3 style="color: #333; margin-top: 0;">Message:</h3>
+              <p style="line-height: 1.6; color: #555;">${data.message.replace(/\n/g, '<br>')}</p>
+            </div>
+            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+            <p style="color: #999; font-size: 12px;">
+              This email was sent from your website contact form at ${new Date().toLocaleString()}.
+            </p>
+          </div>
+        `,
+      };
+
+      // Send email
+      const info = await this.transporter.sendMail(mailOptions);
+
+      console.log('Email sent successfully:', {
+        messageId: info.messageId,
+        response: info.response,
+        timestamp: new Date().toISOString(),
       });
-
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 500));
-
-      // In a real implementation, you would use a service like SendGrid, AWS SES, etc.
-      // Example with SendGrid:
-      // const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Authorization': `Bearer ${process.env.SENDGRID_API_KEY}`,
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     personalizations: [{ to: [{ email: 'info@sarh-alnomu.com' }] }],
-      //     from: { email: 'noreply@yourdomain.com' },
-      //     subject: `Contact Form: ${data.subject}`,
-      //     content: [{ type: 'text/plain', value: `Name: ${data.name}\nEmail: ${data.email}\nMessage: ${data.message}` }],
-      //   }),
-      // });
 
       return {
         success: true,
-        submissionId: `sub_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        submissionId: info.messageId || `sub_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       };
     } catch (error) {
-      console.error('Email service error:', error);
+      console.error('Nodemailer email service error:', error);
       return {
         success: false,
         error: error instanceof Error ? error.message : 'Failed to send email notification',
       };
+    }
+  }
+
+  // Method to test the connection
+  async testConnection(): Promise<boolean> {
+    try {
+      await this.transporter.verify();
+      console.log('Email service connection verified successfully');
+      return true;
+    } catch (error) {
+      console.error('Email service connection failed:', error);
+      return false;
     }
   }
 } 

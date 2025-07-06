@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { ContactService, DefaultEmailService } from "../services/contact";
+import { sendEmail } from "../services/sendEmail";
 import { ContactFormData, validateContactForm } from "../validations/contact";
 
 export type ContactFormState = {
@@ -24,6 +24,9 @@ export async function submitContactForm(
       message: formData.get("message"),
     });
 
+    console.log(validatedFields);
+    console.log("validation filed data");
+
     if (!validatedFields.success) {
       return {
         errors: validatedFields.error.flatten().fieldErrors,
@@ -39,19 +42,22 @@ export async function submitContactForm(
 
     const { name, email, subject, message } = validatedFields.data;
 
-    // Initialize contact service
-    const emailService = new DefaultEmailService();
-    const contactService = new ContactService(emailService);
+    console.log("Attempting to send email:", {
+      name,
+      email,
+      subject,
+      messageLength: message.length,
+    });
 
-    // Call the contact service to handle the submission
-    const result = await contactService.submitContactForm({
+    // Send email using the sendEmail function
+    const emailResult = await sendEmail({
       name,
       email,
       subject,
       message,
     });
 
-    if (result.success) {
+    if (emailResult.success) {
       revalidatePath("/contact");
       return {
         success: true,
@@ -60,7 +66,7 @@ export async function submitContactForm(
     } else {
       return {
         errors: {},
-        message: result.error || "Something went wrong. Please try again.",
+        message: "Failed to send email. Please try again.",
         formData: {
           name: (formData.get("name") as string) || "",
           email: (formData.get("email") as string) || "",
@@ -71,9 +77,17 @@ export async function submitContactForm(
     }
   } catch (error) {
     console.error("Contact form submission error:", error);
+
+    // Provide more specific error messages
+    let errorMessage = "An unexpected error occurred. Please try again.";
+
+    if (error instanceof Error) {
+      errorMessage = `Error: ${error.message}`;
+    }
+
     return {
       errors: {},
-      message: "An unexpected error occurred. Please try again.",
+      message: errorMessage,
       formData: {
         name: (formData.get("name") as string) || "",
         email: (formData.get("email") as string) || "",
