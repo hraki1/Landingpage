@@ -63,7 +63,7 @@ export default function Footer() {
       title: t('columns.1.title'),
       links: [
         { label: t('columns.1.links.0'), href: "#about", type: "hash" },
-        { label: t('columns.1.links.1'), href: "/servicesPage/jobsPage", type: "page" },
+        // { label: t('columns.1.links.1'), href: "/servicesPage/jobsPage", type: "page" },
         { label: t('columns.1.links.2'), href: "/contact", type: "page" },
       ],
     },
